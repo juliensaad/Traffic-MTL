@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TMViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jcLabel;
 
 @end
