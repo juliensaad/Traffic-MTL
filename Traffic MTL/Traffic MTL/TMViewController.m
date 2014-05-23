@@ -8,6 +8,9 @@
 
 #import "TMViewController.h"
 #import "TMDuration.h"
+
+#import "TMBridgeInfo.h"
+
 #import <MapKit/MapKit.h>
 #import "BridgeCell.h"
 #import <POP/POP.h>
@@ -22,7 +25,7 @@
 
 
 
-@property NSArray* bridgesNames;
+@property NSMutableArray* bridges;
 @end
 
 @implementation TMViewController
@@ -45,32 +48,27 @@ BOOL direction;
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _bridgesNames.count;
+    return ((NSMutableArray*)_bridges[0]).count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     BridgeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
-    
-    
-    if([_results count]>indexPath.row){
 
-        cell.delay.adjustsFontSizeToFitWidth = YES;
-        TMDuration* duration = _results[indexPath.row];
-        
-        cell.delay.text = duration.bridgeName;
-        
-        if(duration.ratio<=0.1){
-            [cell.avecTraffic setTextColor:[UIColor greenColor]];
-        }else if(duration.ratio>0.1 && duration.ratio<=0.35){
-            [cell.avecTraffic setTextColor:[UIColor yellowColor]];
-        }else{
-            [cell.avecTraffic setTextColor:[UIColor redColor]];
-        }
-        cell.avecTraffic.text = duration.realTime;
-        cell.normal.text = duration.time;
-
+    cell.delay.adjustsFontSizeToFitWidth = YES;
+    TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
+    
+    cell.delay.text = bridge.bridgeName;
+    
+    if(bridge.ratio<=0.1){
+        [cell.avecTraffic setTextColor:[UIColor greenColor]];
+    }else if(bridge.ratio>0.1 && bridge.ratio<=0.25){
+        [cell.avecTraffic setTextColor:[UIColor yellowColor]];
+    }else{
+        [cell.avecTraffic setTextColor:[UIColor redColor]];
     }
+    cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
+    cell.normal.text = [self formattedStringForDuration:bridge.time];
    
     return cell;
 }
@@ -85,38 +83,26 @@ BOOL direction;
 
     // default direction, set depending on time of the day or preference
     direction = MTL;
+    [self updateContent];
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:self
+                                   selector:@selector(updateContent)
+                                   userInfo:nil
+                                    repeats:YES];
+    
+
     
 }
 -(void)loadTimes{
     // Load all lon and lats
     _results = [[NSMutableArray alloc] init];
-    _connections = [[NSMutableArray alloc] init];
-
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Locations" ofType:@"plist"];
-    
-    NSDictionary *bridges = [[NSDictionary alloc]
-                             initWithContentsOfFile:path];
-    _bridgesNames = [NSArray arrayWithObjects:BRIDGE1,BRIDGE2,BRIDGE3,BRIDGE4,BRIDGE5,nil];
-    
-    NSString* directionKey = direction?@"SN":@"NS";
-    
-    for(NSString* bridgeName in _bridgesNames){
-        NSArray* aBridge = [bridges objectForKey:[NSString stringWithFormat:@"%@ %@",bridgeName, directionKey]];
         
-        NSString* start = [aBridge objectAtIndex:0];
-        NSString* end = [aBridge objectAtIndex:1];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.mapquestapi.com/directions/v2/route?key=%@&from=%@&to=%@&",MAPS_API_KEY, start, end]]
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://t-b.ca/dev/traffic.php"]]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:10];
-        [request setHTTPMethod: @"GET"];
+    [request setHTTPMethod: @"GET"];
         
-        NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        
-        [_connections addObject:con];
-        
-    }
+    NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
 }
 
@@ -132,69 +118,60 @@ BOOL direction;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSString* failBridge;
-    int i = 0;
-    for(NSURLConnection* con in _connections){
-        if(con==connection){
-            TMDuration* duration = [[TMDuration alloc] init];
-            
-            failBridge = _bridgesNames[i];
-            NSLog(@"%@ %d", failBridge, i);
-            duration.text = [NSString stringWithFormat:@"%@ semble être fermé",failBridge];
-            [_results addObject:duration];
-        }
-    }
+    NSLog(@"error");
     
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    int i = 0;
-    for(NSURLConnection* con in _connections){
-        if(con==connection){
+    NSError *error;
+    NSArray *jsonDict = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&error];
+   _bridges = [[NSMutableArray alloc] init];
+    
+    NSMutableArray* bridgesMTL = [[NSMutableArray alloc] init];
+    NSMutableArray* bridgesBanlieue = [[NSMutableArray alloc] init];
+    
+    for(NSDictionary* dic in jsonDict){
+        TMBridgeInfo* info = [[TMBridgeInfo alloc] init];
         
-            NSError *error;
-            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&error];
-            
-            NSLog(@"%@ %@",[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"], [[jsonDict objectForKey:@"route"] objectForKey:@"time"]);
-            
-            TMDuration* duration = [[TMDuration alloc] init];
-            int realTime = [[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"] intValue];
-            
-
-            int time = [[[jsonDict objectForKey:@"route"] objectForKey:@"time"] intValue];
-            
-            
-            
-            duration.realTime = [NSString stringWithFormat:@"Temps actuel: %@",[self formattedStringForDuration:realTime]];
-            duration.time = [NSString stringWithFormat:@"Temps normal: %@", [self formattedStringForDuration:time]];
-            
-            duration.ratio = 1.0-(float)time/(float)realTime;
-            //duration.seconds = [[[[[[[jsonDict objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"value"] intValue];
-            //duration.text = [NSString stringWithFormat:@"Delai %@: %.0f%% du temps habituel", _bridgesNames[i], (2-(time/realTime))*100];
-            duration.bridgeName = _bridgesNames[i];
-            
-            [_results addObject:duration];
-            
-            /*switch (i) {
-                case CHAMPLAIN:
-                    _champlainLabel.text = [duration.text stringByAppendingString:_bridgesNames[i]];
-                    break;
-                case VICTORIA:
-                    _victoriaLabel.text = [duration.text stringByAppendingString:_bridgesNames[i]];
-                    break;
-                case JACQUESCARTIER:
-                    _jcLabel.text = [duration.text stringByAppendingString:_bridgesNames[i]];
-                    break;
-                default:
-                    break;
-            }*/
-            
-            [_tableView reloadData];
-            
-        }
-        i++;
+        info.bridgeName = [dic objectForKey:@"bridgeName"];
+        info.direction = [[dic objectForKey:@"direction"] integerValue];
+        info.realTime = [[dic objectForKey:@"realTime"] integerValue];
+        info.time = [[dic objectForKey:@"time"] integerValue];
+        
+        info.ratio = 1.0-(float)info.time/(float)info.realTime;
+        
+        NSLog(@"%@", [dic description]);
+        [info.direction?bridgesBanlieue:bridgesMTL addObject:info];
     }
+    
+    [_bridges addObject:bridgesMTL];
+    [_bridges addObject:bridgesBanlieue];
+    
+    [_tableView reloadData];
+    
+    /*NSLog(@"%@ %@",[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"], [[jsonDict objectForKey:@"route"] objectForKey:@"time"]);
+    
+    TMDuration* duration = [[TMDuration alloc] init];
+    int realTime = [[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"] intValue];
+    
+
+    int time = [[[jsonDict objectForKey:@"route"] objectForKey:@"time"] intValue];
+    
+    
+    
+    duration.realTime = [NSString stringWithFormat:@"Temps actuel: %@",[self formattedStringForDuration:realTime]];
+    duration.time = [NSString stringWithFormat:@"Temps normal: %@", [self formattedStringForDuration:time]];
+    
+    duration.ratio = 1.0-(float)time/(float)realTime;
+
+    
+    [_results addObject:duration];
+    
+    
+    [_tableView reloadData];*/
+
+}
     
     /*
      //Put this code where you want to reload your table view
@@ -206,7 +183,7 @@ BOOL direction;
      [<"TableName"> reloadData];
      } completion:NULL];
      });*/
-}
+
 
 - (NSString*)formattedStringForDuration:(int)duration
 {
@@ -226,7 +203,12 @@ BOOL direction;
     [sender setBackgroundColor:BLUECOLOR];
     [_b2 setBackgroundColor:[UIColor whiteColor]];
     direction = MTL;
+    [_tableView reloadData];
+}
+
+-(void)updateContent{
     [self loadTimes];
+    NSLog(@"Update");
 }
 
 - (IBAction)versBanlieueClick:(id)sender {
@@ -235,6 +217,7 @@ BOOL direction;
     
     
     direction = BANLIEUE;
-    [self loadTimes];
+    [_tableView reloadData];
+    //[self loadTimes];
 }
 @end
