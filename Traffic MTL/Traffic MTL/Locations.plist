@@ -2,13 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>New item - 2</key>
-	<array>
-		<string></string>
-		<string></string>
-	</array>
-	<key>New item</key>
-	<array/>
 	<key>Mercier NS</key>
 	<array>
 		<string>45.422652,-73.652203</string>
@@ -51,7 +44,7 @@
 	</array>
 	<key>Victoria NS</key>
 	<array>
-		<string>45.487169,-73.544422 </string>
+		<string>45.487169,-73.544422</string>
 		<string>45.493181,-73.515397</string>
 	</array>
 	<key>Jacques-Cartier SN</key>

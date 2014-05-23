@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967D192E5C000086D694 /* CoreLocation.framework */; };
+		0C269680192E5C0B0086D694 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967F192E5C0B0086D694 /* libsqlite3.dylib */; };
+		0C269682192E5C120086D694 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269681192E5C120086D694 /* libz.dylib */; };
+		0C269684192E5C170086D694 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269683192E5C170086D694 /* QuartzCore.framework */; };
+		0C269686192E5C1F0086D694 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269685192E5C1F0086D694 /* SystemConfiguration.framework */; };
+		0C50191D192EA6C5009343E1 /* ic5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C50191C192EA6C5009343E1 /* ic5@2x.png */; };
+		0C501920192EA82D009343E1 /* BridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50191F192EA82D009343E1 /* BridgeCell.m */; };
 		0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7B192E5B550093C129 /* Foundation.framework */; };
 		0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7D192E5B550093C129 /* CoreGraphics.framework */; };
 		0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
@@ -21,6 +28,10 @@
 		0CB66D9D192E5B560093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
 		0CB66DA5192E5B560093C129 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CB66DA3192E5B560093C129 /* InfoPlist.strings */; };
 		0CB66DA7192E5B560093C129 /* Traffic_MTLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */; };
+		0CF1866B192E7959000888CC /* TMDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF1866A192E7959000888CC /* TMDuration.m */; };
+		0CF18670192E8559000888CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF1866F192E8559000888CC /* MapKit.framework */; };
+		0CF598EF192E704A00E6A895 /* Locations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CF598EE192E704A00E6A895 /* Locations.plist */; };
+		18AB93B00E46480E885599CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE74C9AFBD4468CB4FE494E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C26967D192E5C000086D694 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0C26967F192E5C0B0086D694 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0C269681192E5C120086D694 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0C269683192E5C170086D694 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0C269685192E5C1F0086D694 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0C50191C192EA6C5009343E1 /* ic5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic5@2x.png"; sourceTree = "<group>"; };
+		0C50191E192EA82D009343E1 /* BridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeCell.h; sourceTree = "<group>"; };
+		0C50191F192EA82D009343E1 /* BridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeCell.m; sourceTree = "<group>"; };
+		0C71288A192E712B002C40F1 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		0CB66D78192E5B550093C129 /* Traffic MTL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Traffic MTL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB66D7B192E5B550093C129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CB66D7D192E5B550093C129 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +73,12 @@
 		0CB66DA2192E5B560093C129 /* Traffic MTLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Traffic MTLTests-Info.plist"; sourceTree = "<group>"; };
 		0CB66DA4192E5B560093C129 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Traffic_MTLTests.m; sourceTree = "<group>"; };
+		0CF18669192E7959000888CC /* TMDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDuration.h; sourceTree = "<group>"; };
+		0CF1866A192E7959000888CC /* TMDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDuration.m; sourceTree = "<group>"; };
+		0CF1866F192E8559000888CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0CF598EE192E704A00E6A895 /* Locations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Locations.plist; sourceTree = "<group>"; };
+		7CE74C9AFBD4468CB4FE494E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97477C0927FD40848CFBF80F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +86,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF18670192E8559000888CC /* MapKit.framework in Frameworks */,
+				0C269686192E5C1F0086D694 /* SystemConfiguration.framework in Frameworks */,
+				0C269684192E5C170086D694 /* QuartzCore.framework in Frameworks */,
+				0C269682192E5C120086D694 /* libz.dylib in Frameworks */,
+				0C269680192E5C0B0086D694 /* libsqlite3.dylib in Frameworks */,
+				0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */,
 				0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */,
 				0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */,
 				0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */,
+				18AB93B00E46480E885599CE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +119,7 @@
 				0CB66DA0192E5B560093C129 /* Traffic MTLTests */,
 				0CB66D7A192E5B550093C129 /* Frameworks */,
 				0CB66D79192E5B550093C129 /* Products */,
+				97477C0927FD40848CFBF80F /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +135,17 @@
 		0CB66D7A192E5B550093C129 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CF1866F192E8559000888CC /* MapKit.framework */,
+				0C269685192E5C1F0086D694 /* SystemConfiguration.framework */,
+				0C269683192E5C170086D694 /* QuartzCore.framework */,
+				0C269681192E5C120086D694 /* libz.dylib */,
+				0C26967F192E5C0B0086D694 /* libsqlite3.dylib */,
+				0C26967D192E5C000086D694 /* CoreLocation.framework */,
 				0CB66D7B192E5B550093C129 /* Foundation.framework */,
 				0CB66D7D192E5B550093C129 /* CoreGraphics.framework */,
 				0CB66D7F192E5B550093C129 /* UIKit.framework */,
 				0CB66D9A192E5B560093C129 /* XCTest.framework */,
+				7CE74C9AFBD4468CB4FE494E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,6 +153,7 @@
 		0CB66D81192E5B550093C129 /* Traffic MTL */ = {
 			isa = PBXGroup;
 			children = (
+				0C50191C192EA6C5009343E1 /* ic5@2x.png */,
 				0CB66D8A192E5B550093C129 /* TMAppDelegate.h */,
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0CB66D8D192E5B550093C129 /* Main.storyboard */,
@@ -119,6 +161,10 @@
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
 				0CB66D93192E5B550093C129 /* Images.xcassets */,
 				0CB66D82192E5B550093C129 /* Supporting Files */,
+				0CF18669192E7959000888CC /* TMDuration.h */,
+				0CF1866A192E7959000888CC /* TMDuration.m */,
+				0C50191E192EA82D009343E1 /* BridgeCell.h */,
+				0C50191F192EA82D009343E1 /* BridgeCell.m */,
 			);
 			path = "Traffic MTL";
 			sourceTree = "<group>";
@@ -130,6 +176,8 @@
 				0CB66D84192E5B550093C129 /* InfoPlist.strings */,
 				0CB66D87192E5B550093C129 /* main.m */,
 				0CB66D89192E5B550093C129 /* Traffic MTL-Prefix.pch */,
+				0CF598EE192E704A00E6A895 /* Locations.plist */,
+				0C71288A192E712B002C40F1 /* config.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -159,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CB66DAA192E5B560093C129 /* Build configuration list for PBXNativeTarget "Traffic MTL" */;
 			buildPhases = (
+				659F52FF2D2C422FBD9A6699 /* Check Pods Manifest.lock */,
 				0CB66D74192E5B550093C129 /* Sources */,
 				0CB66D75192E5B550093C129 /* Frameworks */,
 				0CB66D76192E5B550093C129 /* Resources */,
+				C253C942983C455F80C5E32A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,7 +279,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C50191D192EA6C5009343E1 /* ic5@2x.png in Resources */,
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
+				0CF598EF192E704A00E6A895 /* Locations.plist in Resources */,
 				0CB66D86192E5B550093C129 /* InfoPlist.strings in Resources */,
 				0CB66D8F192E5B550093C129 /* Main.storyboard in Resources */,
 			);
@@ -245,13 +297,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		659F52FF2D2C422FBD9A6699 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C253C942983C455F80C5E32A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0CB66D74192E5B550093C129 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C501920192EA82D009343E1 /* BridgeCell.m in Sources */,
 				0CB66D92192E5B550093C129 /* TMViewController.m in Sources */,
 				0CB66D88192E5B550093C129 /* main.m in Sources */,
+				0CF1866B192E7959000888CC /* TMDuration.m in Sources */,
 				0CB66D8C192E5B550093C129 /* TMAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,12 +461,18 @@
 		};
 		0CB66DAB192E5B560093C129 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97477C0927FD40848CFBF80F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Traffic MTL/Traffic MTL-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Traffic MTL-Info.plist";
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -387,12 +480,18 @@
 		};
 		0CB66DAC192E5B560093C129 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97477C0927FD40848CFBF80F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Traffic MTL/Traffic MTL-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Traffic MTL-Info.plist";
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -457,6 +556,7 @@
 				0CB66DAC192E5B560093C129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0CB66DAD192E5B560093C129 /* Build configuration list for PBXNativeTarget "Traffic MTLTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +565,7 @@
 				0CB66DAF192E5B560093C129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

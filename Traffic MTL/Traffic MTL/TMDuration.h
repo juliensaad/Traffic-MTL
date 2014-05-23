@@ -12,5 +12,10 @@
 
 @property NSString* text;
 @property int seconds;
+@property float ratio;
 
+@property NSString* realTime;
+@property NSString* time;
+
+@property NSString* bridgeName;
 @end

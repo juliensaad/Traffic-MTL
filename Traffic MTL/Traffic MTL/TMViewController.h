@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TMViewController : UIViewController
+@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jcLabel;
+@property (weak, nonatomic) IBOutlet UIView *b1Frame;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)versMtlClick:(id)sender;
+- (IBAction)versBanlieueClick:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *b1;
+
+@property (weak, nonatomic) IBOutlet UIButton *b2;
 
 @end
