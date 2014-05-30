@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
@@ -19,6 +20,7 @@
 - (IBAction)versBanlieueClick:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIView *colorFilter;
 @property (weak, nonatomic) IBOutlet UIButton *b1;
 
 @property (weak, nonatomic) IBOutlet UIButton *b2;

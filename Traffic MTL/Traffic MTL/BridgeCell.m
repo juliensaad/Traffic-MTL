@@ -7,6 +7,7 @@
 //
 
 #import "BridgeCell.h"
+#import "UIImage+Blur.h"
 
 @implementation BridgeCell
 
@@ -22,6 +23,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    [_backgroundImage setImage:[[_backgroundImage image] blurredImage:0.0]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

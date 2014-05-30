@@ -29,9 +29,15 @@
 		0CB66D9D192E5B560093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
 		0CB66DA5192E5B560093C129 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CB66DA3192E5B560093C129 /* InfoPlist.strings */; };
 		0CB66DA7192E5B560093C129 /* Traffic_MTLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */; };
+		0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB31933CF34003272BD /* UIImage+Blur.m */; };
+		0CEF2CB61933D202003272BD /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB51933D202003272BD /* victoria@2x.jpg */; };
+		0CEF2CB81933D2B0003272BD /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB71933D2B0003272BD /* jacques@2x.jpg */; };
+		0CEF2CBA1933D3CA003272BD /* champlain@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB91933D3CA003272BD /* champlain@2x.jpg */; };
 		0CF1866B192E7959000888CC /* TMDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF1866A192E7959000888CC /* TMDuration.m */; };
 		0CF18670192E8559000888CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF1866F192E8559000888CC /* MapKit.framework */; };
 		0CF598EF192E704A00E6A895 /* Locations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CF598EE192E704A00E6A895 /* Locations.plist */; };
+		0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */; };
+		0CFFC9301933E8EB000E8AAB /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFFC92F1933E8EB000E8AAB /* bg@2x.png */; };
 		18AB93B00E46480E885599CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE74C9AFBD4468CB4FE494E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,10 +82,17 @@
 		0CB66DA2192E5B560093C129 /* Traffic MTLTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Traffic MTLTests-Info.plist"; sourceTree = "<group>"; };
 		0CB66DA4192E5B560093C129 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Traffic_MTLTests.m; sourceTree = "<group>"; };
+		0CEF2CB21933CF34003272BD /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
+		0CEF2CB31933CF34003272BD /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
+		0CEF2CB51933D202003272BD /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
+		0CEF2CB71933D2B0003272BD /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
+		0CEF2CB91933D3CA003272BD /* champlain@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "champlain@2x.jpg"; sourceTree = "<group>"; };
 		0CF18669192E7959000888CC /* TMDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDuration.h; sourceTree = "<group>"; };
 		0CF1866A192E7959000888CC /* TMDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDuration.m; sourceTree = "<group>"; };
 		0CF1866F192E8559000888CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0CF598EE192E704A00E6A895 /* Locations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Locations.plist; sourceTree = "<group>"; };
+		0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mercier@2x.jpg"; sourceTree = "<group>"; };
+		0CFFC92F1933E8EB000E8AAB /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		7CE74C9AFBD4468CB4FE494E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97477C0927FD40848CFBF80F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,8 +169,15 @@
 		0CB66D81192E5B550093C129 /* Traffic MTL */ = {
 			isa = PBXGroup;
 			children = (
+				0CEF2CB51933D202003272BD /* victoria@2x.jpg */,
+				0CEF2CB91933D3CA003272BD /* champlain@2x.jpg */,
+				0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */,
+				0CEF2CB21933CF34003272BD /* UIImage+Blur.h */,
+				0CEF2CB31933CF34003272BD /* UIImage+Blur.m */,
 				0C50191C192EA6C5009343E1 /* ic5@2x.png */,
 				0CB66D8A192E5B550093C129 /* TMAppDelegate.h */,
+				0CEF2CB71933D2B0003272BD /* jacques@2x.jpg */,
+				0CFFC92F1933E8EB000E8AAB /* bg@2x.png */,
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0CB66D8D192E5B550093C129 /* Main.storyboard */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
@@ -285,10 +305,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C50191D192EA6C5009343E1 /* ic5@2x.png in Resources */,
+				0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */,
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
+				0CEF2CB81933D2B0003272BD /* jacques@2x.jpg in Resources */,
 				0CF598EF192E704A00E6A895 /* Locations.plist in Resources */,
+				0CEF2CB61933D202003272BD /* victoria@2x.jpg in Resources */,
 				0CB66D86192E5B550093C129 /* InfoPlist.strings in Resources */,
+				0CEF2CBA1933D3CA003272BD /* champlain@2x.jpg in Resources */,
 				0CB66D8F192E5B550093C129 /* Main.storyboard in Resources */,
+				0CFFC9301933E8EB000E8AAB /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C501920192EA82D009343E1 /* BridgeCell.m in Sources */,
+				0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */,
 				0CB66D92192E5B550093C129 /* TMViewController.m in Sources */,
 				0CB66D88192E5B550093C129 /* main.m in Sources */,
 				0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */,
@@ -478,6 +504,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Traffic MTL/Traffic MTL-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Traffic MTL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -497,6 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Traffic MTL/Traffic MTL-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Traffic MTL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

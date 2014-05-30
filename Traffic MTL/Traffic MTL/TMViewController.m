@@ -14,6 +14,8 @@
 #import <MapKit/MapKit.h>
 #import "BridgeCell.h"
 #import <POP/POP.h>
+#import "UIImage+Blur.h"
+
 
 
 @interface TMViewController ()
@@ -22,6 +24,7 @@
 @property NSMutableArray* results;
 @property NSMutableArray* connections;
 
+@property UIRefreshControl* refreshControl;
 
 
 
@@ -52,34 +55,89 @@ BOOL direction;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    BridgeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
-
-    cell.delay.adjustsFontSizeToFitWidth = YES;
-    TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
-    
-    cell.delay.text = bridge.bridgeName;
-    
-    if(bridge.ratio<=0.1){
-        [cell.avecTraffic setTextColor:[UIColor greenColor]];
-    }else if(bridge.ratio>0.1 && bridge.ratio<=0.25){
-        [cell.avecTraffic setTextColor:[UIColor yellowColor]];
+    BridgeCell *cell ;
+    if(indexPath.row==0){
+       cell= [tableView dequeueReusableCellWithIdentifier:@"FirstBridgeCell"];
     }else{
-        [cell.avecTraffic setTextColor:[UIColor redColor]];
+    
+        cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
     }
-    cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
-    cell.normal.text = [self formattedStringForDuration:bridge.time];
-   
-    return cell;
+        cell.delay.adjustsFontSizeToFitWidth = YES;
+        TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
+        
+        cell.delay.text = bridge.bridgeName;
+        
+        if(bridge.ratio<=0.1){
+            [cell.colorFilter setBackgroundColor:[UIColor greenColor]];
+        }else if(bridge.ratio>0.1 && bridge.ratio<=0.25){
+            [cell.colorFilter setBackgroundColor:[UIColor yellowColor]];
+        }else{
+            [cell.colorFilter setBackgroundColor:[UIColor redColor]];
+        }
+        cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
+        cell.normal.text = [self formattedStringForDuration:bridge.time];
+        
+        
+
+        switch (indexPath.row) {
+            case 0:
+                cell.backgroundImage.image = [[UIImage imageNamed:@"champlain@2x.jpg"] blurredImage:0.2];
+                break;
+            case 1:
+                cell.backgroundImage.image = [[UIImage imageNamed:@"victoria@2x.jpg"] blurredImage:0.2];
+
+                break;
+            case 2:
+                cell.backgroundImage.image = [[UIImage imageNamed:@"jacques@2x.jpg"] blurredImage:0.2];
+                break;
+            case 3:
+                cell.backgroundImage.image = [[UIImage imageNamed:@"mercier@2x.jpg"] blurredImage:0.2];
+            default:
+                break;
+        }
+    
+        cell.clipsToBounds = YES;
+        cell.backgroundImage.clipsToBounds = YES;
+        return cell;
+    //}
+    //return 0;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    if(indexPath.row==0){
+        return 142;
+    }
+    return 120;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    float offset = _tableView.contentOffset.y / _tableView.frame.size.height;
+    for(int i=0; i<((NSMutableArray*)_bridges[0]).count;i++){
+        
+        BridgeCell *cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        CGRect frame = CGRectMake(cell.backgroundImage.frame.origin.x, offset * 60-30, cell.backgroundImage.frame.size.width, cell.backgroundImage.frame.size.height);
+        
+        cell.backgroundImage.frame = frame;
+        
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView* bg = [[UIImageView alloc] init];
+    bg.image = [UIImage imageNamed:@"bg.png"];
+    
+    bg.frame = self.view.frame;
+    [self.view addSubview:bg];
+    [self.view sendSubviewToBack:bg];
 
     // default direction, set depending on time of the day or preference
     direction = MTL;
@@ -90,9 +148,37 @@ BOOL direction;
                                    userInfo:nil
                                     repeats:YES];
     
-
+    
+    _refreshControl = [[UIRefreshControl alloc] init];
+    
+    /*UIImageView *rcImageView =
+    [[UIImageView alloc] initWithImage:
+     [UIImage imageNamed: @"rien"]];
+    [self.refreshControl insertSubview:rcImageView atIndex:0];*/
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = self.tableView;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = self.refreshControl;
+  
     
 }
+
+-(void)handleRefresh:(id)sender{
+    /*if(!direction){
+        [self versBanlieueClick:self];
+    }else{
+        [self versMtlClick:self];
+    }
+    
+    direction = !direction;*/
+    [self loadTimes];
+    
+    [_refreshControl endRefreshing];
+}
+
 -(void)loadTimes{
     // Load all lon and lats
     _results = [[NSMutableArray alloc] init];
@@ -200,8 +286,8 @@ BOOL direction;
 }
 
 - (IBAction)versMtlClick:(id)sender {
-    [sender setBackgroundColor:BLUECOLOR];
-    [_b2 setBackgroundColor:[UIColor whiteColor]];
+    //[sender setBackgroundColor:BLUECOLOR];
+    //[_b2 setBackgroundColor:[UIColor whiteColor]];
     direction = MTL;
     [_tableView reloadData];
 }
@@ -212,8 +298,8 @@ BOOL direction;
 }
 
 - (IBAction)versBanlieueClick:(id)sender {
-    [sender setBackgroundColor:BLUECOLOR];
-    [_b1 setBackgroundColor:[UIColor whiteColor]];
+    // [sender setBackgroundColor:BLUECOLOR];
+    // [_b1 setBackgroundColor:[UIColor whiteColor]];
     
     
     direction = BANLIEUE;
