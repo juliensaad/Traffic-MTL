@@ -33,6 +33,7 @@
 
 @implementation TMViewController
 BOOL direction;
+int addedShadowCount;
 
 #define MTL YES
 #define BANLIEUE NO
@@ -50,6 +51,32 @@ BOOL direction;
 #define LOUIS 4
 
 
+- (void)addGradientToView:(UIView *)view
+{
+    if(view.tag==0){
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = view.bounds;
+        gradient.colors = @[(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0   alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.9] CGColor]
+                            ];
+        [view.layer insertSublayer:gradient atIndex:0];
+        addedShadowCount++;
+
+    }else{
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = view.bounds;
+        gradient.colors = @[(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0   alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8] CGColor]
+                            ];
+        [view.layer insertSublayer:gradient atIndex:0];
+        addedShadowCount++;
+    }
+    NSLog(@"Adding %d", addedShadowCount);
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return ((NSMutableArray*)_bridges[0]).count;
 }
@@ -57,11 +84,13 @@ BOOL direction;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BridgeCell *cell ;
     if(indexPath.row==0){
-       cell= [tableView dequeueReusableCellWithIdentifier:@"FirstBridgeCell"];
+        cell= [tableView dequeueReusableCellWithIdentifier:@"FirstBridgeCell"];
     }else{
     
         cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
     }
+    
+
         cell.delay.adjustsFontSizeToFitWidth = YES;
         TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
         
@@ -76,28 +105,34 @@ BOOL direction;
         }
         cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
         cell.normal.text = [self formattedStringForDuration:bridge.time];
-        
-        
+    
 
         switch (indexPath.row) {
             case 0:
-                cell.backgroundImage.image = [[UIImage imageNamed:@"champlain@2x.jpg"] blurredImage:0.2];
+                cell.backgroundImage.image = [[UIImage imageNamed:@"champlain@2x.jpg"] blurredImage:0.0];
                 break;
             case 1:
-                cell.backgroundImage.image = [[UIImage imageNamed:@"victoria@2x.jpg"] blurredImage:0.2];
+                cell.backgroundImage.image = [[UIImage imageNamed:@"victoria@2x.jpg"] blurredImage:0.0];
 
                 break;
             case 2:
-                cell.backgroundImage.image = [[UIImage imageNamed:@"jacques@2x.jpg"] blurredImage:0.2];
+                cell.backgroundImage.image = [[UIImage imageNamed:@"jacques@2x.jpg"] blurredImage:0.0];
                 break;
             case 3:
-                cell.backgroundImage.image = [[UIImage imageNamed:@"mercier@2x.jpg"] blurredImage:0.2];
+                cell.backgroundImage.image = [[UIImage imageNamed:@"mercier@2x.jpg"] blurredImage:0.0];
             default:
                 break;
         }
+    //    cell.backgroundImage.image = [[UIImage alloc] init];
+        cell.backgroundImage.tag = indexPath.row;
     
         cell.clipsToBounds = YES;
         cell.backgroundImage.clipsToBounds = YES;
+    
+    if(addedShadowCount != ((NSMutableArray*)_bridges[0]).count){
+        [self addGradientToView:cell.backgroundImage];
+        // [self addGradientToView:cell.backgroundImage];
+    }
         return cell;
     //}
     //return 0;
@@ -121,7 +156,7 @@ BOOL direction;
     for(int i=0; i<((NSMutableArray*)_bridges[0]).count;i++){
         
         BridgeCell *cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        CGRect frame = CGRectMake(cell.backgroundImage.frame.origin.x, offset * 60-30, cell.backgroundImage.frame.size.width, cell.backgroundImage.frame.size.height);
+        CGRect frame = CGRectMake(cell.backgroundImage.frame.origin.x, offset * 60-60, cell.backgroundImage.frame.size.width, cell.backgroundImage.frame.size.height);
         
         cell.backgroundImage.frame = frame;
         
@@ -131,7 +166,7 @@ BOOL direction;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    addedShadowCount = 0;
     UIImageView* bg = [[UIImageView alloc] init];
     bg.image = [UIImage imageNamed:@"bg.png"];
     
