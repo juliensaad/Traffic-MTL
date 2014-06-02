@@ -15,6 +15,7 @@
 		0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4D581E192FDA1C003BCB15 /* TMBridgeInfo.m */; };
 		0C50191D192EA6C5009343E1 /* ic5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C50191C192EA6C5009343E1 /* ic5@2x.png */; };
 		0C501920192EA82D009343E1 /* BridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50191F192EA82D009343E1 /* BridgeCell.m */; };
+		0C6057171938DE2D00251E13 /* TMMapRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */; };
 		0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7B192E5B550093C129 /* Foundation.framework */; };
 		0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7D192E5B550093C129 /* CoreGraphics.framework */; };
 		0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
@@ -62,6 +63,8 @@
 		0C50191C192EA6C5009343E1 /* ic5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic5@2x.png"; sourceTree = "<group>"; };
 		0C50191E192EA82D009343E1 /* BridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeCell.h; sourceTree = "<group>"; };
 		0C50191F192EA82D009343E1 /* BridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeCell.m; sourceTree = "<group>"; };
+		0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMapRouteViewController.h; sourceTree = "<group>"; };
+		0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMapRouteViewController.m; sourceTree = "<group>"; };
 		0C71288A192E712B002C40F1 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		0CB66D78192E5B550093C129 /* Traffic MTL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Traffic MTL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB66D7B192E5B550093C129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +183,8 @@
 				0CFFC92F1933E8EB000E8AAB /* bg@2x.png */,
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0CB66D8D192E5B550093C129 /* Main.storyboard */,
+				0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */,
+				0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
 				0CB66D93192E5B550093C129 /* Images.xcassets */,
@@ -367,6 +372,7 @@
 			files = (
 				0C501920192EA82D009343E1 /* BridgeCell.m in Sources */,
 				0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */,
+				0C6057171938DE2D00251E13 /* TMMapRouteViewController.m in Sources */,
 				0CB66D92192E5B550093C129 /* TMViewController.m in Sources */,
 				0CB66D88192E5B550093C129 /* main.m in Sources */,
 				0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */,

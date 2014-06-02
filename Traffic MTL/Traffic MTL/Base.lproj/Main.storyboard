@@ -177,6 +177,36 @@
             </objects>
             <point key="canvasLocation" x="-79" y="66"/>
         </scene>
+        <!--Map Route View Controller-->
+        <scene sceneID="fzU-fw-T3B">
+            <objects>
+                <viewController id="2px-lb-u65" customClass="TMMapRouteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4F3-TR-lBz"/>
+                        <viewControllerLayoutGuide type="bottom" id="YR8-1q-U1y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nfo-aX-AJE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-gJ-hdL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2px-lb-u65" id="pp3-8e-aiP"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="bY2-gJ-hdL" id="P4P-Pq-jfu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6w-sy-syi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38" y="803"/>
+        </scene>
     </scenes>
     <resources>
         <image name="victoria.jpg" width="320" height="150"/>

@@ -67,9 +67,9 @@ BOOL direction;
         
         cell.delay.text = bridge.bridgeName;
         
-        if(bridge.ratio<=0.1){
+        if(bridge.ratio<=0.20){
             [cell.colorFilter setBackgroundColor:[UIColor greenColor]];
-        }else if(bridge.ratio>0.1 && bridge.ratio<=0.25){
+        }else if(bridge.ratio>0.20 && bridge.ratio<=0.45){
             [cell.colorFilter setBackgroundColor:[UIColor yellowColor]];
         }else{
             [cell.colorFilter setBackgroundColor:[UIColor redColor]];
