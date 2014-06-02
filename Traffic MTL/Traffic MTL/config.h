@@ -13,4 +13,12 @@
 
 #define BLUECOLOR [UIColor colorWithRed:44/255.0 green:190/255.0 blue:150/255.0 alpha:1.0]
 
+#define ISFRENCH ![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
+
+// LOCALIZATION
+
+#define lNORMALTIME (ISFRENCH?@"Traversée normale:":@"Average crossing:")
+#define lUNAVAILABLE (ISFRENCH?@"Non disponible":@"Unavailable")
+
+
 #endif

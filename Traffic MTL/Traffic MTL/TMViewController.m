@@ -58,8 +58,8 @@ int addedShadowCount;
         gradient.frame = view.bounds;
         gradient.colors = @[(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0   alpha:0.0] CGColor],
                             (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
-                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
-                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.9] CGColor]
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8] CGColor]
                             ];
         [view.layer insertSublayer:gradient atIndex:0];
         addedShadowCount++;
@@ -68,7 +68,7 @@ int addedShadowCount;
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = view.bounds;
         gradient.colors = @[(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0   alpha:0.0] CGColor],
-                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+                            (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2] CGColor],
                             (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8] CGColor]
                             ];
         [view.layer insertSublayer:gradient atIndex:0];
@@ -81,30 +81,49 @@ int addedShadowCount;
     return ((NSMutableArray*)_bridges[0]).count;
 }
 
+#define TMGRAY [UIColor colorWithRed:218.0/255.0 green:220.0/255.0 blue:221.0/255.0 alpha:0.90]
+
+#define TMBLUE [UIColor colorWithRed:106.0/255.0 green:205.0/255.0 blue:216.0/255.0 alpha:0.90]
+
+#define GREEN [UIColor colorWithRed:102.0/255.0 green:188.0/255.0 blue:76.0/255.0 alpha:0.90]
+#define ORANGE [UIColor colorWithRed:245.0/255.0 green:147.0/255.0 blue:49.0/255.0 alpha:0.90]
+#define RED [UIColor colorWithRed:235.0/255.0 green:33.0/255.0 blue:46.0/255.0 alpha:0.90]
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BridgeCell *cell ;
-    if(indexPath.row==0){
-        cell= [tableView dequeueReusableCellWithIdentifier:@"FirstBridgeCell"];
-    }else{
+    //if(indexPath.row==0){
+        cell= [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
+    //}else{
     
-        cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
-    }
+    //    cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
+    //}
     
 
-        cell.delay.adjustsFontSizeToFitWidth = YES;
+        cell.bridgeName.adjustsFontSizeToFitWidth = YES;
         TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
         
-        cell.delay.text = bridge.bridgeName;
-        
+        cell.bridgeName.text = bridge.bridgeName;
+        cell.bridgeName.adjustsFontSizeToFitWidth = YES;
+    
         if(bridge.ratio<=0.20){
-            [cell.colorFilter setBackgroundColor:[UIColor greenColor]];
+            [cell.avecTraffic setBackgroundColor:GREEN];
         }else if(bridge.ratio>0.20 && bridge.ratio<=0.45){
-            [cell.colorFilter setBackgroundColor:[UIColor yellowColor]];
+            [cell.avecTraffic setBackgroundColor:ORANGE];
         }else{
-            [cell.colorFilter setBackgroundColor:[UIColor redColor]];
+            [cell.avecTraffic setBackgroundColor:RED];
+
         }
+    
+        cell.colorFilter.backgroundColor = [UIColor clearColor];
+    
+    
         cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
-        cell.normal.text = [self formattedStringForDuration:bridge.time];
+    
+    if(bridge.realTime>1500){
+        cell.avecTraffic.text = lUNAVAILABLE;
+        cell.avecTraffic.adjustsFontSizeToFitWidth = YES;
+    }
+        cell.normal.text = [[NSString stringWithFormat:@"%@ %@",lNORMALTIME,[self formattedStringForDuration:bridge.time]] uppercaseString];
     
 
         switch (indexPath.row) {
@@ -144,22 +163,26 @@ int addedShadowCount;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
-        return 142;
+        return 130;
     }
-    return 120;
+    return 130;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    
-    float offset = _tableView.contentOffset.y / _tableView.frame.size.height;
+    // Parallax effect for BridgeCells
+    /*float offset = _tableView.contentOffset.y / _tableView.frame.size.height;
     for(int i=0; i<((NSMutableArray*)_bridges[0]).count;i++){
         
         BridgeCell *cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
         CGRect frame = CGRectMake(cell.backgroundImage.frame.origin.x, offset * 60-60, cell.backgroundImage.frame.size.width, cell.backgroundImage.frame.size.height);
         
         cell.backgroundImage.frame = frame;
-        
+    }*/
+    
+    // Allow only a bounce on the top of the scrollview
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.frame.size.height)];
     }
 }
 
@@ -168,7 +191,7 @@ int addedShadowCount;
     [super viewDidLoad];
     addedShadowCount = 0;
     UIImageView* bg = [[UIImageView alloc] init];
-    bg.image = [UIImage imageNamed:@"bg.png"];
+    bg.image = [UIImage imageNamed:@"splash_fr.png"];
     
     bg.frame = self.view.frame;
     [self.view addSubview:bg];
@@ -271,39 +294,10 @@ int addedShadowCount;
     
     [_tableView reloadData];
     
-    /*NSLog(@"%@ %@",[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"], [[jsonDict objectForKey:@"route"] objectForKey:@"time"]);
-    
-    TMDuration* duration = [[TMDuration alloc] init];
-    int realTime = [[[jsonDict objectForKey:@"route"] objectForKey:@"realTime"] intValue];
-    
-
-    int time = [[[jsonDict objectForKey:@"route"] objectForKey:@"time"] intValue];
-    
-    
-    
-    duration.realTime = [NSString stringWithFormat:@"Temps actuel: %@",[self formattedStringForDuration:realTime]];
-    duration.time = [NSString stringWithFormat:@"Temps normal: %@", [self formattedStringForDuration:time]];
-    
-    duration.ratio = 1.0-(float)time/(float)realTime;
 
     
-    [_results addObject:duration];
-    
-    
-    [_tableView reloadData];*/
-
 }
-    
-    /*
-     //Put this code where you want to reload your table view
-     dispatch_async(dispatch_get_main_queue(), ^{
-     [UIView transitionWithView:<"TableName">
-     duration:0.1f
-     options:UIViewAnimationOptionTransitionCrossDissolve
-     animations:^(void) {
-     [<"TableName"> reloadData];
-     } completion:NULL];
-     });*/
+
 
 
 - (NSString*)formattedStringForDuration:(int)duration
@@ -323,8 +317,24 @@ int addedShadowCount;
 - (IBAction)versMtlClick:(id)sender {
     //[sender setBackgroundColor:BLUECOLOR];
     //[_b2 setBackgroundColor:[UIColor whiteColor]];
-    direction = MTL;
-    [_tableView reloadData];
+    
+    _montrealBar.backgroundColor = TMBLUE;
+    _banlieuBar.backgroundColor = TMGRAY;
+    
+    if(direction!= MTL){
+        direction = MTL;
+        
+        CATransition *transition = [CATransition animation];
+        transition.type = kCATransitionPush;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.fillMode = kCAFillModeBoth;
+        transition.duration = 0.3;
+        transition.subtype = kCATransitionFromLeft;
+        
+        [[self.tableView layer] addAnimation:transition forKey:@"UITableViewReloadDataAnimationKey"];
+        [self.tableView reloadData];
+    }
+    
 }
 
 -(void)updateContent{
@@ -335,10 +345,36 @@ int addedShadowCount;
 - (IBAction)versBanlieueClick:(id)sender {
     // [sender setBackgroundColor:BLUECOLOR];
     // [_b1 setBackgroundColor:[UIColor whiteColor]];
+    _montrealBar.backgroundColor = TMGRAY;
+    _banlieuBar.backgroundColor = TMBLUE;
+    if(direction!=BANLIEUE){
+        direction = BANLIEUE;
+        
+        CATransition *transition = [CATransition animation];
+        transition.type = kCATransitionPush;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.fillMode = kCAFillModeBoth;
+        transition.duration = 0.3;
+        transition.subtype = kCATransitionFromRight;
+        
+        [[self.tableView layer] addAnimation:transition forKey:@"UITableViewReloadDataAnimationKey"];
+        [self.tableView reloadData];
+        
+    }
     
-    
-    direction = BANLIEUE;
-    [_tableView reloadData];
+
     //[self loadTimes];
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+/*
+    CGFloat dir = direction?-1:1;
+        cell.transform = CGAffineTransformMakeTranslation(cell.bounds.size.width * dir*(indexPath.row+1)*1.5, 0);
+        [UIView animateWithDuration:0.25 animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        }];
+    */
+}
+
 @end

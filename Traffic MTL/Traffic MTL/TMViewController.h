@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
@@ -24,5 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *b1;
 
 @property (weak, nonatomic) IBOutlet UIButton *b2;
+@property (weak, nonatomic) IBOutlet UIView *montrealBar;
+@property (weak, nonatomic) IBOutlet UIView *banlieuBar;
 
 @end

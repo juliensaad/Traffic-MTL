@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Ah-8q-FIC">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="1wK-ff-0BV">
+            <objects>
+                <viewController id="2Ah-8q-FIC" customClass="TMViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FNz-po-Dpe"/>
+                        <viewControllerLayoutGuide type="bottom" id="bL0-SH-Al7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pmk-ZD-u4d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GIu-MD-jVa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BridgeCell" rowHeight="130" id="WUb-ke-mqc" customClass="BridgeCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WUb-ke-mqc" id="5gK-kF-A2j">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="victoria.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2OS-Gj-b8S">
+                                                    <rect key="frame" x="0.0" y="-50" width="380" height="250"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-0e-oqt">
+                                                    <rect key="frame" x="0.0" y="44" width="343" height="85"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TRAVERSÉE NORMALE:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="YQd-Hd-YPd">
+                                                            <rect key="frame" x="20" y="57" width="295" height="26"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="10"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <size key="shadowOffset" width="1" height="1"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MIR-w9-5xe">
+                                                            <rect key="frame" x="230" y="38" width="90" height="23"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Ubuntu-Light" family="Ubuntu" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <size key="shadowOffset" width="1" height="1"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZS-aQ-p1i">
+                                                            <rect key="frame" x="20" y="20" width="202" height="45"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Ubuntu-Light" family="Ubuntu" pointSize="28"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="avecTraffic" destination="MIR-w9-5xe" id="ksY-U7-VzO"/>
+                                            <outlet property="backgroundImage" destination="2OS-Gj-b8S" id="oXW-eA-gq4"/>
+                                            <outlet property="bridgeName" destination="2ZS-aQ-p1i" id="geB-qa-sFb"/>
+                                            <outlet property="colorFilter" destination="yRN-0e-oqt" id="8Zj-zf-dOE"/>
+                                            <outlet property="icon" destination="5gK-kF-A2j" id="fgU-vk-GgX"/>
+                                            <outlet property="normal" destination="YQd-Hd-YPd" id="hq0-rU-fbQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2Ah-8q-FIC" id="c6j-Dh-YQU"/>
+                                    <outlet property="delegate" destination="2Ah-8q-FIC" id="ZE5-rI-qti"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOv-Gd-2l0">
+                                <rect key="frame" x="0.0" y="520" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y64-fi-daU">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="12"/>
+                                        <state key="normal" title="Direction Montréal">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="versMtlClick:" destination="2Ah-8q-FIC" eventType="touchUpInside" id="ODs-Sm-PoT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xe-tM-xra">
+                                        <rect key="frame" x="160" y="0.0" width="160" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="12"/>
+                                        <state key="normal" title="Direction Banlieue">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="versBanlieueClick:" destination="2Ah-8q-FIC" eventType="touchUpInside" id="xhU-dA-FTc"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9t-Lh-7Qg">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.41568627450000001" green="0.80392156859999997" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoR-Nd-BY3">
+                                        <rect key="frame" x="160" y="0.0" width="160" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.85490196080000003" green="0.86274509799999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GIu-MD-jVa" firstAttribute="top" secondItem="Pmk-ZD-u4d" secondAttribute="top" id="0AX-Br-buB"/>
+                            <constraint firstAttribute="bottom" secondItem="wOv-Gd-2l0" secondAttribute="bottom" id="Cje-tt-sgB"/>
+                            <constraint firstItem="wOv-Gd-2l0" firstAttribute="top" secondItem="GIu-MD-jVa" secondAttribute="bottom" id="DpT-tt-xvn"/>
+                            <constraint firstAttribute="bottom" secondItem="GIu-MD-jVa" secondAttribute="bottom" constant="48" id="uoP-2d-7XF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="b1" destination="Y64-fi-daU" id="CF8-aX-Ey7"/>
+                        <outlet property="b2" destination="1Xe-tM-xra" id="8gt-7H-xNx"/>
+                        <outlet property="banlieuBar" destination="aoR-Nd-BY3" id="JJP-Hb-ie9"/>
+                        <outlet property="montrealBar" destination="s9t-Lh-7Qg" id="SWx-Tn-g4e"/>
+                        <outlet property="tableView" destination="GIu-MD-jVa" id="WK5-jb-QXw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ivF-z8-OwF" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79" y="66"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="victoria.jpg" width="320" height="150"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

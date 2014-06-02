@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0CB66D77192E5B550093C129"
-            BuildableName = "Traffic MTL.app"
-            BlueprintName = "Traffic MTL"
-            ReferencedContainer = "container:Traffic MTL.xcodeproj">
+            BuildableName = "Trafic Montre&#x301;al.app"
+            BlueprintName = "Trafic Montre&#x301;al"
+            ReferencedContainer = "container:Trafic Montre&#x301;al.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0CB66D77192E5B550093C129"
-            BuildableName = "Traffic MTL.app"
-            BlueprintName = "Traffic MTL"
-            ReferencedContainer = "container:Traffic MTL.xcodeproj">
+            BuildableName = "Trafic Montre&#x301;al.app"
+            BlueprintName = "Trafic Montre&#x301;al"
+            ReferencedContainer = "container:Trafic Montre&#x301;al.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
