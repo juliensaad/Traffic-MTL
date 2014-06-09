@@ -25,9 +25,6 @@
 @property NSMutableArray* connections;
 
 @property UIRefreshControl* refreshControl;
-
-
-
 @property NSMutableArray* bridges;
 @end
 
@@ -90,34 +87,35 @@ int addedShadowCount;
 #define RED [UIColor colorWithRed:235.0/255.0 green:33.0/255.0 blue:46.0/255.0 alpha:0.90]
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     BridgeCell *cell ;
     //if(indexPath.row==0){
-        cell= [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
+    cell= [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
     //}else{
     
     //    cell = [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
     //}
     
 
-        cell.bridgeName.adjustsFontSizeToFitWidth = YES;
-        TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
-        
-        cell.bridgeName.text = bridge.bridgeName;
-        cell.bridgeName.adjustsFontSizeToFitWidth = YES;
+    cell.bridgeName.adjustsFontSizeToFitWidth = YES;
+    TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
     
-        if(bridge.ratio<=0.20){
-            [cell.avecTraffic setBackgroundColor:GREEN];
-        }else if(bridge.ratio>0.20 && bridge.ratio<=0.45){
-            [cell.avecTraffic setBackgroundColor:ORANGE];
-        }else{
-            [cell.avecTraffic setBackgroundColor:RED];
+    cell.bridgeName.text = bridge.bridgeName;
+    cell.bridgeName.adjustsFontSizeToFitWidth = YES;
 
-        }
-    
-        cell.colorFilter.backgroundColor = [UIColor clearColor];
-    
-    
-        cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
+    if(bridge.ratio<=0.20){
+        [cell.avecTraffic setBackgroundColor:GREEN];
+    }else if(bridge.ratio>0.20 && bridge.ratio<=0.45){
+        [cell.avecTraffic setBackgroundColor:ORANGE];
+    }else{
+        [cell.avecTraffic setBackgroundColor:RED];
+
+    }
+
+    cell.colorFilter.backgroundColor = [UIColor clearColor];
+
+
+    cell.avecTraffic.text = [self formattedStringForDuration:bridge.realTime];
     
     if(bridge.realTime>1500){
         cell.avecTraffic.text = lUNAVAILABLE;
@@ -157,9 +155,7 @@ int addedShadowCount;
     //return 0;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
@@ -181,14 +177,23 @@ int addedShadowCount;
     }*/
     
     // Allow only a bounce on the top of the scrollview
-    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+    /*if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
         [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.frame.size.height)];
-    }
+    }*/
 }
+
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // White text nav bar
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Ubuntu-Light" size:20.0], NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    
+    
     addedShadowCount = 0;
     UIImageView* bg = [[UIImageView alloc] init];
     bg.image = [UIImage imageNamed:@"splash_fr.png"];
@@ -209,10 +214,23 @@ int addedShadowCount;
     
     _refreshControl = [[UIRefreshControl alloc] init];
     
-    /*UIImageView *rcImageView =
-    [[UIImageView alloc] initWithImage:
-     [UIImage imageNamed: @"rien"]];
-    [self.refreshControl insertSubview:rcImageView atIndex:0];*/
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setOpaque:YES];
+    [self.navigationController.navigationBar setBackgroundColor:BLUECOLOR];
+    [self.navigationController.navigationBar setBarTintColor:BLUECOLOR];
+    
+    
+  
+
+    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(versBanlieueClick:)];
+    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    
+    UISwipeGestureRecognizer *lSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(versMtlClick:)];
+    [lSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [[self view] addGestureRecognizer:mSwipeUpRecognizer];
+    [[self view] addGestureRecognizer:lSwipeUpRecognizer];
+    
     
     UITableViewController *tableViewController = [[UITableViewController alloc] init];
     tableViewController.tableView = self.tableView;
@@ -220,6 +238,21 @@ int addedShadowCount;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
+    
+    
+    UIImageView *im  =[[UIImageView alloc] initWithFrame:CGRectMake(67, 60, 9, 12)];
+    im.image = [UIImage imageNamed:@"upArrow.png"];
+    
+    UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 320, 45)];
+    l.text = lRELEASE;
+    l.font = [UIFont fontWithName:@"Ubuntu-Light" size:20.0f];
+    l.textColor = [UIColor whiteColor];
+    l.textAlignment = NSTextAlignmentCenter;
+    
+    [tableViewController.refreshControl insertSubview:l atIndex:0];
+    if(!ISFRENCH){
+     [tableViewController.refreshControl insertSubview:im atIndex:0];
+    }
   
     
 }

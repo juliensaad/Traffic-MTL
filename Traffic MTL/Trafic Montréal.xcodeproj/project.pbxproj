@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C013DBA193CDD7700AC6242 /* splash_fr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */; };
-		0C1E16EE193D008A0011F20C /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C1E16EB193D00890011F20C /* Ubuntu-B.ttf */; };
-		0C1E16EF193D008A0011F20C /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C1E16EC193D008A0011F20C /* Ubuntu-L.ttf */; };
-		0C1E16F0193D008A0011F20C /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C1E16ED193D008A0011F20C /* Ubuntu-M.ttf */; };
 		0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967D192E5C000086D694 /* CoreLocation.framework */; };
 		0C269680192E5C0B0086D694 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967F192E5C0B0086D694 /* libsqlite3.dylib */; };
 		0C269682192E5C120086D694 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269681192E5C120086D694 /* libz.dylib */; };
@@ -19,6 +16,9 @@
 		0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4D581E192FDA1C003BCB15 /* TMBridgeInfo.m */; };
 		0C501920192EA82D009343E1 /* BridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50191F192EA82D009343E1 /* BridgeCell.m */; };
 		0C6057171938DE2D00251E13 /* TMMapRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */; };
+		0C6123D81945E89C00161C0A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */; };
+		0C6123D91945E89C00161C0A /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */; };
+		0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */; };
 		0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7B192E5B550093C129 /* Foundation.framework */; };
 		0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7D192E5B550093C129 /* CoreGraphics.framework */; };
 		0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
@@ -33,6 +33,7 @@
 		0CB66DA5192E5B560093C129 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CB66DA3192E5B560093C129 /* InfoPlist.strings */; };
 		0CB66DA7192E5B560093C129 /* Traffic_MTLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */; };
 		0CB6AF00193D035E006C45CF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */; };
+		0CBB974A193D0727008EF898 /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBB9749193D0727008EF898 /* upArrow@2x.png */; };
 		0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB31933CF34003272BD /* UIImage+Blur.m */; };
 		0CEF2CB61933D202003272BD /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB51933D202003272BD /* victoria@2x.jpg */; };
 		0CEF2CB81933D2B0003272BD /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB71933D2B0003272BD /* jacques@2x.jpg */; };
@@ -56,9 +57,6 @@
 
 /* Begin PBXFileReference section */
 		0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_fr@2x.png"; sourceTree = "<group>"; };
-		0C1E16EB193D00890011F20C /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
-		0C1E16EC193D008A0011F20C /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
-		0C1E16ED193D008A0011F20C /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
 		0C26967D192E5C000086D694 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0C26967F192E5C0B0086D694 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0C269681192E5C120086D694 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -70,6 +68,9 @@
 		0C50191F192EA82D009343E1 /* BridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeCell.m; sourceTree = "<group>"; };
 		0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMapRouteViewController.h; sourceTree = "<group>"; };
 		0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMapRouteViewController.m; sourceTree = "<group>"; };
+		0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
+		0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
+		0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
 		0C71288A192E712B002C40F1 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		0CB66D78192E5B550093C129 /* Trafic Montréal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trafic Montréal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB66D7B192E5B550093C129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,6 +91,7 @@
 		0CB66DA4192E5B560093C129 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CB66DA6192E5B560093C129 /* Traffic_MTLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Traffic_MTLTests.m; sourceTree = "<group>"; };
 		0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0CBB9749193D0727008EF898 /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
 		0CEF2CB21933CF34003272BD /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		0CEF2CB31933CF34003272BD /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		0CEF2CB51933D202003272BD /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
@@ -138,12 +140,13 @@
 		0C013DB8193CDC3700AC6242 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				0C1E16EB193D00890011F20C /* Ubuntu-B.ttf */,
-				0C1E16EC193D008A0011F20C /* Ubuntu-L.ttf */,
-				0C1E16ED193D008A0011F20C /* Ubuntu-M.ttf */,
+				0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */,
+				0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */,
+				0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */,
 				0CEF2CB51933D202003272BD /* victoria@2x.jpg */,
 				0CEF2CB71933D2B0003272BD /* jacques@2x.jpg */,
 				0CEF2CB91933D3CA003272BD /* champlain@2x.jpg */,
+				0CBB9749193D0727008EF898 /* upArrow@2x.png */,
 				0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */,
 			);
 			name = img;
@@ -197,10 +200,10 @@
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */,
 				0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */,
-				0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */,
 				0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
+				0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */,
 				0CB66D93192E5B550093C129 /* Images.xcassets */,
 				0CB66D82192E5B550093C129 /* Supporting Files */,
 				0CF18669192E7959000888CC /* TMDuration.h */,
@@ -256,7 +259,6 @@
 				0CB66D75192E5B550093C129 /* Frameworks */,
 				0CB66D76192E5B550093C129 /* Resources */,
 				C253C942983C455F80C5E32A /* Copy Pods Resources */,
-				0C97FCBF193CD2B300E8376B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -324,18 +326,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C1E16EF193D008A0011F20C /* Ubuntu-L.ttf in Resources */,
+				0C6123D91945E89C00161C0A /* Ubuntu-L.ttf in Resources */,
 				0C013DBA193CDD7700AC6242 /* splash_fr@2x.png in Resources */,
+				0CBB974A193D0727008EF898 /* upArrow@2x.png in Resources */,
 				0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */,
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
 				0CEF2CB81933D2B0003272BD /* jacques@2x.jpg in Resources */,
+				0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */,
 				0CF598EF192E704A00E6A895 /* Locations.plist in Resources */,
-				0C1E16F0193D008A0011F20C /* Ubuntu-M.ttf in Resources */,
 				0CEF2CB61933D202003272BD /* victoria@2x.jpg in Resources */,
 				0CB6AF00193D035E006C45CF /* MainStoryboard.storyboard in Resources */,
 				0CB66D86192E5B550093C129 /* InfoPlist.strings in Resources */,
 				0CEF2CBA1933D3CA003272BD /* champlain@2x.jpg in Resources */,
-				0C1E16EE193D008A0011F20C /* Ubuntu-B.ttf in Resources */,
+				0C6123D81945E89C00161C0A /* Ubuntu-B.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,19 +353,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C97FCBF193CD2B300E8376B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/bash -e";
-			shellScript = "mdfind -onlyin \"${SRCROOT}\" \"kMDItemContentTypeTree == public.font\" -0 | sort -z | xargs -0 /usr/local/bin/moarfonts install";
-		};
 		659F52FF2D2C422FBD9A6699 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

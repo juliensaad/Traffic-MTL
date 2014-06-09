@@ -11,7 +11,7 @@
 
 #define MAPS_API_KEY @"Fmjtd%7Cluur2d0and%2Ca0%3Do5-9arg5w"//@"AIzaSyCYTQN5--nNG46_8VLuOngzoC7wn8W9AnA"
 
-#define BLUECOLOR [UIColor colorWithRed:44/255.0 green:190/255.0 blue:150/255.0 alpha:1.0]
+#define BLUECOLOR [UIColor colorWithRed:106/255.0 green:205/255.0 blue:216/255.0 alpha:1.0]
 
 #define ISFRENCH ![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
 
@@ -19,6 +19,8 @@
 
 #define lNORMALTIME (ISFRENCH?@"Traversée normale:":@"Average crossing:")
 #define lUNAVAILABLE (ISFRENCH?@"Non disponible":@"Unavailable")
+
+#define lRELEASE (ISFRENCH?@"Liberez pour mettre à jour":@"   Release to update")
 
 
 #endif

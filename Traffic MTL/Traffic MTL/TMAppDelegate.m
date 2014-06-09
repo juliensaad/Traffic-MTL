@@ -15,7 +15,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
  
-    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
     
 }

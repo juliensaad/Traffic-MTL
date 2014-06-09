@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
