@@ -26,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *b2;
 @property (weak, nonatomic) IBOutlet UIView *montrealBar;
 @property (weak, nonatomic) IBOutlet UIView *banlieuBar;
+@property (weak, nonatomic) IBOutlet UIView *statusBarView;
+@property NSMutableArray* statusBarImages;
 
 @end
