@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Mercier NS</key>
+	<array>
+		<string>45.422652,-73.652203</string>
+		<string>45.408565,-73.659467</string>
+	</array>
+	<key>Mercier SN</key>
+	<array>
+		<string>45.408442,-73.659300</string>
+		<string>45.422584,-73.651624</string>
+	</array>
+	<key>Louis-Hippolyte-La Fontaine SN</key>
+	<array>
+		<string>45.580650,-73.485491</string>
+		<string>45.586200,-73.511472</string>
+	</array>
+	<key>Louis-Hippolyte-La Fontaine NS</key>
+	<array>
+		<string>45.586189,-73.512433</string>
+		<string>45.580933,-73.487633</string>
+	</array>
+	<key>Jacques-Cartier NS</key>
+	<array>
+		<string>45.522157,-73.519177</string>
+		<string>45.525795,-73.554619</string>
+	</array>
+	<key>Victoria SN</key>
+	<array>
+		<string>45.494149,-73.515298</string>
+		<string>45.487089,-73.545745</string>
+	</array>
+	<key>Champlain NS</key>
+	<array>
+		<string>45.464765,-73.470087</string>
+		<string>45.471058,-73.550726</string>
+	</array>
+	<key>Champlain SN</key>
+	<array>
+		<string>45.465245,-73.475661</string>
+		<string>45.471232,-73.551204</string>
+	</array>
+	<key>Victoria NS</key>
+	<array>
+		<string>45.487169,-73.544422</string>
+		<string>45.493181,-73.515397</string>
+	</array>
+	<key>Jacques-Cartier SN</key>
+	<array>
+		<string>45.522157,-73.519177</string>
+		<string>45.525795,-73.554619</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4D50C036-316A-4E30-AC98-05FBAD2C930B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Traffic MTL</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D7C3082F-2492-48E2-964F-C5221E7774E9</key>
+		<string>https://github.com/saadjulien/Traffic-MTL</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Traffic MTL/Traffic MTL.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D7C3082F-2492-48E2-964F-C5221E7774E9</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/saadjulien/Traffic-MTL</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D7C3082F-2492-48E2-964F-C5221E7774E9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D7C3082F-2492-48E2-964F-C5221E7774E9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Traffic-MTL</string>
+		</dict>
+	</array>
+</dict>
+</plist>
