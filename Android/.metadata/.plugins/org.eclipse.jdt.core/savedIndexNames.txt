@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/Users/nicolasst-aubin/Documents/Traffic-MTL/Android/.metadata/.plugins/org.eclipse.jdt.core
+566208993.index
+3506680749.index
+1916326399.index

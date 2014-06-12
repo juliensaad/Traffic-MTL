@@ -1,0 +1,44 @@
+package views;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.widget.TextView;
+
+public class TrafficMTLTextView extends TextView {
+
+	Context c;
+	
+	public TrafficMTLTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+		
+        //Typeface.createFromAsset doesn't work in the layout editor. Skipping...
+        if (isInEditMode()) {
+            return;
+        }
+        
+        c = context;
+        
+        TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.customText);
+        String fontName = styledAttrs.getString(R.styleable.customText_typeface);
+        String bold = styledAttrs.getString(R.styleable.customText_bold);
+        styledAttrs.recycle();
+
+        if (fontName != null) {
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "DINLi6.ttf");
+            setTypeface(typeface);
+        }
+        
+        if (bold != null) {
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "DINMe8.ttf");
+            setTypeface(typeface);
+        }
+	}
+	
+	public void setBoldFont(){
+		 Typeface typeface = Typeface.createFromAsset(c.getAssets(), "DINMe8.ttf");
+         setTypeface(typeface);
+	}
+}

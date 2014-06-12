@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="customText">
+        <attr name="typeface" format="string" />
+        <attr name="bold" format="string" />
+    </declare-styleable>
+    
+    <declare-styleable name="assistant_slide2_button">
+        <attr name="android:text"/>
+    </declare-styleable>
+</resources>
