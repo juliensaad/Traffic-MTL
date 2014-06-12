@@ -29,4 +29,5 @@
 @property (weak, nonatomic) IBOutlet UIView *statusBarView;
 @property NSMutableArray* statusBarImages;
 
+@property UIImageView *gif;
 @end

@@ -15,6 +15,7 @@
 #import "BridgeCell.h"
 #import <POP/POP.h>
 #import "UIImage+Blur.h"
+#import "UIImage+animatedGIF.h"
 
 
 
@@ -28,6 +29,10 @@
 @property NSMutableArray* bridges;
 
 @property NSMutableArray* bridgeImages;
+
+@property UILabel *l;
+
+@property UIView* refreshContent;
 @end
 
 @implementation TMViewController
@@ -237,8 +242,28 @@ int addedShadowCount;
     
     if(offset<=0){
         _statusBarView.hidden = YES;
+        
+        CGRect fr = _refreshContent.frame;
+        fr.origin.y = -offset/4-5;
+        _refreshContent.frame = fr;
+        if(offset==0){
+            _l.text = lPULL;
+        }
+        
+        NSLog(@"%f", offset);
+        if(offset<-80 && offset > -110){
+            if(![_l.text isEqualToString:lKEEP] && ![_l.text isEqualToString:lRELEASE]){
+                _l.text = lKEEP;
+            }
+        }else if(offset<=-110){
+            if(![_l.text isEqualToString:lRELEASE]){
+                _l.text = lRELEASE;
+            }
+        }
     }else{
+        _refreshContent.frame = CGRectMake(0, 0, 320, 70);
         _statusBarView.hidden = NO;
+        
     }
     
     
@@ -337,23 +362,73 @@ int addedShadowCount;
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
     
-    
+    /*
     UIImageView *im  =[[UIImageView alloc] initWithFrame:CGRectMake(67, 60, 9, 12)];
     im.image = [UIImage imageNamed:@"upArrow.png"];
+    */
+    _l = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 320, 45)];
+    _l.text = lPULL;
+    _l.font = [UIFont fontWithName:@"Ubuntu-Light" size:14.0f];
+    _l.textColor = [UIColor whiteColor];
+    _l.textAlignment = NSTextAlignmentCenter;
     
-    UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, 320, 45)];
-    l.text = lRELEASE;
-    l.font = [UIFont fontWithName:@"Ubuntu-Light" size:20.0f];
-    l.textColor = [UIColor whiteColor];
-    l.textAlignment = NSTextAlignmentCenter;
-    
-    [tableViewController.refreshControl insertSubview:l atIndex:0];
+    // [tableViewController.refreshControl insertSubview:_l atIndex:0];
     if(!ISFRENCH){
-        [tableViewController.refreshControl insertSubview:im atIndex:0];
+        // [tableViewController.refreshControl insertSubview:im atIndex:0];
     }
+    
+    
+    // Gif animation
+    _gif = [[UIImageView alloc]init];
+    
+    _gif.contentMode = UIViewContentModeScaleToFill;
+    _gif.frame = CGRectMake(145, 6, 30, 30);
+    // [self.refreshControl insertSubview:_gif atIndex:0];
+    
+    
+
+    _refreshContent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 70)];
+    [self.refreshControl insertSubview:_refreshContent atIndex:0];
+    
+    [_refreshContent addSubview:_gif];
+    [_refreshContent addSubview:_l];
+    
+    NSString *path=[[NSBundle mainBundle]pathForResource:@"whiteanim" ofType:@"gif"];
+    NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
+    _gif.image= [UIImage animatedImageWithAnimatedGIFURL:url];
+    _gif.alpha = 0.7;
+    
+    // [tableViewController.refreshControl insertSubview:_gif atIndex:0];
+    
+    [self listSubviewsOfView:self.refreshControl];
     
 }
 
+- (void)listSubviewsOfView:(UIView *)view {
+    
+    // Get the subviews of the view
+    NSArray *subviews = [view subviews];
+    
+    // Return if there are no subviews
+    if ([subviews count] == 0) return; // COUNT CHECK LINE
+    
+    for (UIView *subview in subviews) {
+        
+        // Do what you want to do with the subview
+        if(subview.frame.size.width==320 && subview.frame.size.height==60){
+            NSLog(@"%@", subview);
+            //subview.hidden = YES;
+            //[view sendSubviewToBack:subview];
+            [subview removeFromSuperview];
+        }
+        // List the subviews of subview
+        [self listSubviewsOfView:subview];
+        
+    }
+}
+
+-(void)viewDidLayoutSubviews{
+}
 -(void)createFakeStatusBar{
     
     _statusBarImages = [[NSMutableArray alloc] init];
@@ -374,16 +449,10 @@ int addedShadowCount;
 }
 
 -(void)handleRefresh:(id)sender{
-    /*if(!direction){
-        [self versBanlieueClick:self];
-    }else{
-        [self versMtlClick:self];
-    }
     
-    direction = !direction;*/
+    _l.text = lRELEASE;
+    
     [self loadTimes];
-    
-    [_refreshControl endRefreshing];
 }
 
 -(void)loadTimes{
@@ -442,6 +511,10 @@ int addedShadowCount;
     [_bridges addObject:bridgesBanlieue];
     
     [_tableView reloadData];
+    
+    [_refreshControl endRefreshing];
+    
+
     
     [self createFakeStatusBar];
     

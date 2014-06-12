@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivF-z8-OwF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="66"/>
+            <point key="canvasLocation" x="337" y="270"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="no3-LT-L0R">
@@ -152,7 +152,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LVF-me-X72" kind="push" id="sb3-aL-QSY"/>
+                        <segue destination="2Ah-8q-FIC" kind="relationship" relationship="rootViewController" id="FmI-bw-S2F"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTX-K3-Cai" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdZ-vI-PBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="289" y="66"/>
+            <point key="canvasLocation" x="321" y="-394"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ELj-Eg-AxK">
@@ -194,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCM-MS-V9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="645" y="64"/>
+            <point key="canvasLocation" x="645" y="-226"/>
         </scene>
     </scenes>
     <resources>

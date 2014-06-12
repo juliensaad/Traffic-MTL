@@ -20,7 +20,10 @@
 #define lNORMALTIME (ISFRENCH?@"Traversée normale:":@"Average crossing:")
 #define lUNAVAILABLE (ISFRENCH?@"Non disponible":@"Unavailable")
 
-#define lRELEASE (ISFRENCH?@"Liberez pour mettre à jour":@"   Release to update")
+
+#define lPULL (ISFRENCH?@"Tirez pour mettre à jour":@"Pull to refresh")
+#define lKEEP  (ISFRENCH?@"Encore un peu...":@"Keep pulling...")
+#define lRELEASE (ISFRENCH?@"Liberez pour mettre à jour":@"Release to update!")
 
 
 #endif
