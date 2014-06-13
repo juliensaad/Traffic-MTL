@@ -19,4 +19,9 @@
 
 @property int direction;
 
+@property int delay;
+
+@property int percentage;
+
+@property int rgb;
 @end

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0C013DBA193CDD7700AC6242 /* splash_fr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */; };
+		0C2397EB194B53F6004098A0 /* louis.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397EA194B53F6004098A0 /* louis.png */; };
+		0C2397ED194B69D9004098A0 /* louis@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397EC194B69D9004098A0 /* louis@2x.jpg */; };
+		0C2397EF194B810F004098A0 /* louisAnim.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397EE194B810F004098A0 /* louisAnim.gif */; };
+		0C2397F1194B8259004098A0 /* gif2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397F0194B8259004098A0 /* gif2.gif */; };
 		0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967D192E5C000086D694 /* CoreLocation.framework */; };
 		0C269680192E5C0B0086D694 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967F192E5C0B0086D694 /* libsqlite3.dylib */; };
 		0C269682192E5C120086D694 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269681192E5C120086D694 /* libz.dylib */; };
@@ -24,6 +28,7 @@
 		0C7141E0194A68850034E6B4 /* whiteanim.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C7141DF194A68850034E6B4 /* whiteanim.gif */; };
 		0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D47391947826A001D927F /* victoria@2x.jpg */; };
 		0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D473D194782EE001D927F /* jacques@2x.jpg */; };
+		0CAAF301194A828C00C12CD0 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAF300194A828C00C12CD0 /* bg@2x.png */; };
 		0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7B192E5B550093C129 /* Foundation.framework */; };
 		0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7D192E5B550093C129 /* CoreGraphics.framework */; };
 		0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7F192E5B550093C129 /* UIKit.framework */; };
@@ -60,6 +65,10 @@
 
 /* Begin PBXFileReference section */
 		0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_fr@2x.png"; sourceTree = "<group>"; };
+		0C2397EA194B53F6004098A0 /* louis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = louis.png; sourceTree = "<group>"; };
+		0C2397EC194B69D9004098A0 /* louis@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "louis@2x.jpg"; sourceTree = "<group>"; };
+		0C2397EE194B810F004098A0 /* louisAnim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = louisAnim.gif; sourceTree = "<group>"; };
+		0C2397F0194B8259004098A0 /* gif2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif2.gif; sourceTree = "<group>"; };
 		0C26967D192E5C000086D694 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0C26967F192E5C0B0086D694 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0C269681192E5C120086D694 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -81,6 +90,7 @@
 		0C7141DF194A68850034E6B4 /* whiteanim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = whiteanim.gif; sourceTree = "<group>"; };
 		0C7D47391947826A001D927F /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
 		0C7D473D194782EE001D927F /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
+		0CAAF300194A828C00C12CD0 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		0CB66D78192E5B550093C129 /* Trafic Montréal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trafic Montréal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB66D7B192E5B550093C129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CB66D7D192E5B550093C129 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -153,10 +163,15 @@
 				0C279E501949F1F700853439 /* UIImage+animatedGIF.h */,
 				0C279E511949F1F700853439 /* UIImage+animatedGIF.m */,
 				0C7141DD194A67990034E6B4 /* animation2.gif */,
+				0CAAF300194A828C00C12CD0 /* bg@2x.png */,
 				0C7D47391947826A001D927F /* victoria@2x.jpg */,
+				0C2397EE194B810F004098A0 /* louisAnim.gif */,
+				0C2397EC194B69D9004098A0 /* louis@2x.jpg */,
 				0C7D473D194782EE001D927F /* jacques@2x.jpg */,
 				0C7141DF194A68850034E6B4 /* whiteanim.gif */,
 				0CD4F75C1947810000D2C7A5 /* champlain@2x.jpg */,
+				0C2397EA194B53F6004098A0 /* louis.png */,
+				0C2397F0194B8259004098A0 /* gif2.gif */,
 				0CBB9749193D0727008EF898 /* upArrow@2x.png */,
 				0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */,
 			);
@@ -340,18 +355,23 @@
 				0C6123D91945E89C00161C0A /* Ubuntu-L.ttf in Resources */,
 				0C013DBA193CDD7700AC6242 /* splash_fr@2x.png in Resources */,
 				0CBB974A193D0727008EF898 /* upArrow@2x.png in Resources */,
+				0C2397ED194B69D9004098A0 /* louis@2x.jpg in Resources */,
 				0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */,
 				0C7141DE194A67990034E6B4 /* animation2.gif in Resources */,
 				0C7141E0194A68850034E6B4 /* whiteanim.gif in Resources */,
 				0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */,
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
+				0C2397EF194B810F004098A0 /* louisAnim.gif in Resources */,
 				0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */,
+				0C2397EB194B53F6004098A0 /* louis.png in Resources */,
+				0C2397F1194B8259004098A0 /* gif2.gif in Resources */,
 				0CD4F75D1947810000D2C7A5 /* champlain@2x.jpg in Resources */,
 				0CF598EF192E704A00E6A895 /* Locations.plist in Resources */,
 				0CB6AF00193D035E006C45CF /* MainStoryboard.storyboard in Resources */,
 				0CB66D86192E5B550093C129 /* InfoPlist.strings in Resources */,
 				0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */,
 				0C6123D81945E89C00161C0A /* Ubuntu-B.ttf in Resources */,
+				0CAAF301194A828C00C12CD0 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
