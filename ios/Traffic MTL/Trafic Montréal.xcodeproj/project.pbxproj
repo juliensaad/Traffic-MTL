@@ -12,6 +12,8 @@
 		0C2397ED194B69D9004098A0 /* louis@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397EC194B69D9004098A0 /* louis@2x.jpg */; };
 		0C2397EF194B810F004098A0 /* louisAnim.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397EE194B810F004098A0 /* louisAnim.gif */; };
 		0C2397F1194B8259004098A0 /* gif2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C2397F0194B8259004098A0 /* gif2.gif */; };
+		0C252BFD194C8EF600CDA0B3 /* page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C252BFC194C8EF600CDA0B3 /* page@2x.png */; };
+		0C252C04194C8FF200CDA0B3 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C252C03194C8FF200CDA0B3 /* iCarousel.m */; };
 		0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967D192E5C000086D694 /* CoreLocation.framework */; };
 		0C269680192E5C0B0086D694 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26967F192E5C0B0086D694 /* libsqlite3.dylib */; };
 		0C269682192E5C120086D694 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C269681192E5C120086D694 /* libz.dylib */; };
@@ -20,7 +22,6 @@
 		0C279E521949F1F700853439 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C279E511949F1F700853439 /* UIImage+animatedGIF.m */; };
 		0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4D581E192FDA1C003BCB15 /* TMBridgeInfo.m */; };
 		0C501920192EA82D009343E1 /* BridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50191F192EA82D009343E1 /* BridgeCell.m */; };
-		0C6057171938DE2D00251E13 /* TMMapRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */; };
 		0C6123D81945E89C00161C0A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */; };
 		0C6123D91945E89C00161C0A /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */; };
 		0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */; };
@@ -28,6 +29,7 @@
 		0C7141E0194A68850034E6B4 /* whiteanim.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C7141DF194A68850034E6B4 /* whiteanim.gif */; };
 		0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D47391947826A001D927F /* victoria@2x.jpg */; };
 		0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D473D194782EE001D927F /* jacques@2x.jpg */; };
+		0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C886BC5194C8E1C009ECB31 /* fakeData.json */; };
 		0CAAF301194A828C00C12CD0 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAF300194A828C00C12CD0 /* bg@2x.png */; };
 		0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7B192E5B550093C129 /* Foundation.framework */; };
 		0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB66D7D192E5B550093C129 /* CoreGraphics.framework */; };
@@ -46,7 +48,6 @@
 		0CBB974A193D0727008EF898 /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBB9749193D0727008EF898 /* upArrow@2x.png */; };
 		0CD4F75D1947810000D2C7A5 /* champlain@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CD4F75C1947810000D2C7A5 /* champlain@2x.jpg */; };
 		0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF2CB31933CF34003272BD /* UIImage+Blur.m */; };
-		0CF1866B192E7959000888CC /* TMDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF1866A192E7959000888CC /* TMDuration.m */; };
 		0CF18670192E8559000888CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF1866F192E8559000888CC /* MapKit.framework */; };
 		0CF598EF192E704A00E6A895 /* Locations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CF598EE192E704A00E6A895 /* Locations.plist */; };
 		0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */; };
@@ -69,6 +70,9 @@
 		0C2397EC194B69D9004098A0 /* louis@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "louis@2x.jpg"; sourceTree = "<group>"; };
 		0C2397EE194B810F004098A0 /* louisAnim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = louisAnim.gif; sourceTree = "<group>"; };
 		0C2397F0194B8259004098A0 /* gif2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif2.gif; sourceTree = "<group>"; };
+		0C252BFC194C8EF600CDA0B3 /* page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page@2x.png"; sourceTree = "<group>"; };
+		0C252C02194C8FF200CDA0B3 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		0C252C03194C8FF200CDA0B3 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		0C26967D192E5C000086D694 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0C26967F192E5C0B0086D694 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0C269681192E5C120086D694 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -80,8 +84,6 @@
 		0C4D581E192FDA1C003BCB15 /* TMBridgeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBridgeInfo.m; sourceTree = "<group>"; };
 		0C50191E192EA82D009343E1 /* BridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeCell.h; sourceTree = "<group>"; };
 		0C50191F192EA82D009343E1 /* BridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeCell.m; sourceTree = "<group>"; };
-		0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMapRouteViewController.h; sourceTree = "<group>"; };
-		0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMapRouteViewController.m; sourceTree = "<group>"; };
 		0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 		0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
 		0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		0C7141DF194A68850034E6B4 /* whiteanim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = whiteanim.gif; sourceTree = "<group>"; };
 		0C7D47391947826A001D927F /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
 		0C7D473D194782EE001D927F /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
+		0C886BC5194C8E1C009ECB31 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
 		0CAAF300194A828C00C12CD0 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		0CB66D78192E5B550093C129 /* Trafic Montréal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trafic Montréal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB66D7B192E5B550093C129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,8 +117,6 @@
 		0CD4F75C1947810000D2C7A5 /* champlain@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "champlain@2x.jpg"; sourceTree = "<group>"; };
 		0CEF2CB21933CF34003272BD /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		0CEF2CB31933CF34003272BD /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
-		0CF18669192E7959000888CC /* TMDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDuration.h; sourceTree = "<group>"; };
-		0CF1866A192E7959000888CC /* TMDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDuration.m; sourceTree = "<group>"; };
 		0CF1866F192E8559000888CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0CF598EE192E704A00E6A895 /* Locations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Locations.plist; sourceTree = "<group>"; };
 		0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mercier@2x.jpg"; sourceTree = "<group>"; };
@@ -157,15 +158,12 @@
 		0C013DB8193CDC3700AC6242 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */,
-				0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */,
-				0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */,
-				0C279E501949F1F700853439 /* UIImage+animatedGIF.h */,
-				0C279E511949F1F700853439 /* UIImage+animatedGIF.m */,
+				0C252BFC194C8EF600CDA0B3 /* page@2x.png */,
 				0C7141DD194A67990034E6B4 /* animation2.gif */,
 				0CAAF300194A828C00C12CD0 /* bg@2x.png */,
 				0C7D47391947826A001D927F /* victoria@2x.jpg */,
 				0C2397EE194B810F004098A0 /* louisAnim.gif */,
+				0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */,
 				0C2397EC194B69D9004098A0 /* louis@2x.jpg */,
 				0C7D473D194782EE001D927F /* jacques@2x.jpg */,
 				0C7141DF194A68850034E6B4 /* whiteanim.gif */,
@@ -176,6 +174,36 @@
 				0CFFC92D1933D608000E8AAB /* mercier@2x.jpg */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		0C252C01194C8FF200CDA0B3 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				0C252C02194C8FF200CDA0B3 /* iCarousel.h */,
+				0C252C03194C8FF200CDA0B3 /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		0C886BC3194C6D08009ECB31 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				0C6123D51945E89C00161C0A /* Ubuntu-B.ttf */,
+				0C6123D61945E89C00161C0A /* Ubuntu-L.ttf */,
+				0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */,
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
+		0C886BC4194C6D13009ECB31 /* addons */ = {
+			isa = PBXGroup;
+			children = (
+				0CEF2CB21933CF34003272BD /* UIImage+Blur.h */,
+				0CEF2CB31933CF34003272BD /* UIImage+Blur.m */,
+				0C279E501949F1F700853439 /* UIImage+animatedGIF.h */,
+				0C279E511949F1F700853439 /* UIImage+animatedGIF.m */,
+			);
+			name = addons;
 			sourceTree = "<group>";
 		};
 		0CB66D6F192E5B550093C129 = {
@@ -219,21 +247,18 @@
 		0CB66D81192E5B550093C129 /* Traffic MTL */ = {
 			isa = PBXGroup;
 			children = (
+				0C252C01194C8FF200CDA0B3 /* iCarousel */,
+				0C886BC4194C6D13009ECB31 /* addons */,
+				0C886BC3194C6D08009ECB31 /* font */,
 				0C013DB8193CDC3700AC6242 /* img */,
-				0CEF2CB21933CF34003272BD /* UIImage+Blur.h */,
-				0CEF2CB31933CF34003272BD /* UIImage+Blur.m */,
 				0CB66D8A192E5B550093C129 /* TMAppDelegate.h */,
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
-				0C013DB9193CDD7700AC6242 /* splash_fr@2x.png */,
-				0C6057151938DE2D00251E13 /* TMMapRouteViewController.h */,
-				0C6057161938DE2D00251E13 /* TMMapRouteViewController.m */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
+				0C886BC5194C8E1C009ECB31 /* fakeData.json */,
 				0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */,
 				0CB66D93192E5B550093C129 /* Images.xcassets */,
 				0CB66D82192E5B550093C129 /* Supporting Files */,
-				0CF18669192E7959000888CC /* TMDuration.h */,
-				0CF1866A192E7959000888CC /* TMDuration.m */,
 				0C71288A192E712B002C40F1 /* config.h */,
 				0C4D581D192FDA1C003BCB15 /* TMBridgeInfo.h */,
 				0C4D581E192FDA1C003BCB15 /* TMBridgeInfo.m */,
@@ -363,8 +388,10 @@
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
 				0C2397EF194B810F004098A0 /* louisAnim.gif in Resources */,
 				0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */,
+				0C252BFD194C8EF600CDA0B3 /* page@2x.png in Resources */,
 				0C2397EB194B53F6004098A0 /* louis.png in Resources */,
 				0C2397F1194B8259004098A0 /* gif2.gif in Resources */,
+				0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */,
 				0CD4F75D1947810000D2C7A5 /* champlain@2x.jpg in Resources */,
 				0CF598EF192E704A00E6A895 /* Locations.plist in Resources */,
 				0CB6AF00193D035E006C45CF /* MainStoryboard.storyboard in Resources */,
@@ -425,12 +452,11 @@
 			files = (
 				0C501920192EA82D009343E1 /* BridgeCell.m in Sources */,
 				0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */,
-				0C6057171938DE2D00251E13 /* TMMapRouteViewController.m in Sources */,
 				0CB66D92192E5B550093C129 /* TMViewController.m in Sources */,
+				0C252C04194C8FF200CDA0B3 /* iCarousel.m in Sources */,
 				0C279E521949F1F700853439 /* UIImage+animatedGIF.m in Sources */,
 				0CB66D88192E5B550093C129 /* main.m in Sources */,
 				0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */,
-				0CF1866B192E7959000888CC /* TMDuration.m in Sources */,
 				0CB66D8C192E5B550093C129 /* TMAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -557,8 +584,11 @@
 				GCC_PREFIX_HEADER = "Traffic MTL/Trafic Montréal-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Trafic Montréal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "Trafic Montréal";
+				SWIFT_OBJC_BRIDGING_HEADER = "Traffic MTL/Trafic Montréal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -569,6 +599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -577,8 +608,10 @@
 				GCC_PREFIX_HEADER = "Traffic MTL/Trafic Montréal-Prefix.pch";
 				INFOPLIST_FILE = "Traffic MTL/Trafic Montréal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "Trafic Montréal";
+				SWIFT_OBJC_BRIDGING_HEADER = "Traffic MTL/Trafic Montréal-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

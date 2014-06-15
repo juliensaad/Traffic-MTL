@@ -7,7 +7,6 @@
 //
 
 #import "TMViewController.h"
-#import "TMDuration.h"
 
 #import "TMBridgeInfo.h"
 
@@ -388,9 +387,6 @@ int statusShowing;
         
     }
 }
-
--(void)viewDidLayoutSubviews{
-}
 -(void)createFakeStatusBar{
     
     _statusBarImages = [[NSMutableArray alloc] init];
@@ -418,13 +414,25 @@ int statusShowing;
 -(void)loadTimes{
     // Load all lon and lats
     _results = [[NSMutableArray alloc] init];
-        
+    /*
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:10];
+     */
+    
+    
+    NSString *path=[[NSBundle mainBundle]pathForResource:@"fakeData" ofType:@"json"];
+    NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                       timeoutInterval:10];
+
+    
     [request setHTTPMethod: @"GET"];
         
     NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
+    [_refreshControl beginRefreshing];
 
 }
 
@@ -465,12 +473,12 @@ int statusShowing;
         TMBridgeInfo* info = [[TMBridgeInfo alloc] init];
         
         info.bridgeName = [dic objectForKey:@"bridgeName"];
-        info.direction = [[dic objectForKey:@"direction"] integerValue];
-        info.realTime = [[dic objectForKey:@"realTime"] integerValue];
-        info.time = [[dic objectForKey:@"time"] integerValue];
+        info.direction = [[dic objectForKey:@"direction"] intValue];
+        info.realTime = [[dic objectForKey:@"realTime"] intValue];
+        info.time = [[dic objectForKey:@"time"] intValue];
         
-        info.percentage = [[dic objectForKey:@"percentage"] integerValue];
-        info.delay = [[dic objectForKey:@"delay"] integerValue];
+        info.percentage = [[dic objectForKey:@"percentage"] intValue];
+        info.delay = [[dic objectForKey:@"delay"] intValue];
         
         // Scan hex value for color
         unsigned int outVal;
