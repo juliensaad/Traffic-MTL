@@ -414,18 +414,18 @@ int statusShowing;
 -(void)loadTimes{
     // Load all lon and lats
     _results = [[NSMutableArray alloc] init];
-    /*
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:10];
-     */
+     
     
     
-    NSString *path=[[NSBundle mainBundle]pathForResource:@"fakeData" ofType:@"json"];
+    /*NSString *path=[[NSBundle mainBundle]pathForResource:@"fakeData" ofType:@"json"];
     NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                       timeoutInterval:10];
+                                                       timeoutInterval:10];*/
 
     
     [request setHTTPMethod: @"GET"];
@@ -550,7 +550,8 @@ int statusShowing;
     // [sender setBackgroundColor:BLUECOLOR];
     // [_b1 setBackgroundColor:[UIColor whiteColor]];
     
-
+    [_b1 setTitle:lMTL forState:UIControlStateNormal];
+    [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
     _montrealBar.backgroundColor = TMGRAY;
     _banlieuBar.backgroundColor = TMBLUE;
     if(direction!=BANLIEUE){

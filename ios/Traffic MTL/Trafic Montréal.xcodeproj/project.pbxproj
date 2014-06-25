@@ -27,6 +27,16 @@
 		0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6123D71945E89C00161C0A /* Ubuntu-M.ttf */; };
 		0C7141DE194A67990034E6B4 /* animation2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C7141DD194A67990034E6B4 /* animation2.gif */; };
 		0C7141E0194A68850034E6B4 /* whiteanim.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C7141DF194A68850034E6B4 /* whiteanim.gif */; };
+		0C7C4B34195AF3A6004FAE6E /* TMTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C4B33195AF3A6004FAE6E /* TMTutorialViewController.m */; };
+		0C7C4B3D195AF55E004FAE6E /* crumb1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B36195AF55E004FAE6E /* crumb1@2x.png */; };
+		0C7C4B3E195AF55E004FAE6E /* crumb2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B37195AF55E004FAE6E /* crumb2@2x.png */; };
+		0C7C4B3F195AF55E004FAE6E /* crumb3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B38195AF55E004FAE6E /* crumb3@2x.png */; };
+		0C7C4B40195AF55E004FAE6E /* iphone1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B39195AF55E004FAE6E /* iphone1@2x.png */; };
+		0C7C4B41195AF55E004FAE6E /* iphone2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B3A195AF55E004FAE6E /* iphone2@2x.png */; };
+		0C7C4B42195AF55E004FAE6E /* start-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B3B195AF55E004FAE6E /* start-btn@2x.png */; };
+		0C7C4B43195AF55E004FAE6E /* whitebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B3C195AF55E004FAE6E /* whitebox@2x.png */; };
+		0C7C4B45195AF5FF004FAE6E /* tutorial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */; };
+		0C7C4B47195AFF47004FAE6E /* slide3Content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */; };
 		0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D47391947826A001D927F /* victoria@2x.jpg */; };
 		0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D473D194782EE001D927F /* jacques@2x.jpg */; };
 		0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C886BC5194C8E1C009ECB31 /* fakeData.json */; };
@@ -90,6 +100,17 @@
 		0C71288A192E712B002C40F1 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		0C7141DD194A67990034E6B4 /* animation2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = animation2.gif; sourceTree = "<group>"; };
 		0C7141DF194A68850034E6B4 /* whiteanim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = whiteanim.gif; sourceTree = "<group>"; };
+		0C7C4B32195AF3A6004FAE6E /* TMTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTutorialViewController.h; sourceTree = "<group>"; };
+		0C7C4B33195AF3A6004FAE6E /* TMTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTutorialViewController.m; sourceTree = "<group>"; };
+		0C7C4B36195AF55E004FAE6E /* crumb1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crumb1@2x.png"; sourceTree = "<group>"; };
+		0C7C4B37195AF55E004FAE6E /* crumb2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crumb2@2x.png"; sourceTree = "<group>"; };
+		0C7C4B38195AF55E004FAE6E /* crumb3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crumb3@2x.png"; sourceTree = "<group>"; };
+		0C7C4B39195AF55E004FAE6E /* iphone1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone1@2x.png"; sourceTree = "<group>"; };
+		0C7C4B3A195AF55E004FAE6E /* iphone2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone2@2x.png"; sourceTree = "<group>"; };
+		0C7C4B3B195AF55E004FAE6E /* start-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start-btn@2x.png"; sourceTree = "<group>"; };
+		0C7C4B3C195AF55E004FAE6E /* whitebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitebox@2x.png"; sourceTree = "<group>"; };
+		0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_bg.png; sourceTree = "<group>"; };
+		0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide3Content@2x.png"; sourceTree = "<group>"; };
 		0C7D47391947826A001D927F /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
 		0C7D473D194782EE001D927F /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
 		0C886BC5194C8E1C009ECB31 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
@@ -185,6 +206,22 @@
 			path = iCarousel;
 			sourceTree = "<group>";
 		};
+		0C7C4B35195AF54A004FAE6E /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				0C7C4B36195AF55E004FAE6E /* crumb1@2x.png */,
+				0C7C4B37195AF55E004FAE6E /* crumb2@2x.png */,
+				0C7C4B38195AF55E004FAE6E /* crumb3@2x.png */,
+				0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */,
+				0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */,
+				0C7C4B39195AF55E004FAE6E /* iphone1@2x.png */,
+				0C7C4B3A195AF55E004FAE6E /* iphone2@2x.png */,
+				0C7C4B3B195AF55E004FAE6E /* start-btn@2x.png */,
+				0C7C4B3C195AF55E004FAE6E /* whitebox@2x.png */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 		0C886BC3194C6D08009ECB31 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +284,7 @@
 		0CB66D81192E5B550093C129 /* Traffic MTL */ = {
 			isa = PBXGroup;
 			children = (
+				0C7C4B35195AF54A004FAE6E /* Tutorial */,
 				0C252C01194C8FF200CDA0B3 /* iCarousel */,
 				0C886BC4194C6D13009ECB31 /* addons */,
 				0C886BC3194C6D08009ECB31 /* font */,
@@ -255,6 +293,8 @@
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
+				0C7C4B32195AF3A6004FAE6E /* TMTutorialViewController.h */,
+				0C7C4B33195AF3A6004FAE6E /* TMTutorialViewController.m */,
 				0C886BC5194C8E1C009ECB31 /* fakeData.json */,
 				0CB6AEFF193D035E006C45CF /* MainStoryboard.storyboard */,
 				0CB66D93192E5B550093C129 /* Images.xcassets */,
@@ -379,17 +419,24 @@
 			files = (
 				0C6123D91945E89C00161C0A /* Ubuntu-L.ttf in Resources */,
 				0C013DBA193CDD7700AC6242 /* splash_fr@2x.png in Resources */,
+				0C7C4B3D195AF55E004FAE6E /* crumb1@2x.png in Resources */,
+				0C7C4B41195AF55E004FAE6E /* iphone2@2x.png in Resources */,
 				0CBB974A193D0727008EF898 /* upArrow@2x.png in Resources */,
 				0C2397ED194B69D9004098A0 /* louis@2x.jpg in Resources */,
+				0C7C4B45195AF5FF004FAE6E /* tutorial_bg.png in Resources */,
 				0CFFC92E1933D608000E8AAB /* mercier@2x.jpg in Resources */,
 				0C7141DE194A67990034E6B4 /* animation2.gif in Resources */,
+				0C7C4B47195AFF47004FAE6E /* slide3Content@2x.png in Resources */,
+				0C7C4B43195AF55E004FAE6E /* whitebox@2x.png in Resources */,
 				0C7141E0194A68850034E6B4 /* whiteanim.gif in Resources */,
 				0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */,
 				0CB66D94192E5B550093C129 /* Images.xcassets in Resources */,
 				0C2397EF194B810F004098A0 /* louisAnim.gif in Resources */,
 				0C6123DA1945E89C00161C0A /* Ubuntu-M.ttf in Resources */,
 				0C252BFD194C8EF600CDA0B3 /* page@2x.png in Resources */,
+				0C7C4B3E195AF55E004FAE6E /* crumb2@2x.png in Resources */,
 				0C2397EB194B53F6004098A0 /* louis.png in Resources */,
+				0C7C4B40195AF55E004FAE6E /* iphone1@2x.png in Resources */,
 				0C2397F1194B8259004098A0 /* gif2.gif in Resources */,
 				0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */,
 				0CD4F75D1947810000D2C7A5 /* champlain@2x.jpg in Resources */,
@@ -397,7 +444,9 @@
 				0CB6AF00193D035E006C45CF /* MainStoryboard.storyboard in Resources */,
 				0CB66D86192E5B550093C129 /* InfoPlist.strings in Resources */,
 				0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */,
+				0C7C4B42195AF55E004FAE6E /* start-btn@2x.png in Resources */,
 				0C6123D81945E89C00161C0A /* Ubuntu-B.ttf in Resources */,
+				0C7C4B3F195AF55E004FAE6E /* crumb3@2x.png in Resources */,
 				0CAAF301194A828C00C12CD0 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +501,7 @@
 			files = (
 				0C501920192EA82D009343E1 /* BridgeCell.m in Sources */,
 				0CEF2CB41933CF34003272BD /* UIImage+Blur.m in Sources */,
+				0C7C4B34195AF3A6004FAE6E /* TMTutorialViewController.m in Sources */,
 				0CB66D92192E5B550093C129 /* TMViewController.m in Sources */,
 				0C252C04194C8FF200CDA0B3 /* iCarousel.m in Sources */,
 				0C279E521949F1F700853439 /* UIImage+animatedGIF.m in Sources */,

@@ -17,6 +17,11 @@
 
 // LOCALIZATION
 
+#define START (ISFRENCH?@"COMMENCER":@"START")
+
+#define lMTL (ISFRENCH?@"Direction Montréal":@"Towards Montreal")
+#define lBANLIEU (ISFRENCH?@"Direction Banlieue":@"Towards Suburbs")
+
 #define lNORMALTIME (ISFRENCH?@"Traversée normale:":@"Average crossing:")
 #define lUNAVAILABLE (ISFRENCH?@"Non disponible":@"Unavailable")
 
@@ -26,5 +31,9 @@
 #define lRELEASE (ISFRENCH?@"Liberez pour mettre à jour":@"Release to update!")
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:0.9]
+
+#define FONT [UIFont fontWithName:@"Ubuntu-M" size:20]
+
+#define ISIPHONE5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
 
 #endif
