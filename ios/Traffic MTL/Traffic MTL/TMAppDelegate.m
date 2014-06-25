@@ -16,6 +16,20 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
  
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // GOogle analytics
+    // 1
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // 2
+    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    
+    // 3
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // 4
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-52250247-1"];
+    
     return YES;
     
 }

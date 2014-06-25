@@ -38,6 +38,8 @@
 		0C7C4B45195AF5FF004FAE6E /* tutorial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */; };
 		0C7C4B47195AFF47004FAE6E /* slide3Content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */; };
 		0C7C4B4B195B0BAE004FAE6E /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C4B4A195B0BAE004FAE6E /* SwipeView.m */; };
+		0C7C4B54195B154B004FAE6E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C4B53195B154B004FAE6E /* libGoogleAnalyticsServices.a */; };
+		0C7C4B56195B16D0004FAE6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C4B55195B16D0004FAE6E /* CoreData.framework */; };
 		0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D47391947826A001D927F /* victoria@2x.jpg */; };
 		0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D473D194782EE001D927F /* jacques@2x.jpg */; };
 		0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C886BC5194C8E1C009ECB31 /* fakeData.json */; };
@@ -114,6 +116,14 @@
 		0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide3Content@2x.png"; sourceTree = "<group>"; };
 		0C7C4B49195B0BAE004FAE6E /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		0C7C4B4A195B0BAE004FAE6E /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
+		0C7C4B4D195B1530004FAE6E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		0C7C4B4E195B1530004FAE6E /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		0C7C4B4F195B1530004FAE6E /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		0C7C4B50195B1530004FAE6E /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		0C7C4B51195B1530004FAE6E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		0C7C4B52195B1530004FAE6E /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		0C7C4B53195B154B004FAE6E /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		0C7C4B55195B16D0004FAE6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0C7D47391947826A001D927F /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
 		0C7D473D194782EE001D927F /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
 		0C886BC5194C8E1C009ECB31 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7C4B56195B16D0004FAE6E /* CoreData.framework in Frameworks */,
 				0CF18670192E8559000888CC /* MapKit.framework in Frameworks */,
 				0C269686192E5C1F0086D694 /* SystemConfiguration.framework in Frameworks */,
 				0C269684192E5C170086D694 /* QuartzCore.framework in Frameworks */,
@@ -161,6 +172,7 @@
 				0C26967E192E5C000086D694 /* CoreLocation.framework in Frameworks */,
 				0CB66D7E192E5B550093C129 /* CoreGraphics.framework in Frameworks */,
 				0CB66D80192E5B550093C129 /* UIKit.framework in Frameworks */,
+				0C7C4B54195B154B004FAE6E /* libGoogleAnalyticsServices.a in Frameworks */,
 				0CB66D7C192E5B550093C129 /* Foundation.framework in Frameworks */,
 				18AB93B00E46480E885599CE /* libPods.a in Frameworks */,
 			);
@@ -234,6 +246,20 @@
 			path = SwipeView;
 			sourceTree = "<group>";
 		};
+		0C7C4B4C195B1530004FAE6E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				0C7C4B53195B154B004FAE6E /* libGoogleAnalyticsServices.a */,
+				0C7C4B4D195B1530004FAE6E /* GAI.h */,
+				0C7C4B4E195B1530004FAE6E /* GAIDictionaryBuilder.h */,
+				0C7C4B4F195B1530004FAE6E /* GAIFields.h */,
+				0C7C4B50195B1530004FAE6E /* GAILogger.h */,
+				0C7C4B51195B1530004FAE6E /* GAITrackedViewController.h */,
+				0C7C4B52195B1530004FAE6E /* GAITracker.h */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		0C886BC3194C6D08009ECB31 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +304,7 @@
 		0CB66D7A192E5B550093C129 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C7C4B55195B16D0004FAE6E /* CoreData.framework */,
 				0CF1866F192E8559000888CC /* MapKit.framework */,
 				0C269685192E5C1F0086D694 /* SystemConfiguration.framework */,
 				0C269683192E5C170086D694 /* QuartzCore.framework */,
@@ -296,6 +323,7 @@
 		0CB66D81192E5B550093C129 /* Traffic MTL */ = {
 			isa = PBXGroup;
 			children = (
+				0C7C4B4C195B1530004FAE6E /* Library */,
 				0C7C4B35195AF54A004FAE6E /* Tutorial */,
 				0C252C01194C8FF200CDA0B3 /* iCarousel */,
 				0C886BC4194C6D13009ECB31 /* addons */,
@@ -649,6 +677,11 @@
 				INFOPLIST_FILE = "Traffic MTL/Trafic Montréal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Traffic",
+					MTL/Library,
+				);
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "Trafic Montréal";
 				SWIFT_OBJC_BRIDGING_HEADER = "Traffic MTL/Trafic Montréal-Bridging-Header.h";
@@ -673,6 +706,11 @@
 				INFOPLIST_FILE = "Traffic MTL/Trafic Montréal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Traffic",
+					MTL/Library,
+				);
 				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_NAME = "Trafic Montréal";
 				SWIFT_OBJC_BRIDGING_HEADER = "Traffic MTL/Trafic Montréal-Bridging-Header.h";

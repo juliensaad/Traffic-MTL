@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-
-@interface TMViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface TMViewController : GAITrackedViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;

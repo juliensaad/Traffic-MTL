@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
+#import "SwipeView.h"
 
-#import "iCarousel.h"
-
-@interface TMTutorialViewController : UIViewController<iCarouselDataSource, iCarouselDelegate>
-@property (weak, nonatomic) IBOutlet iCarousel *carousel;
+@interface TMTutorialViewController : GAITrackedViewController<SwipeViewDelegate, SwipeViewDataSource>
+@property (weak, nonatomic) IBOutlet SwipeView *carousel;
 @property (weak, nonatomic) IBOutlet UIImageView *crumbs;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 

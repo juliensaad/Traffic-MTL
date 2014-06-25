@@ -176,10 +176,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-LW-tob">
-                                <rect key="frame" x="29" y="25" width="263" height="429"/>
+                                <rect key="frame" x="0.0" y="25" width="320" height="429"/>
                                 <subviews>
-                                    <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C74-Nc-dAQ" customClass="iCarousel">
-                                        <rect key="frame" x="0.0" y="0.0" width="263" height="429"/>
+                                    <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C74-Nc-dAQ" customClass="SwipeView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="429"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="Q6k-Z5-RIT" id="dAE-LT-s6X"/>

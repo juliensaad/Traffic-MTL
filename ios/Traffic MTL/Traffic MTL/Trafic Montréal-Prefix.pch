@@ -15,4 +15,6 @@
     #import <Foundation/Foundation.h>
     #import "config.h"
     #import "CSAnimationView.h"
+    #import "GAI.h"
+    #import "GAIFields.h"
 #endif

@@ -15,9 +15,9 @@
 @implementation TMTutorialViewController
 
 
--(void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel{
+-(void)swipeViewCurrentItemIndexDidChange:(SwipeView *)swipeView{
     
-    int index = carousel.currentItemIndex;
+    int index = _carousel.currentItemIndex;
     if(index==0){
         _crumbs.image = [UIImage imageNamed:@"crumb1.png"];
     }else if(index==1){
@@ -26,12 +26,9 @@
         _crumbs.image = [UIImage imageNamed:@"crumb3.png"];
     }
     
-    NSLog(@"index: %d", index);
-    
-    
+
 }
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
-{
+-(UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
     UILabel *label = nil;
     UIImageView* phone = nil;
     
@@ -47,15 +44,15 @@
         //don't do anything specific to the index within
         //this `if (view == nil) {...}` statement because the view will be
         //recycled and used with other index values later
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 263.0f, 429.0f)];
-       
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, 429.0f)];
+        
         view.contentMode = UIViewContentModeCenter;
         
         ((UIImageView*)view).image = [UIImage imageNamed:@"whitebox.png"];
-     
+        
         
         // Title label
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 320, 263, 40)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 320, 320, 40)];
         label.backgroundColor = [UIColor clearColor];
         
         label.textColor = UIColorFromRGB(0x6acdd8);
@@ -66,7 +63,7 @@
         [view addSubview:label];
         
         // Description label
-        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 351, 203, 40)];
+        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 351, 230, 40)];
         descriptionLabel.backgroundColor = [UIColor clearColor];
         
         descriptionLabel.textColor = UIColorFromRGB(0x546470);
@@ -86,7 +83,7 @@
         float phoneWidth = phone.frame.size.width;
         float phoneHeight = phone.frame.size.height;
         float viewWidth = view.frame.size.width;
-
+        
         phone.frame = CGRectMake(viewWidth/2-phoneWidth/2, 30, phoneWidth, phoneHeight);
         
         
@@ -94,11 +91,12 @@
         
         slide3.frame = CGRectMake(viewWidth/2-slide3.frame.size.width/2, 42, slide3.frame.size.width, slide3.frame.size.height);
         slide3.hidden = YES;
+        slide3.tag = 10;
         [view addSubview: slide3];
-       
+        
         if(!ISIPHONE5){
             startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            startBtn.frame = CGRectMake(15, 370, view.frame.size.width-30, _startBtn.frame.size.height);
+            startBtn.frame = CGRectMake(42, 370, 233, _startBtn.frame.size.height);
             [startBtn setBackgroundImage:[UIImage imageNamed:@"start-btn.png"] forState:UIControlStateNormal];
             [startBtn setTitle:[START uppercaseString] forState:UIControlStateNormal];
             startBtn.tag = 4;
@@ -108,7 +106,7 @@
             startBtn.enabled = YES;
             view.clipsToBounds = YES;
             [startBtn addTarget:self action:@selector(exitTutorial:) forControlEvents:UIControlEventTouchUpInside];
-          
+            
             
             [view bringSubviewToFront:startBtn];
         }
@@ -120,7 +118,7 @@
         phone = (UIImageView*)[view viewWithTag:2];
         descriptionLabel = (UILabel*)[view viewWithTag:3];
         startBtn = (UIButton*)[view viewWithTag:4];
-
+        slide3 = (UIImageView*)[view viewWithTag:10];
     }
     
     view.userInteractionEnabled = YES;
@@ -128,41 +126,42 @@
     switch (index) {
         case 0:
             label.text = @"Notre Mission";
+            slide3.hidden = YES;
+            descriptionLabel.hidden = NO;
+            phone.image = [UIImage imageNamed:@"iphone2.png"];
+            label.hidden = NO;
+            phone.hidden = NO;
+            startBtn.hidden = YES;
             break;
         case 1:
             
             phone.image = [UIImage imageNamed:@"iphone1.png"];
             [view addSubview: phone];
+            slide3.hidden = YES;
             label.text = @"Notre Mission";
+            startBtn.hidden = YES;
             break;
-        
-        default:
+            
+        case 2:
             slide3.hidden = NO;
             descriptionLabel.hidden = YES;
             phone.hidden = YES;
-            
+            label.hidden = YES;
             if(!ISIPHONE5){
                 startBtn.hidden = NO;
             }
             break;
+        default:
+            break;
     }
-   
+    
     return view;
+
 }
-
-- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
-{
-    if (option == iCarouselOptionSpacing)
-    {
-        return value * 1.4f;
-    }
-    return value;
-}
-
-
--(NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
+-(NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView{
     return 3;
 }
+
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -190,6 +189,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Tutorial tracking
+    self.screenName = @"Tutorial";
     
     [_startBtn addTarget:self action:@selector(exitTutorial:) forControlEvents:UIControlEventTouchUpInside];
     [_startBtn setTitle:START forState:UIControlStateNormal];

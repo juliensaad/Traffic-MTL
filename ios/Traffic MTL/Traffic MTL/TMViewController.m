@@ -254,6 +254,9 @@ int statusShowing;
 {
     [super viewDidLoad];
     
+    // Screen name
+    self.screenName = @"Main";
+    
     // Pour la face de louis
     rightCounter = 0;
     
