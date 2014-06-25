@@ -191,7 +191,7 @@
     [super viewDidLoad];
     
     // Tutorial tracking
-    self.screenName = @"Tutorial";
+    self.screenName = @"Tutorial-iOS";
     
     [_startBtn addTarget:self action:@selector(exitTutorial:) forControlEvents:UIControlEventTouchUpInside];
     [_startBtn setTitle:START forState:UIControlStateNormal];

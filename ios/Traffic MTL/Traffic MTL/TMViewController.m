@@ -255,7 +255,7 @@ int statusShowing;
     [super viewDidLoad];
     
     // Screen name
-    self.screenName = @"Main";
+    self.screenName = @"Main-iOS";
     
     // Pour la face de louis
     rightCounter = 0;
