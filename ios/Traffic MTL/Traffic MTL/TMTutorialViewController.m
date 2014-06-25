@@ -198,7 +198,8 @@
     
    
     _carousel.bounces = YES;
-    _carousel.decelerationRate = 0.05;
+    _carousel.decelerationRate = 0.03;
+
 }
 
 - (void)didReceiveMemoryWarning

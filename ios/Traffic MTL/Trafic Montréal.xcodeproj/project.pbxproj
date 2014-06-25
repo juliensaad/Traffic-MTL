@@ -37,6 +37,7 @@
 		0C7C4B43195AF55E004FAE6E /* whitebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B3C195AF55E004FAE6E /* whitebox@2x.png */; };
 		0C7C4B45195AF5FF004FAE6E /* tutorial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */; };
 		0C7C4B47195AFF47004FAE6E /* slide3Content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */; };
+		0C7C4B4B195B0BAE004FAE6E /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C4B4A195B0BAE004FAE6E /* SwipeView.m */; };
 		0C7D473A1947826A001D927F /* victoria@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D47391947826A001D927F /* victoria@2x.jpg */; };
 		0C7D473E194782EE001D927F /* jacques@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7D473D194782EE001D927F /* jacques@2x.jpg */; };
 		0C886BC6194C8E1C009ECB31 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C886BC5194C8E1C009ECB31 /* fakeData.json */; };
@@ -111,6 +112,8 @@
 		0C7C4B3C195AF55E004FAE6E /* whitebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitebox@2x.png"; sourceTree = "<group>"; };
 		0C7C4B44195AF5FF004FAE6E /* tutorial_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_bg.png; sourceTree = "<group>"; };
 		0C7C4B46195AFF47004FAE6E /* slide3Content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide3Content@2x.png"; sourceTree = "<group>"; };
+		0C7C4B49195B0BAE004FAE6E /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
+		0C7C4B4A195B0BAE004FAE6E /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
 		0C7D47391947826A001D927F /* victoria@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "victoria@2x.jpg"; sourceTree = "<group>"; };
 		0C7D473D194782EE001D927F /* jacques@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jacques@2x.jpg"; sourceTree = "<group>"; };
 		0C886BC5194C8E1C009ECB31 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
@@ -222,6 +225,15 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
+		0C7C4B48195B0BAE004FAE6E /* SwipeView */ = {
+			isa = PBXGroup;
+			children = (
+				0C7C4B49195B0BAE004FAE6E /* SwipeView.h */,
+				0C7C4B4A195B0BAE004FAE6E /* SwipeView.m */,
+			);
+			path = SwipeView;
+			sourceTree = "<group>";
+		};
 		0C886BC3194C6D08009ECB31 /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +302,7 @@
 				0C886BC3194C6D08009ECB31 /* font */,
 				0C013DB8193CDC3700AC6242 /* img */,
 				0CB66D8A192E5B550093C129 /* TMAppDelegate.h */,
+				0C7C4B48195B0BAE004FAE6E /* SwipeView */,
 				0CB66D8B192E5B550093C129 /* TMAppDelegate.m */,
 				0CB66D90192E5B550093C129 /* TMViewController.h */,
 				0CB66D91192E5B550093C129 /* TMViewController.m */,
@@ -508,6 +521,7 @@
 				0CB66D88192E5B550093C129 /* main.m in Sources */,
 				0C4D581F192FDA1C003BCB15 /* TMBridgeInfo.m in Sources */,
 				0CB66D8C192E5B550093C129 /* TMAppDelegate.m in Sources */,
+				0C7C4B4B195B0BAE004FAE6E /* SwipeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
