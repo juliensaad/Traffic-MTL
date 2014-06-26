@@ -24,4 +24,8 @@
 @property int percentage;
 
 @property int rgb;
+
+@property int shore;
+
+@property NSString* condition;
 @end

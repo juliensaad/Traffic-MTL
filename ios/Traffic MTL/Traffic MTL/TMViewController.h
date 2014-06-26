@@ -19,6 +19,7 @@
 - (IBAction)versMtlClick:(id)sender;
 - (IBAction)versBanlieueClick:(id)sender;
 
+- (IBAction)changeShore:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *colorFilter;
 @property (weak, nonatomic) IBOutlet UIButton *b1;

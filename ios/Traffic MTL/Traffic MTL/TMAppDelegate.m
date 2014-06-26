@@ -22,7 +22,7 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     
     // 2
-    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelNone];
     
     // 3
     [GAI sharedInstance].dispatchInterval = 20;

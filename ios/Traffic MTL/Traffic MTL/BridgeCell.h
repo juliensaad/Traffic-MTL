@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UIView *colorFilter;
 
+@property BOOL hasShadow;
 @end

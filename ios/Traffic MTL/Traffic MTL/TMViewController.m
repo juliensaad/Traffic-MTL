@@ -27,7 +27,8 @@
 @property UIRefreshControl* refreshControl;
 @property NSMutableArray* bridges;
 
-@property NSMutableArray* bridgeImages;
+@property NSMutableArray* bridgeImagesSouth;
+@property NSMutableArray* bridgeImagesNorth;
 
 @property UILabel *l;
 
@@ -40,24 +41,24 @@ int addedShadowCount;
 
 int rightCounter;
 int statusShowing;
+BOOL shore;
 
 #define MTL YES
 #define BANLIEUE NO
 
-
-#define CHAMPLAIN 0
-#define VICTORIA 1
-#define JACQUESCARTIER 2
-#define MERCIER 3
-#define LOUIS 4
-
 #define PERCENTAGE 0
 #define TIME 1
+
+#define RIVE_SUD NO
+#define RIVE_NORD YES
 
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return ((NSMutableArray*)_bridges[0]).count;
+    if(shore==RIVE_SUD)
+        return ((NSMutableArray*)_bridges[0]).count;
+    else
+        return ((NSMutableArray*)_bridges[2]).count;
 }
 
 #define TMGRAY [UIColor colorWithRed:218.0/255.0 green:220.0/255.0 blue:221.0/255.0 alpha:0.90]
@@ -68,10 +69,10 @@ int statusShowing;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    BridgeCell *cell ;
+    BridgeCell *cell;
     cell= [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
 
-    TMBridgeInfo* bridge = _bridges[direction][indexPath.row];
+    TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][indexPath.row];
     
     cell.bridgeName.text = bridge.bridgeName;
     cell.bridgeName.adjustsFontSizeToFitWidth = YES;
@@ -80,10 +81,7 @@ int statusShowing;
     
     // detect touch on label to swap info
     cell.avecTraffic.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
-    [cell.avecTraffic addGestureRecognizer:tapGesture];
-
+    
     cell.colorFilter.backgroundColor = [UIColor clearColor];
 
     if(statusShowing==PERCENTAGE){
@@ -92,54 +90,36 @@ int statusShowing;
         cell.avecTraffic.text = [self getTimeString:bridge];
     }
     
+    cell.normal.text = [NSString stringWithFormat:@"CONDITION: %@",bridge.condition];
     
-    
-    if([bridge.bridgeName isEqualToString:@"Victoria"]){
-        //Get current time
-        NSDate* now = [NSDate date];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *dateComponents = [gregorian components:(NSHourCalendarUnit  | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-        NSInteger hour = [dateComponents hour];
-        
-        switch(hour){
-            case 6:
-            case 7:
-            case 8:
-                if(bridge.direction==0){
-                    bridge.realTime = 200000;
-                    [cell.avecTraffic setBackgroundColor:RED];
-                }
-                break;
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-                if(bridge.direction ==1){
-                    bridge.realTime = 200000;
-                    [cell.avecTraffic setBackgroundColor:RED];
-                }
-                break;
-        }
-    }
-    if(bridge.realTime>150000){
-        cell.avecTraffic.text = lUNAVAILABLE;
-        cell.avecTraffic.adjustsFontSizeToFitWidth = YES;
-    }
-    
-    cell.normal.text = [[NSString stringWithFormat:@"%@ %@",lNORMALTIME,[self formattedStringForDuration:bridge.time]] uppercaseString];
-    
-    cell.backgroundImage.image = _bridgeImages[indexPath.row];
+    cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[indexPath.row];
     cell.backgroundImage.tag = indexPath.row;
     
     cell.clipsToBounds = YES;
     cell.backgroundImage.clipsToBounds = YES;
     
-    if(addedShadowCount != ((NSMutableArray*)_bridges[0]).count){
+    if(!cell.hasShadow){
         [self addGradientToView:cell.backgroundImage];
+        cell.hasShadow = YES;
     }
-        return cell;
-    //}
-    //return 0;
+    
+    if(indexPath.row==0){
+        UIButton* hamburger = [[UIButton alloc] initWithFrame:CGRectMake(12, 28, 20, 12)];
+        [hamburger setImage:[UIImage imageNamed:@"hamburger.png"] forState:UIControlStateNormal];
+        [cell addSubview: hamburger];
+        
+        hamburger.tag = 10;
+        
+        [hamburger addTarget:self action:@selector(changeShore:) forControlEvents:UIControlEventTouchUpInside];
+        [cell setUserInteractionEnabled:YES];
+    }
+    
+    return cell;
+   
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self labelTap];
 }
 
 -(void)labelTap{
@@ -148,7 +128,7 @@ int statusShowing;
         NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
         BridgeCell* cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:index];
         
-        TMBridgeInfo* bridge = _bridges[direction][index.row];
+        TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][index.row];
         
         CATransition *animation = [CATransition animation];
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -167,9 +147,14 @@ int statusShowing;
 
 -(NSString*)getPercentageString:(TMBridgeInfo*)bridge{
 
+    if(bridge.percentage==-1)
+        return ISFRENCH?@"N/D":@"N/A";
     return [NSString stringWithFormat:@"%d%%", bridge.percentage];
 }
 -(NSString*)getTimeString:(TMBridgeInfo*)bridge{
+    
+    if(bridge.percentage==-1)
+        return ISFRENCH?@"N/D":@"N/A";
     
     if(bridge.realTime >= bridge.time){
         return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:bridge.delay]];
@@ -229,30 +214,17 @@ int statusShowing;
         ((UIImageView*)_statusBarImages[i]).frame = im1Fr;
         
     }
-    
-    // _statusBarImage.
-    // Parallax effect for BridgeCells
-   /* float offset = _tableView.contentOffset.y / _tableView.frame.size.height;
-    for(int i=0; i<((NSMutableArray*)_bridges[0]).count;i++){
-        
-        BridgeCell *cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        CGRect frame = CGRectMake(cell.backgroundImage.frame.origin.x, offset * 60, cell.backgroundImage.frame.size.width, cell.backgroundImage.frame.size.height);
-        
-        cell.backgroundImage.frame = frame;
-    }*/
-    
-    // Allow only a bounce on the top of the scrollview
-    /*if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
-        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.frame.size.height)];
-    }*/
+
 }
-
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [_b1 setTitle:lMTL forState:UIControlStateNormal];
+    [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
+    
+    shore = RIVE_SUD;
     
     // Screen name
     self.screenName = @"Main-iOS";
@@ -272,12 +244,22 @@ int statusShowing;
     
     
     // Fill the images array for the bridges
-    _bridgeImages = [[NSMutableArray alloc] init];
-    [_bridgeImages addObject:[UIImage imageNamed:@"champlain.jpg"]];
-    [_bridgeImages addObject:[UIImage imageNamed:@"victoria.jpg"]];
-    [_bridgeImages addObject:[UIImage imageNamed:@"jacques.jpg"]];
-    [_bridgeImages addObject:[UIImage imageNamed:@"mercier.jpg"]];
-    [_bridgeImages addObject:[UIImage imageNamed:@"louis.jpg"]];
+    _bridgeImagesSouth = [[NSMutableArray alloc] init];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"champlain.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"victoria.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"jacques.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"mercier.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"louis.jpg"]];
+    
+    _bridgeImagesNorth = [[NSMutableArray alloc] init];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis-bisson.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"lachapelle.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"mederic-martin.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"viau.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"papineau.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"pie-ix.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis.jpg"]];
     
     
     addedShadowCount = 0;
@@ -394,7 +376,8 @@ int statusShowing;
     
     _statusBarImages = [[NSMutableArray alloc] init];
     
-    for(UIImage* im in _bridgeImages){
+    [_tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+    for(UIImage* im in shore?_bridgeImagesNorth:_bridgeImagesSouth){
         
         UIImageView* i = [[UIImageView alloc] initWithImage:im];
         i.clipsToBounds = YES;
@@ -421,6 +404,9 @@ int statusShowing;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = ISFRENCH?@"lang=1":@"lang=0";
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
      
     
     
@@ -430,8 +416,6 @@ int statusShowing;
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                        timeoutInterval:10];*/
 
-    
-    [request setHTTPMethod: @"GET"];
         
     NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [con start];
@@ -471,6 +455,9 @@ int statusShowing;
     
     NSMutableArray* bridgesMTL = [[NSMutableArray alloc] init];
     NSMutableArray* bridgesBanlieue = [[NSMutableArray alloc] init];
+    
+    NSMutableArray* bridgesMTLNORD = [[NSMutableArray alloc] init];
+    NSMutableArray* bridgesBanlieueNORD = [[NSMutableArray alloc] init];
 
     for(NSDictionary* dic in jsonDict){
         TMBridgeInfo* info = [[TMBridgeInfo alloc] init];
@@ -482,6 +469,7 @@ int statusShowing;
         
         info.percentage = [[dic objectForKey:@"percentage"] intValue];
         info.delay = [[dic objectForKey:@"delay"] intValue];
+        info.condition = [dic objectForKey:@"cond"];
         
         // Scan hex value for color
         unsigned int outVal;
@@ -491,11 +479,18 @@ int statusShowing;
         
         info.ratio = 1.0-(float)info.time/(float)info.realTime;
         
-        [info.direction?bridgesBanlieue:bridgesMTL addObject:info];
+        info.shore = [[dic objectForKey:@"shore"] intValue];
+        
+        if(info.shore == 0)
+            [info.direction?bridgesBanlieue:bridgesMTL addObject:info];
+        else
+            [info.direction?bridgesBanlieueNORD:bridgesMTLNORD addObject:info];
     }
     
     [_bridges addObject:bridgesMTL];
     [_bridges addObject:bridgesBanlieue];
+    [_bridges addObject:bridgesMTLNORD];
+    [_bridges addObject:bridgesBanlieueNORD];
     
     [_tableView reloadData];
     
@@ -550,11 +545,7 @@ int statusShowing;
 }
 
 - (IBAction)versBanlieueClick:(id)sender {
-    // [sender setBackgroundColor:BLUECOLOR];
-    // [_b1 setBackgroundColor:[UIColor whiteColor]];
-    
-    [_b1 setTitle:lMTL forState:UIControlStateNormal];
-    [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
+
     _montrealBar.backgroundColor = TMGRAY;
     _banlieuBar.backgroundColor = TMBLUE;
     if(direction!=BANLIEUE){
@@ -571,9 +562,18 @@ int statusShowing;
         [self.tableView reloadData];
         
     }
-    
+}
 
-    //[self loadTimes];
+- (IBAction)changeShore:(id)sender {
+    if([[[sender titleLabel] text] isEqualToString:@"S"]){
+        [sender setTitle:@"N" forState:UIControlStateNormal];
+    }else{
+        [sender setTitle:@"S" forState:UIControlStateNormal];
+    }
+    shore = !shore;
+    
+    [self createFakeStatusBar];
+    [_tableView reloadData];
 }
 
 -(void)swipeLeft{
@@ -603,7 +603,7 @@ int statusShowing;
         rightCounter=0;
     }
     
-            rightCounter=0;
+    rightCounter=0;
     if(rightCounter<4 && _gif.tag ==123){
         NSString *path=[[NSBundle mainBundle]pathForResource:@"whiteanim" ofType:@"gif"];
         NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
