@@ -7,12 +7,12 @@
         <!--View Controller - TRAFIC MONTRÉAL-->
         <scene sceneID="1wK-ff-0BV">
             <objects>
-                <viewController id="2Ah-8q-FIC" customClass="TMViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Ah-8q-FIC" customClass="TMViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FNz-po-Dpe"/>
                         <viewControllerLayoutGuide type="bottom" id="bL0-SH-Al7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pmk-ZD-u4d">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MainView" id="Pmk-ZD-u4d">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -116,6 +116,18 @@
                                 <rect key="frame" x="-1" y="-1" width="321" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AgF-6Z-bmU">
+                                <rect key="frame" x="0.0" y="-20" width="320" height="20"/>
+                                <subviews>
+                                    <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unable to refresh! Please try again" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDy-sd-sti">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="11"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95226174033149169" green="0.077204849739491793" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -132,6 +144,7 @@
                         <outlet property="b2" destination="1Xe-tM-xra" id="8gt-7H-xNx"/>
                         <outlet property="banlieuBar" destination="aoR-Nd-BY3" id="JJP-Hb-ie9"/>
                         <outlet property="montrealBar" destination="s9t-Lh-7Qg" id="SWx-Tn-g4e"/>
+                        <outlet property="noInternet" destination="AgF-6Z-bmU" id="v34-oN-6Nq"/>
                         <outlet property="statusBarView" destination="Vm1-JS-eY1" id="3ny-LG-sOe"/>
                         <outlet property="tableView" destination="GIu-MD-jVa" id="WK5-jb-QXw"/>
                     </connections>
@@ -143,6 +156,7 @@
         <!--Navigation Controller-->
         <scene sceneID="no3-LT-L0R">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTX-K3-Cai" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="sKB-v4-2nn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="MII-Ut-KgE"/>
@@ -156,7 +170,6 @@
                         <segue destination="Q6k-Z5-RIT" kind="relationship" relationship="rootViewController" id="fy4-L8-DuN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DTX-K3-Cai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-315" y="82"/>
         </scene>
@@ -206,7 +219,6 @@
                         <outlet property="carousel" destination="C74-Nc-dAQ" id="O2O-Yw-RAc"/>
                         <outlet property="crumbs" destination="MU8-0q-spk" id="jho-Kq-rwe"/>
                         <outlet property="startBtn" destination="hQ9-Xz-evV" id="56B-ah-laQ"/>
-                        <segue destination="2Ah-8q-FIC" kind="push" identifier="start" id="1Fy-HW-FNR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCM-MS-V9g" userLabel="First Responder" sceneMemberID="firstResponder"/>

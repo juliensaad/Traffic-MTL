@@ -7,8 +7,11 @@
 //
 
 #import "TMTutorialViewController.h"
+#import "TMAppDelegate.h"
 
 @interface TMTutorialViewController ()
+
+@property (nonatomic, strong) DemoMenuController *menuController;
 
 @end
 
@@ -211,7 +214,30 @@
 }
 
 -(void)exitTutorial:(id)sender{
-    [self performSegueWithIdentifier:@"start" sender:self];
+    //[self performSegueWithIdentifier:@"start" sender:self];
+    _menuController = [[DemoMenuController alloc] initWithMenuWidth:80];
+    //[[[UIApplication sharedApplication] keyWindow] setRootViewController:_menuController];
+    
+    NSMutableArray *viewControllers = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < 1; i++)
+    {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        TMViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainController"];
+    
+        [viewControllers addObject:vc];
+        
+        [vc setSideMenu:_menuController];
+    }
+    
+    [_menuController setViewControllers:viewControllers];
+
+    
+    [self.navigationController pushViewController:_menuController animated:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"didCompleteTutorial"];
+    
 }
 /*
 #pragma mark - Navigation

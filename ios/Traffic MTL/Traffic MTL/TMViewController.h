@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import "PaperFoldMenuController.h"
+#import "DemoMenuController.h"
 
 @interface TMViewController : GAITrackedViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *noInternet;
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
@@ -31,4 +34,8 @@
 @property NSMutableArray* statusBarImages;
 
 @property UIImageView *gif;
+
+// Sidebar
+
+@property DemoMenuController* sideMenu;
 @end

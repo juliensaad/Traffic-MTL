@@ -10,6 +10,9 @@
 #import "GAITrackedViewController.h"
 #import "SwipeView.h"
 
+#import "DemoMenuController.h"
+#import "TMViewController.h"
+
 @interface TMTutorialViewController : GAITrackedViewController<SwipeViewDelegate, SwipeViewDataSource>
 @property (weak, nonatomic) IBOutlet SwipeView *carousel;
 @property (weak, nonatomic) IBOutlet UIImageView *crumbs;

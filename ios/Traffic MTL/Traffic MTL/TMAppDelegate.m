@@ -7,6 +7,15 @@
 //
 
 #import "TMAppDelegate.h"
+#import "DemoMenuController.h"
+#import "TMViewController.h"
+
+
+@interface TMAppDelegate ()
+
+@property (nonatomic, strong) DemoMenuController *menuController;
+@end
+
 
 @implementation TMAppDelegate
 
@@ -30,6 +39,28 @@
     // 4
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-52250247-1"];
     
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"didCompleteTutorial"]){
+        
+        // Launch side menu and Main View
+        _menuController = [[DemoMenuController alloc] initWithMenuWidth:80];
+        NSMutableArray *viewControllers = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < 1; i++)
+        {
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            TMViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainController"];
+            
+            [viewControllers addObject:vc];
+            
+            [vc setSideMenu:_menuController];
+        }
+        
+        [_menuController setViewControllers:viewControllers];
+        
+        [self.window setRootViewController:_menuController];
+        
+    }
     return YES;
     
 }

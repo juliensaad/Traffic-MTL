@@ -17,7 +17,6 @@
 #import "UIImage+animatedGIF.h"
 
 
-
 @interface TMViewController ()
 
 @property NSMutableData* responseData;
@@ -42,6 +41,8 @@ int addedShadowCount;
 int rightCounter;
 int statusShowing;
 BOOL shore;
+BOOL sideMenuShown;
+BOOL isLoading;
 
 #define MTL YES
 #define BANLIEUE NO
@@ -52,8 +53,10 @@ BOOL shore;
 #define RIVE_SUD NO
 #define RIVE_NORD YES
 
+#define TMGRAY [UIColor colorWithRed:218.0/255.0 green:220.0/255.0 blue:221.0/255.0 alpha:0.90]
+#define TMBLUE [UIColor colorWithRed:106.0/255.0 green:205.0/255.0 blue:216.0/255.0 alpha:0.90]
 
-
+#pragma mark TableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(shore==RIVE_SUD)
         return ((NSMutableArray*)_bridges[0]).count;
@@ -61,11 +64,6 @@ BOOL shore;
         return ((NSMutableArray*)_bridges[2]).count;
 }
 
-#define TMGRAY [UIColor colorWithRed:218.0/255.0 green:220.0/255.0 blue:221.0/255.0 alpha:0.90]
-
-#define TMBLUE [UIColor colorWithRed:106.0/255.0 green:205.0/255.0 blue:216.0/255.0 alpha:0.90]
-
-#define RED [UIColor colorWithRed:249.0/255.0 green:1.0/255.0 blue:0.0/255.0 alpha:0.90]
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -104,7 +102,7 @@ BOOL shore;
     }
     
     if(indexPath.row==0){
-        UIButton* hamburger = [[UIButton alloc] initWithFrame:CGRectMake(12, 28, 20, 12)];
+        UIButton* hamburger = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 50, 40)];
         [hamburger setImage:[UIImage imageNamed:@"hamburger.png"] forState:UIControlStateNormal];
         [cell addSubview: hamburger];
         
@@ -122,45 +120,6 @@ BOOL shore;
     [self labelTap];
 }
 
--(void)labelTap{
-    // Change label time
-    for(int i = 0;i<[_tableView numberOfRowsInSection:0];i++){
-        NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
-        BridgeCell* cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:index];
-        
-        TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][index.row];
-        
-        CATransition *animation = [CATransition animation];
-        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        animation.type = kCATransitionFade;
-        animation.duration = 0.65;
-        [cell.avecTraffic.layer addAnimation:animation forKey:@"kCATransitionFade"];
-        if(statusShowing==PERCENTAGE){
-            cell.avecTraffic.text = [self getTimeString:bridge];
-        }else{
-            cell.avecTraffic.text = [self getPercentageString:bridge];
-        }
-    }
-    
-    statusShowing = (statusShowing==PERCENTAGE)?TIME:PERCENTAGE;
-}
-
--(NSString*)getPercentageString:(TMBridgeInfo*)bridge{
-
-    if(bridge.percentage==-1)
-        return ISFRENCH?@"N/D":@"N/A";
-    return [NSString stringWithFormat:@"%d%%", bridge.percentage];
-}
--(NSString*)getTimeString:(TMBridgeInfo*)bridge{
-    
-    if(bridge.percentage==-1)
-        return ISFRENCH?@"N/D":@"N/A";
-    
-    if(bridge.realTime >= bridge.time){
-        return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:bridge.delay]];
-    }
-    return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:0]];
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
@@ -169,6 +128,7 @@ BOOL shore;
     return 125;
 }
 
+#pragma mark ScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     float offset = _tableView.contentOffset.y;
     
@@ -214,12 +174,64 @@ BOOL shore;
         ((UIImageView*)_statusBarImages[i]).frame = im1Fr;
         
     }
+    
+}
 
+
+-(void)labelTap{
+    // Change label time
+    for(int i = 0;i<[_tableView numberOfRowsInSection:0];i++){
+        NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
+        BridgeCell* cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:index];
+        
+        TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][index.row];
+        
+        CATransition *animation = [CATransition animation];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.65;
+        [cell.avecTraffic.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        if(statusShowing==PERCENTAGE){
+            cell.avecTraffic.text = [self getTimeString:bridge];
+        }else{
+            cell.avecTraffic.text = [self getPercentageString:bridge];
+        }
+    }
+    
+    statusShowing = (statusShowing==PERCENTAGE)?TIME:PERCENTAGE;
+}
+
+-(NSString*)getPercentageString:(TMBridgeInfo*)bridge{
+
+    if(bridge.percentage==-1)
+        return ISFRENCH?@"N/D":@"N/A";
+    return [NSString stringWithFormat:@"%d%%", bridge.percentage];
+}
+-(NSString*)getTimeString:(TMBridgeInfo*)bridge{
+    
+    if(bridge.percentage==-1)
+        return ISFRENCH?@"N/D":@"N/A";
+    
+    if(bridge.realTime >= bridge.time){
+        return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:bridge.delay]];
+    }
+    return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:0]];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Preload data
+    _results = [[NSMutableArray alloc] init];
+    
+    isLoading = NO;
+
+    // Init fake data
+    [[[NSURLConnection alloc] initWithRequest:[NSMutableURLRequest requestWithURL:[[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle]pathForResource:@"fakeData" ofType:@"json"]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10] delegate:self] start];
+
+    
+    sideMenuShown = NO;
     
     [_b1 setTitle:lMTL forState:UIControlStateNormal];
     [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
@@ -236,8 +248,15 @@ BOOL shore;
     statusShowing = TIME;
     
     _statusBarView.hidden = YES;
-    _statusBarView.layer.borderWidth = 0.5;
-    _statusBarView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    
+    CALayer* layer = _statusBarView.layer;
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderColor = [UIColor darkGrayColor].CGColor;
+    bottomBorder.borderWidth = 0.5;
+    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height-1, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:[UIColor colorWithWhite:1.0 alpha:0.2].CGColor];
+    [layer addSublayer:bottomBorder];
     
     // White text nav bar
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Ubuntu-Light" size:20.0], NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -272,34 +291,17 @@ BOOL shore;
 
     // default direction, set depending on time of the day or preference
     direction = MTL;
-    [self updateContent];
-    
-    // Timer to update periodically
-    /*[NSTimer scheduledTimerWithTimeInterval:30.0
-                                     target:self
-                                   selector:@selector(updateContent)
-                                   userInfo:nil
-                                    repeats:YES];*/
-    
     
     _refreshControl = [[UIRefreshControl alloc] init];
     
-    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationController.navigationBar setOpaque:YES];
-    [self.navigationController.navigationBar setBackgroundColor:BLUECOLOR];
-    [self.navigationController.navigationBar setBarTintColor:BLUECOLOR];
-    
-    
-  
-
-    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];
+  /*  UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];
     [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     
     UISwipeGestureRecognizer *lSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight)];
     [lSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     
     [[self view] addGestureRecognizer:mSwipeUpRecognizer];
-    [[self view] addGestureRecognizer:lSwipeUpRecognizer];
+    [[self view] addGestureRecognizer:lSwipeUpRecognizer];*/
     
     
     UITableViewController *tableViewController = [[UITableViewController alloc] init];
@@ -309,20 +311,12 @@ BOOL shore;
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
     
-    /*
-    UIImageView *im  =[[UIImageView alloc] initWithFrame:CGRectMake(67, 60, 9, 12)];
-    im.image = [UIImage imageNamed:@"upArrow.png"];
-    */
+
     _l = [[UILabel alloc] initWithFrame:CGRectMake(0, 19, 320, 45)];
     _l.text = lPULL;
     _l.font = [UIFont fontWithName:@"Ubuntu-Light" size:14.0f];
     _l.textColor = [UIColor whiteColor];
     _l.textAlignment = NSTextAlignmentCenter;
-    
-    // [tableViewController.refreshControl insertSubview:_l atIndex:0];
-    if(!ISFRENCH){
-        // [tableViewController.refreshControl insertSubview:im atIndex:0];
-    }
     
     
     // Gif animation
@@ -330,9 +324,6 @@ BOOL shore;
     
     _gif.contentMode = UIViewContentModeScaleToFill;
     _gif.frame = CGRectMake(145, 6, 28, 28);
-    // [self.refreshControl insertSubview:_gif atIndex:0];
-    
-    
 
     _refreshContent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 70)];
     [self.refreshControl insertSubview:_refreshContent atIndex:0];
@@ -345,10 +336,44 @@ BOOL shore;
     _gif.image= [UIImage animatedImageWithAnimatedGIFURL:url];
     _gif.alpha = 0.7;
     
-    // [tableViewController.refreshControl insertSubview:_gif atIndex:0];
-    
     [self listSubviewsOfView:self.refreshControl];
     
+    // Pull refreshcontent down
+   
+    [self beginRefreshingTableView];
+    
+    // Detect when user reopens the application
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self loadTimes];
+}
+
+- (void)didBecomeActive:(NSNotification *)notification;
+{
+    [self beginRefreshingTableView];
+    [self loadTimes];
+}
+- (void)beginRefreshingTableView {
+    
+    [self.refreshControl beginRefreshing];
+    
+    if (self.tableView.contentOffset.y == 0) {
+        
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            
+            self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+            
+        } completion:^(BOOL finished){
+            
+        }];
+        
+    }
 }
 
 - (void)listSubviewsOfView:(UIView *)view {
@@ -393,36 +418,32 @@ BOOL shore;
 -(void)handleRefresh:(id)sender{
     
     _l.text = lRELEASE;
-    
     [self loadTimes];
 }
 
 -(void)loadTimes{
-    // Load all lon and lats
-    _results = [[NSMutableArray alloc] init];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
-                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                           timeoutInterval:10];
-    [request setHTTPMethod:@"POST"];
-    NSString *postString = ISFRENCH?@"lang=1":@"lang=0";
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-     
-    
-    
-    /*NSString *path=[[NSBundle mainBundle]pathForResource:@"fakeData" ofType:@"json"];
-    NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                       timeoutInterval:10];*/
-
+    if(!isLoading){
+        isLoading = YES;
+        // Load all lon and lats
+        _results = [[NSMutableArray alloc] init];
         
-    NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [con start];
-    [_refreshControl beginRefreshing];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+        [request setHTTPMethod:@"POST"];
+        NSString *postString = ISFRENCH?@"lang=1":@"lang=0";
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+            
+        NSURLConnection* con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [con start];
+        [_refreshControl beginRefreshing];
+        
+    }
 
 }
 
+#pragma mark Connection handling
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     _responseData = [[NSMutableData alloc] init];
@@ -436,13 +457,45 @@ BOOL shore;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"error");
+    isLoading = NO;
     
     [_refreshControl endRefreshing];
     
-} 
+    // Overlay status bar
+    [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
+    
+    // Show the user that he does not have internet connection
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
+                         CGRect fr = _noInternet.frame;
+                         fr.origin.y=0;
+                         _noInternet.frame = fr;
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.2
+                                               delay:2.0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              CGRect fr = _noInternet.frame;
+                                              fr.origin.y=-20;
+                                              _noInternet.frame = fr;
+                                          }
+                                          completion:^(BOOL finished){
+                                              [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar-1];
+                                          }];
+                     }];
+
+    
+    
+}
+
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    isLoading = NO;
     NSError *error;
     NSArray *jsonDict = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&error];
     
@@ -540,10 +593,6 @@ BOOL shore;
     
 }
 
--(void)updateContent{
-    [self loadTimes];
-}
-
 - (IBAction)versBanlieueClick:(id)sender {
 
     _montrealBar.backgroundColor = TMGRAY;
@@ -565,7 +614,7 @@ BOOL shore;
 }
 
 - (IBAction)changeShore:(id)sender {
-    if([[[sender titleLabel] text] isEqualToString:@"S"]){
+   /* if([[[sender titleLabel] text] isEqualToString:@"S"]){
         [sender setTitle:@"N" forState:UIControlStateNormal];
     }else{
         [sender setTitle:@"S" forState:UIControlStateNormal];
@@ -573,7 +622,9 @@ BOOL shore;
     shore = !shore;
     
     [self createFakeStatusBar];
-    [_tableView reloadData];
+    [_tableView reloadData];*/
+
+    [_sideMenu showMenu:[[_sideMenu paperFoldView] state]==PaperFoldStateLeftUnfolded?PaperFoldStateDefault:PaperFoldStateLeftUnfolded animated:YES];
 }
 
 -(void)swipeLeft{
