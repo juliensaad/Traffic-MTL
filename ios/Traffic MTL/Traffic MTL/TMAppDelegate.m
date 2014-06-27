@@ -42,7 +42,7 @@
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"didCompleteTutorial"]){
         
         // Launch side menu and Main View
-        _menuController = [[DemoMenuController alloc] initWithMenuWidth:80];
+        _menuController = [[DemoMenuController alloc] initWithMenuWidth:MENU_WIDTH];
         NSMutableArray *viewControllers = [NSMutableArray array];
         
         for (NSInteger i = 0; i < 1; i++)

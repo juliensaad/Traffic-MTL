@@ -9,11 +9,9 @@
 #ifndef Traffic_MTL_config_h
 #define Traffic_MTL_config_h
 
-#define MAPS_API_KEY @"Fmjtd%7Cluur2d0and%2Ca0%3Do5-9arg5w"//@"AIzaSyCYTQN5--nNG46_8VLuOngzoC7wn8W9AnA"
-
 #define BLUECOLOR [UIColor colorWithRed:106/255.0 green:205/255.0 blue:216/255.0 alpha:1.0]
 
-#define ISFRENCH ![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
+#define ISFRENCH YES//![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
 
 // LOCALIZATION
 
@@ -35,5 +33,26 @@
 #define FONT [UIFont fontWithName:@"Ubuntu-M" size:20]
 
 #define ISIPHONE5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
+
+#define MENU_WIDTH 100
+
+#define RIVE_SUD NO
+#define RIVE_NORD YES
+
+
+
+// TUTORIAL
+#define lEVALUATE (ISFRENCH?@"Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue ":@"")
+
+#define lWITHOUTTRAFFIC (ISFRENCH?@"100% = Vitesse sans trafic":@"100% = Speed without traffic")
+#define lWITHTRAFFIC (ISFRENCH?@"0% = Le pont a coulé dans le fleuve": @"0% = The bridge has sunk in the river")
+#define lPLUS (ISFRENCH?@"+... = Le temps additionnel requis pour traverser le pont":@"+... = The amount of additional time it takes to cross the bridge")
+
+#define lOURMISSION  (ISFRENCH?@"Notre Mission":@"Our Goal")
+#define lMISSION (ISFRENCH?@"Faciliter les aller-retours à Montréal en donnant des informations pertinentes quant à la congestion sur les ponts de la ville.":@"")
+
+#define lOURSTRATEGY (ISFRENCH?@"Notre Stratégie":@"Our Strategy")
+
+#define lSTRATEGY (ISFRENCH?@"Évaluer la moyenne des temps d'accès et de traversée des ponts afin déterminer leur vitesse de circulation.":@"")
 
 #endif

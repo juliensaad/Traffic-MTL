@@ -35,11 +35,11 @@
     UILabel *label = nil;
     UIImageView* phone = nil;
     
-    UIImageView* slide3 = nil;
-    
     UILabel * descriptionLabel = nil;
     
     UIButton* startBtn = nil;
+    
+    UIView* thirdView = nil;
     
     //create new view if no view is available for recycling
     if (view == nil)
@@ -55,7 +55,7 @@
         
         
         // Title label
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 320, 320, 40)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 310, 320, 40)];
         label.backgroundColor = [UIColor clearColor];
         
         label.textColor = UIColorFromRGB(0x6acdd8);
@@ -66,14 +66,14 @@
         [view addSubview:label];
         
         // Description label
-        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 351, 230, 40)];
+        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 347, 230, 60)];
         descriptionLabel.backgroundColor = [UIColor clearColor];
         
         descriptionLabel.textColor = UIColorFromRGB(0x546470);
         descriptionLabel.textAlignment = NSTextAlignmentCenter;
         descriptionLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:13.0f];
         descriptionLabel.tag = 3;
-        descriptionLabel.numberOfLines = 2;
+        descriptionLabel.numberOfLines = 4;
         descriptionLabel.adjustsFontSizeToFitWidth = YES;
         [view addSubview:descriptionLabel];
         
@@ -89,13 +89,91 @@
         
         phone.frame = CGRectMake(viewWidth/2-phoneWidth/2, 30, phoneWidth, phoneHeight);
         
+       
         
-        slide3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slide3Content.png"]];
+        thirdView = [[UIView alloc] initWithFrame:view.frame];
+        thirdView.tag = 11;
         
-        slide3.frame = CGRectMake(viewWidth/2-slide3.frame.size.width/2, 42, slide3.frame.size.width, slide3.frame.size.height);
-        slide3.hidden = YES;
-        slide3.tag = 10;
-        [view addSubview: slide3];
+        // Fleches de temps
+        UIImageView* temps = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"temps.png"]];
+        [thirdView addSubview:temps];
+        CGRect fr = temps.frame;
+        fr.origin.y += 250;
+        fr.origin.x = view.frame.size.width/2-fr.size.width/2;
+        temps.frame = fr;
+        
+        // Description au top
+        UILabel* title3 = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, view.frame.size.width-90, 70)];
+        title3.textAlignment = NSTextAlignmentCenter;
+        title3.numberOfLines = 3;
+        title3.font = [UIFont fontWithName:@"Ubuntu-Medium" size:12.5f];
+        title3.textColor = UIColorFromRGB(0x546470);
+        title3.text = lEVALUATE;
+        [thirdView addSubview:title3];
+        
+        for(int i = 0;i<4;i++){
+            UIView* circleView = [[UIView alloc] initWithFrame:CGRectMake(63,135+28*i,18,18)];
+            circleView.layer.cornerRadius = 9;
+            
+            UILabel* circleLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 130+28*i, 200, 30)];
+            circleLabel.font = [UIFont fontWithName:@"Ubuntu-Medium" size:12.5f];
+            circleLabel.textColor = UIColorFromRGB(0x546470);
+            switch (i) {
+                case 0:
+                    circleView.backgroundColor = UIColorFromRGB(0x8ec549);
+                    circleLabel.text = ISFRENCH?@"Fluide (>65%)":@"Fluide (>65%)";
+                    break;
+                case 1:
+                    circleView.backgroundColor = UIColorFromRGB(0xfdcc17);
+                    circleLabel.text = ISFRENCH?@"Ralenti (36% - 65%)":@"Slow (36% - 65%)";
+                    break;
+                case 2:
+                    circleView.backgroundColor = UIColorFromRGB(0xf60d1a);
+                    circleLabel.text = @"Congestion (19% - 35%)";
+                    break;
+                case 3:
+                    circleView.backgroundColor = UIColorFromRGB(0xb40610);
+                    circleLabel.text = ISFRENCH?@"Congestion majeure (<19%)":@"Major congestion (<19%)";
+                    break;
+                    
+                default:
+                    break;
+                    
+            }
+            
+            [thirdView addSubview:circleLabel];
+            
+            [thirdView addSubview:circleView];
+        }
+        
+        UILabel* percent = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 290, 205, 30)];
+        percent.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
+        percent.textColor = UIColorFromRGB(0x546470);
+        percent.text = lWITHOUTTRAFFIC;
+        
+        [self addBold:percent withNum:4];
+        
+        UILabel* percent2 = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 308, 205, 30)];
+        percent2.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
+        percent2.textColor = UIColorFromRGB(0x546470);
+        percent2.text = lWITHTRAFFIC;
+        [self addBold:percent2 withNum:2];
+        
+        UILabel* plus = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 320, 205, 50)];
+        plus.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
+        plus.textColor = UIColorFromRGB(0x546470);
+        plus.text = lPLUS;
+        plus.numberOfLines = 2;
+        plus.adjustsFontSizeToFitWidth = YES;
+        [self addBold:plus withNum:4];
+        [thirdView addSubview:percent];
+        [thirdView addSubview:percent2];
+        [thirdView addSubview:plus];
+        
+        [view addSubview:thirdView];
+        
+        
+        
         
         if(!ISIPHONE5){
             startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -121,35 +199,41 @@
         phone = (UIImageView*)[view viewWithTag:2];
         descriptionLabel = (UILabel*)[view viewWithTag:3];
         startBtn = (UIButton*)[view viewWithTag:4];
-        slide3 = (UIImageView*)[view viewWithTag:10];
+        
+        
+        thirdView = (UIView*)[view viewWithTag:11];
     }
     
     view.userInteractionEnabled = YES;
-    descriptionLabel.text = @" GJRIOEGJRIOEGJRIEOJGIORE jgerklg rejklg jrekl grejkl ";
+    
     switch (index) {
         case 0:
-            label.text = @"Notre Mission";
-            slide3.hidden = YES;
-            descriptionLabel.hidden = NO;
+            label.text = lOURMISSION;
+            descriptionLabel.text = lMISSION;
             phone.image = [UIImage imageNamed:@"iphone2.png"];
             label.hidden = NO;
             phone.hidden = NO;
             startBtn.hidden = YES;
+
+            descriptionLabel.hidden = NO;
+            thirdView.hidden = YES;
             break;
         case 1:
-            
+            label.text = lOURSTRATEGY;
+            descriptionLabel.text = lSTRATEGY;
             phone.image = [UIImage imageNamed:@"iphone1.png"];
             [view addSubview: phone];
-            slide3.hidden = YES;
-            label.text = @"Notre Mission";
+
             startBtn.hidden = YES;
+            thirdView.hidden = YES;
             break;
             
         case 2:
-            slide3.hidden = NO;
+
             descriptionLabel.hidden = YES;
             phone.hidden = YES;
             label.hidden = YES;
+            thirdView.hidden = NO;
             if(!ISIPHONE5){
                 startBtn.hidden = NO;
             }
@@ -165,6 +249,19 @@
     return 3;
 }
 
+-(void)addBold:(UILabel*)l withNum:(int)num{
+
+    
+    NSMutableAttributedString *notifyingStr = [[NSMutableAttributedString alloc] initWithString:l.text];
+    [notifyingStr beginEditing];
+    [notifyingStr addAttribute:NSFontAttributeName
+                         value:[UIFont fontWithName:@"Ubuntu-Medium" size:12.0f]
+                         range:NSMakeRange(0,num)];
+    [notifyingStr endEditing];
+    l.text = @"";
+    l.attributedText = notifyingStr;
+    
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -215,7 +312,7 @@
 
 -(void)exitTutorial:(id)sender{
     //[self performSegueWithIdentifier:@"start" sender:self];
-    _menuController = [[DemoMenuController alloc] initWithMenuWidth:80];
+    _menuController = [[DemoMenuController alloc] initWithMenuWidth:MENU_WIDTH];
     //[[[UIApplication sharedApplication] keyWindow] setRootViewController:_menuController];
     
     NSMutableArray *viewControllers = [NSMutableArray array];

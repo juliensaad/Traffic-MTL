@@ -50,15 +50,12 @@ BOOL isLoading;
 #define PERCENTAGE 0
 #define TIME 1
 
-#define RIVE_SUD NO
-#define RIVE_NORD YES
-
 #define TMGRAY [UIColor colorWithRed:218.0/255.0 green:220.0/255.0 blue:221.0/255.0 alpha:0.90]
 #define TMBLUE [UIColor colorWithRed:106.0/255.0 green:205.0/255.0 blue:216.0/255.0 alpha:0.90]
 
 #pragma mark TableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(shore==RIVE_SUD)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"shore"]==RIVE_SUD)
         return ((NSMutableArray*)_bridges[0]).count;
     else
         return ((NSMutableArray*)_bridges[2]).count;
@@ -236,7 +233,7 @@ BOOL isLoading;
     [_b1 setTitle:lMTL forState:UIControlStateNormal];
     [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
     
-    shore = RIVE_SUD;
+    shore = [[NSUserDefaults standardUserDefaults] boolForKey:@"shore"];
     
     // Screen name
     self.screenName = @"Main-iOS";
@@ -348,6 +345,19 @@ BOOL isLoading;
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     
+    // Check for shore change
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"shore"
+                                               options:NSKeyValueObservingOptionNew
+                                               context:NULL];
+    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"shore"]){
+        [self shoreChange];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -357,23 +367,23 @@ BOOL isLoading;
 - (void)didBecomeActive:(NSNotification *)notification;
 {
     [self beginRefreshingTableView];
-    [self loadTimes];
 }
 - (void)beginRefreshingTableView {
     
     [self.refreshControl beginRefreshing];
-    
-    if (self.tableView.contentOffset.y == 0) {
+    _l.text = ISFRENCH?@"Chargement des données":@"Loading ...";
+    //if (self.tableView.contentOffset.y == 0) {
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
             
-            self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+            self.tableView.contentOffset = CGPointMake(0, -90);
             
         } completion:^(BOOL finished){
-            
+            [self loadTimes];
+            NSLog(@"loading new");
         }];
         
-    }
+    // }
 }
 
 - (void)listSubviewsOfView:(UIView *)view {
@@ -422,7 +432,9 @@ BOOL isLoading;
 }
 
 -(void)loadTimes{
+
     if(!isLoading){
+        NSLog(@"loading");
         isLoading = YES;
         // Load all lon and lats
         _results = [[NSMutableArray alloc] init];
@@ -613,6 +625,14 @@ BOOL isLoading;
     }
 }
 
+-(void)shoreChange{
+
+    shore = [[NSUserDefaults standardUserDefaults] boolForKey:@"shore"];
+    
+    [self createFakeStatusBar];
+    [_tableView reloadData];
+ 
+}
 - (IBAction)changeShore:(id)sender {
    /* if([[[sender titleLabel] text] isEqualToString:@"S"]){
         [sender setTitle:@"N" forState:UIControlStateNormal];

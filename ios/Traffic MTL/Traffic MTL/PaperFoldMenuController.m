@@ -32,6 +32,7 @@
  */
 
 #import "PaperFoldMenuController.h"
+#import "config.h"
 
 @interface PaperFoldMenuController ()
 
@@ -230,8 +231,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView==self.menuTableView) return [self.viewControllers count];
-    else return 0;
+    return 3;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -260,7 +260,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView==self.menuTableView)
+    if(indexPath.row == 1){
+        [[NSUserDefaults standardUserDefaults] setBool:RIVE_SUD forKey:@"shore"];
+    }else if(indexPath.row ==2){
+        [[NSUserDefaults standardUserDefaults] setBool:RIVE_NORD forKey:@"shore"];
+    }
+    
+    [tableView setUserInteractionEnabled:NO];
+        CGRect startFrame = self.paperFoldView.contentView.frame;
+        CGRect endFrame = startFrame;
+        CGFloat animateDuration = 0.2;
+        startFrame.origin.x = [[UIScreen mainScreen] bounds].size.width;
+        [UIView animateWithDuration:animateDuration animations:^
+         {
+             self.paperFoldView.contentView.frame = startFrame;
+         } completion:^(BOOL finished)
+         {
+             self.paperFoldView.contentView.frame = startFrame;
+             
+             [UIView animateWithDuration:animateDuration animations:^
+              {
+                  self.paperFoldView.contentView.frame = endFrame;
+              } completion:^(BOOL finished)
+              {
+                  self.paperFoldView.contentView.frame = endFrame;
+                  [self showMenu:NO animated:YES];
+                      [tableView setUserInteractionEnabled:YES];
+              }];
+         }];
+    
+   /* if (tableView==self.menuTableView)
     {
         CGRect startFrame = self.paperFoldView.contentView.frame;
         CGRect endFrame = startFrame;
@@ -283,7 +312,7 @@
                  [self showMenu:NO animated:YES];
              }];
         }];
-    }
+    }*/
 }
 
 - (void)showMenu:(BOOL)show animated:(BOOL)animated

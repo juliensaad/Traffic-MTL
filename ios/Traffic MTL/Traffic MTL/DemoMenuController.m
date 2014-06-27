@@ -25,12 +25,13 @@
     [self.menuTableView setBackgroundView:tableBgView];
     [self.menuTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
+    
     [self reloadMenu];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 80;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -43,25 +44,47 @@
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [[cell textLabel] setTextColor:[UIColor whiteColor]];
-            [[cell textLabel] setHighlightedTextColor:[UIColor blackColor]];
+            [[cell textLabel] setHighlightedTextColor:[UIColor whiteColor]];
             [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
             
-            UIImageView *bgView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cellBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20]];
-            [cell setBackgroundView:bgView];
-            UIImageView *sBgView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cellBgSelected.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20]];
+            UIImageView *sBgView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cellBg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:20]];
             [cell setSelectedBackgroundView:sBgView];
             
             cell.backgroundColor = [UIColor clearColor];
         
         }
         
-        UIViewController *viewController = self.viewControllers[indexPath.row];
-        [cell.textLabel setText:viewController.title];
+        if(indexPath.row ==1){
+            [cell setSelected:YES];
+        }
+        //UIViewController *viewController = self.viewControllers[indexPath.row];
+        
+        [cell.textLabel setText:@"Rive Sud"];
+        cell.textLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:15.0f];
+        cell.textLabel.numberOfLines = 2;
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+
+        switch (indexPath.row) {
+            case 0:
+                [cell.textLabel setText:@""];
+                cell.hidden = YES;
+                break;
+            case 1:
+                [cell.textLabel setText:@"Rive Sud"];
+                break;
+            case 2:
+                [cell.textLabel setText:@"Rive Nord"];
+            default:
+                break;
+        }
         
         if (indexPath.row == self.selectedIndex)
         {
-            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            //[tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            NSLog(@"SELECTED");
         }
+       
         
         return cell;
     }
