@@ -339,18 +339,22 @@ BOOL bottomBarHasBeenHidden;
     return [NSString stringWithFormat:@"+ %@",[self formattedStringForDuration:0]];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)viewDidLayoutSubviews{
     if(!ISIPHONE5){
         // Screen height
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenHeight = screenRect.size.height;
-
+        
         CGRect fr = _bottomBar.frame;
         fr.origin.y = screenHeight-_bottomBar.frame.size.height;
         _bottomBar.frame = fr;
     }
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
     [self setBottomBarHidden:NO];
     

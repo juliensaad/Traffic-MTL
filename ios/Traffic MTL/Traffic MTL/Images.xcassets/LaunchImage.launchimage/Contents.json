@@ -5,13 +5,14 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "0.0_splashScreen_iPhone4_EN.png",
       "scale" : "2x"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "splash_fr@2x.png",
+      "filename" : "splashEn@2x.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
