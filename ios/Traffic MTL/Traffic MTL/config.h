@@ -40,10 +40,13 @@
 #define RIVE_NORD YES
 
 
-
+#define lRIVE_SUD (ISFRENCH?@"Rive Sud":@"South Shore")
+#define lRIVE_NORD (ISFRENCH?@"Rive Nord":@"North Shore")
+#define lHELP (ISFRENCH?@"Aide":@"Help")
 // TUTORIAL
-#define lEVALUATE (ISFRENCH?@"Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue Evalue ":@"")
+#define lEVALUATE (ISFRENCH?@"Trafic Montréal évalue en temps réel le temps d'accès aux ponts de l'île.":@"")
 
+#define lOURDYNAMIC (ISFRENCH?@"Notre Dynamique":@"Our Dynamic")
 #define lWITHOUTTRAFFIC (ISFRENCH?@"100% = Vitesse sans trafic":@"100% = Speed without traffic")
 #define lWITHTRAFFIC (ISFRENCH?@"0% = Le pont a coulé dans le fleuve": @"0% = The bridge has sunk in the river")
 #define lPLUS (ISFRENCH?@"+... = Le temps additionnel requis pour traverser le pont":@"+... = The amount of additional time it takes to cross the bridge")

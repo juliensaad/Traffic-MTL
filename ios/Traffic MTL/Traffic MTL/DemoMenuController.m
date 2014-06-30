@@ -31,11 +31,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 95;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UILabel* textLabel;
+    UIImageView* btn;
     if (tableView == self.menuTableView)
     {
         static NSString *identifier = @"identifier";
@@ -51,32 +53,69 @@
             [cell setSelectedBackgroundView:sBgView];
             
             cell.backgroundColor = [UIColor clearColor];
+            
+            textLabel = [[UILabel alloc] initWithFrame:cell.textLabel.frame];
+            
+            CGRect textFrame = textLabel.frame;
+            textFrame.origin.y += 57;
+            textFrame.size.width = 100;
+            textFrame.size.height = 30;
+            textLabel.frame = textFrame;
+            textLabel.textColor = [UIColor whiteColor];
+            
+            
+            
+            textLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:12.0f];
+            textLabel.numberOfLines = 2;
+            textLabel.adjustsFontSizeToFitWidth = YES;
+            textLabel.textAlignment = NSTextAlignmentCenter;
+            
+            btn = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"riveNord.png"]];
+            [cell addSubview:btn];
+            
+            btn.frame = CGRectMake(27,20, btn.frame.size.width,btn.frame.size.height);
+            
+            [btn setTag:13];
+            [cell addSubview:textLabel];
+            [textLabel setTag:12];
+
         
+        }else{
+            btn = (UIImageView*)[cell viewWithTag:13];
+            textLabel = (UILabel*)[cell viewWithTag:12];
         }
         
-        if(indexPath.row ==1){
-            [cell setSelected:YES];
-        }
         //UIViewController *viewController = self.viewControllers[indexPath.row];
         
-        [cell.textLabel setText:@"Rive Sud"];
-        cell.textLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:15.0f];
-        cell.textLabel.numberOfLines = 2;
-        cell.textLabel.adjustsFontSizeToFitWidth = YES;
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-
         switch (indexPath.row) {
             case 0:
-                [cell.textLabel setText:@""];
-                cell.hidden = YES;
+                [textLabel setText:[lRIVE_NORD uppercaseString]];
+                btn.image = [UIImage imageNamed:@"riveNord.png"];
                 break;
             case 1:
-                [cell.textLabel setText:@"Rive Sud"];
+                [textLabel setText:[lRIVE_SUD uppercaseString]];
+                btn.image = [UIImage imageNamed:@"riveSud.png"];
                 break;
             case 2:
-                [cell.textLabel setText:@"Rive Nord"];
+                [textLabel setText:[lHELP uppercaseString]];
+                btn.image = [UIImage imageNamed:@"info.png"];
+                
+                break;
             case 3:
-                [cell.textLabel setText:(ISFRENCH?@"English":@"Français")];
+            case 4:
+                btn.hidden = YES;
+                cell.userInteractionEnabled = NO;
+                break;
+            case 5:
+               
+                [textLabel setText:[(ISFRENCH?@"English":@"Français") uppercaseString]];
+                if(ISFRENCH){
+                    btn.image = [UIImage imageNamed:@"english.png"];
+                }else{
+                    btn.image = [UIImage imageNamed:@"francais.png"];
+                }
+                break;
+                
             default:
                 break;
         }

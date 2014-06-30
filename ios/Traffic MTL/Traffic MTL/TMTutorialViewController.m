@@ -27,6 +27,8 @@
         _crumbs.image = [UIImage imageNamed:@"crumb2.png"];
     }else if(index==2){
         _crumbs.image = [UIImage imageNamed:@"crumb3.png"];
+    }else{
+        _crumbs.image = [UIImage imageNamed:@"crumb4.png"];
     }
     
 
@@ -51,8 +53,15 @@
         
         view.contentMode = UIViewContentModeCenter;
         
-        ((UIImageView*)view).image = [UIImage imageNamed:@"whitebox.png"];
-        
+        //  ((UIImageView*)view).image = [UIImage imageNamed:@"whitebox.png"];
+        UILabel* legend =[[UILabel alloc] initWithFrame:CGRectMake(60, 15, 320, 40)];
+        legend.text = ISFRENCH?@"Légende":@"Legend";
+        legend.textColor = UIColorFromRGB(0xFFFFFF);
+        legend.textAlignment = NSTextAlignmentLeft;
+        legend.font = [UIFont fontWithName:@"Ubuntu-Light" size:17.0];
+        legend.hidden = YES;
+        [view addSubview:legend];
+        legend.tag = 24;
         
         // Title label
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 310, 320, 40)];
@@ -60,13 +69,13 @@
         
         label.textColor = UIColorFromRGB(0x6acdd8);
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Ubuntu-Medium" size:18];
+        label.font = [UIFont fontWithName:@"Ubuntu-Medium" size:17.0];
         label.tag = 1;
         label.adjustsFontSizeToFitWidth = YES;
         [view addSubview:label];
         
         // Description label
-        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 347, 230, 60)];
+        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 347, 200, 60)];
         descriptionLabel.backgroundColor = [UIColor clearColor];
         
         descriptionLabel.textColor = UIColorFromRGB(0x546470);
@@ -79,15 +88,11 @@
         
         
         // Phone image
-        phone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone2.png"]];
+        phone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"welcomeCard.png"]];
         [view addSubview:phone];
         phone.tag = 2;
         
-        float phoneWidth = phone.frame.size.width;
-        float phoneHeight = phone.frame.size.height;
-        float viewWidth = view.frame.size.width;
-        
-        phone.frame = CGRectMake(viewWidth/2-phoneWidth/2, 30, phoneWidth, phoneHeight);
+        phone.frame = CGRectMake((320-260)/2, view.frame.origin.y, 260, 424);
         
        
         
@@ -96,32 +101,36 @@
         
         // Fleches de temps
         UIImageView* temps = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"temps.png"]];
-        [thirdView addSubview:temps];
+        // if(ISIPHONE5)
+        //    [thirdView addSubview:temps];
         CGRect fr = temps.frame;
-        fr.origin.y += 250;
+        fr.origin.y += 280;
         fr.origin.x = view.frame.size.width/2-fr.size.width/2;
         temps.frame = fr;
         
         // Description au top
-        UILabel* title3 = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, view.frame.size.width-90, 70)];
+        int posY = 340;
+        if(!ISIPHONE5)
+            posY = 310;
+        UILabel* title3 = [[UILabel alloc] initWithFrame:CGRectMake(45,posY, view.frame.size.width-90, 70)];
         title3.textAlignment = NSTextAlignmentCenter;
         title3.numberOfLines = 3;
-        title3.font = [UIFont fontWithName:@"Ubuntu-Medium" size:12.5f];
+        title3.font = [UIFont fontWithName:@"Ubuntu-Light" size:12.5f];
         title3.textColor = UIColorFromRGB(0x546470);
         title3.text = lEVALUATE;
         [thirdView addSubview:title3];
         
         for(int i = 0;i<4;i++){
-            UIView* circleView = [[UIView alloc] initWithFrame:CGRectMake(63,135+28*i,18,18)];
-            circleView.layer.cornerRadius = 9;
+            UIView* circleView = [[UIView alloc] initWithFrame:CGRectMake(63,75+28*i,18,18)];
+            circleView.layer.cornerRadius = 2;
             
-            UILabel* circleLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 130+28*i, 200, 30)];
+            UILabel* circleLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 70+28*i, 200, 30)];
             circleLabel.font = [UIFont fontWithName:@"Ubuntu-Medium" size:12.5f];
             circleLabel.textColor = UIColorFromRGB(0x546470);
             switch (i) {
                 case 0:
                     circleView.backgroundColor = UIColorFromRGB(0x8ec549);
-                    circleLabel.text = ISFRENCH?@"Fluide (>65%)":@"Fluide (>65%)";
+                    circleLabel.text = ISFRENCH?@"Rapide (>65%)":@"Fast (>65%)";
                     break;
                 case 1:
                     circleView.backgroundColor = UIColorFromRGB(0xfdcc17);
@@ -146,20 +155,20 @@
             [thirdView addSubview:circleView];
         }
         
-        UILabel* percent = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 290, 205, 30)];
+        UILabel* percent = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x+3, 200, 205, 30)];
         percent.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
         percent.textColor = UIColorFromRGB(0x546470);
         percent.text = lWITHOUTTRAFFIC;
         
         [self addBold:percent withNum:4];
-        
-        UILabel* percent2 = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 308, 205, 30)];
+
+        UILabel* percent2 = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x+3, 216, 205, 30)];
         percent2.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
         percent2.textColor = UIColorFromRGB(0x546470);
         percent2.text = lWITHTRAFFIC;
         [self addBold:percent2 withNum:2];
         
-        UILabel* plus = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-10, 320, 205, 50)];
+        UILabel* plus = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x-0, 320, 205, 50)];
         plus.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
         plus.textColor = UIColorFromRGB(0x546470);
         plus.text = lPLUS;
@@ -168,11 +177,11 @@
         [self addBold:plus withNum:4];
         [thirdView addSubview:percent];
         [thirdView addSubview:percent2];
-        [thirdView addSubview:plus];
+        // [thirdView addSubview:plus];
         
         [view addSubview:thirdView];
         
-        
+
         
         
         if(!ISIPHONE5){
@@ -191,6 +200,10 @@
             
             [view bringSubviewToFront:startBtn];
         }
+        
+                [view sendSubviewToBack:phone];
+        [view bringSubviewToFront:label];
+        [view bringSubviewToFront:descriptionLabel];
     }
     else
     {
@@ -202,43 +215,87 @@
         
         
         thirdView = (UIView*)[view viewWithTag:11];
+
     }
     
     view.userInteractionEnabled = YES;
-    
+     CGRect fr = label.frame;
     switch (index) {
         case 0:
-            label.text = lOURMISSION;
+            fr.origin.y =210;
+            label.frame = fr;
+
+            descriptionLabel.frame = CGRectMake(60, 240, 200, 150);
+            descriptionLabel.numberOfLines = 11;
+            
+            label.text = (ISFRENCH?@"BIENVENUE!":@"WELCOME!");
             descriptionLabel.text = lMISSION;
-            phone.image = [UIImage imageNamed:@"iphone2.png"];
+            phone.image = [UIImage imageNamed:@"welcomeCard.png"];
             label.hidden = NO;
             phone.hidden = NO;
             startBtn.hidden = YES;
+            
+            descriptionLabel.hidden = NO;
+            thirdView.hidden = YES;
+            [(UILabel *)[view viewWithTag:24] setHidden:YES];
+            break;
+        case 1:
+            fr.origin.y =310;
+            label.frame = fr;
+            
 
+            descriptionLabel.frame = CGRectMake(45, 347, 230, 60);
+            
+            label.text = lOURMISSION;
+            descriptionLabel.text = lMISSION;
+            phone.image = [UIImage imageNamed:@"card3.png"];
+            label.hidden = NO;
+            phone.hidden = NO;
+            startBtn.hidden = YES;
+            [(UILabel *)[view viewWithTag:24] setHidden:YES];
             descriptionLabel.hidden = NO;
             thirdView.hidden = YES;
             break;
-        case 1:
+        case 2:
+            fr.origin.y =310;
+            label.frame = fr;
+            
+            descriptionLabel.frame =CGRectMake(45, 347, 230, 60);
+
+            
             label.text = lOURSTRATEGY;
             descriptionLabel.text = lSTRATEGY;
-            phone.image = [UIImage imageNamed:@"iphone1.png"];
-            [view addSubview: phone];
-
+            phone.image = [UIImage imageNamed:@"card2.png"];
+            label.hidden = NO;
+            phone.hidden = NO;
+            [(UILabel *)[view viewWithTag:24] setHidden:YES];
+            descriptionLabel.hidden = NO;
             startBtn.hidden = YES;
             thirdView.hidden = YES;
             break;
             
-        case 2:
-
+        case 3:
+            [(UILabel *)[view viewWithTag:24] setHidden:NO];
+            if(ISIPHONE5){
+                label.hidden = NO;
+                label.text = lOURDYNAMIC;
+                
+                fr.origin.y =325;
+                label.frame = fr;
+            }else{
+                label.hidden = YES;
+            }
+            
             descriptionLabel.hidden = YES;
-            phone.hidden = YES;
-            label.hidden = YES;
+            phone.image = [UIImage imageNamed:@"legendCard.png"];
+
             thirdView.hidden = NO;
             if(!ISIPHONE5){
                 startBtn.hidden = NO;
             }
             break;
         default:
+            phone.image = [UIImage imageNamed:@"card1.png"];
             break;
     }
     
@@ -246,7 +303,7 @@
 
 }
 -(NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView{
-    return 3;
+    return 4;
 }
 
 -(void)addBold:(UILabel*)l withNum:(int)num{

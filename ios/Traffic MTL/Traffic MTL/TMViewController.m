@@ -409,8 +409,8 @@ BOOL bottomBarHasBeenHidden;
     [_bridgeImagesNorth addObject:[UIImage imageNamed:@"viau.jpg"]];
     [_bridgeImagesNorth addObject:[UIImage imageNamed:@"papineau.jpg"]];
     [_bridgeImagesNorth addObject:[UIImage imageNamed:@"pie-ix.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"olivier.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"tourtes.jpg"]];
     
     
     addedShadowCount = 0;
@@ -515,6 +515,7 @@ BOOL bottomBarHasBeenHidden;
     if([keyPath isEqualToString:@"lang"]){
         [self localizeView];
         [self loadTimes];
+        NSLog(@" BING CHANGE");
     }
 }
 

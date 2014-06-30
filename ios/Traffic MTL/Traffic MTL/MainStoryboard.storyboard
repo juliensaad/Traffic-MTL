@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sKB-v4-2nn">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -34,7 +35,7 @@
                                                     <rect key="frame" x="0.0" y="44" width="343" height="85"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TRAVERSÉE NORMALE:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="YQd-Hd-YPd">
-                                                            <rect key="frame" x="15" y="55" width="295" height="26"/>
+                                                            <rect key="frame" x="15" y="51" width="295" height="26"/>
                                                             <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="10"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -49,7 +50,7 @@
                                                             <size key="shadowOffset" width="1" height="1"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZS-aQ-p1i">
-                                                            <rect key="frame" x="15" y="22" width="202" height="45"/>
+                                                            <rect key="frame" x="15" y="18" width="202" height="45"/>
                                                             <fontDescription key="fontDescription" name="Ubuntu-Light" family="Ubuntu" pointSize="28"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -184,7 +185,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yvh-c6-8jH">
+                            <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorialbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yvh-c6-8jH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-LW-tob">
@@ -202,11 +203,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crumb1.png" translatesAutoresizingMaskIntoConstraints="NO" id="MU8-0q-spk">
-                                <rect key="frame" x="135" y="474" width="50" height="10"/>
+                                <rect key="frame" x="125" y="474" width="70" height="10"/>
                             </imageView>
                             <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ9-Xz-evV">
                                 <rect key="frame" x="31" y="503" width="259" height="45"/>
-                                <state key="normal" backgroundImage="start-btn.png">
+                                <state key="normal" backgroundImage="btnStart.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -226,9 +227,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="crumb1.png" width="50" height="10"/>
-        <image name="start-btn.png" width="259" height="45"/>
-        <image name="tutorial_bg.png" width="640" height="1136"/>
+        <image name="btnStart.png" width="259" height="45"/>
+        <image name="crumb1.png" width="70" height="10"/>
+        <image name="tutorialbg.png" width="320" height="568"/>
         <image name="victoria.jpg" width="320" height="195"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -231,7 +231,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 6;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -260,16 +260,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 1){
-        [[NSUserDefaults standardUserDefaults] setBool:RIVE_SUD forKey:@"shore"];
-    }else if(indexPath.row ==2){
+    if(indexPath.row == 0){
         [[NSUserDefaults standardUserDefaults] setBool:RIVE_NORD forKey:@"shore"];
-    }else{
-        [[NSUserDefaults standardUserDefaults] setBool:(![[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]) forKey:@"lang"];
-        NSLog(@"New lang %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"lang"] );
+    }else if(indexPath.row ==1){
+        [[NSUserDefaults standardUserDefaults] setBool:RIVE_SUD forKey:@"shore"];
+    }else if(indexPath.row==2){
+        // launch about page
         
-       
-        
+        UIViewController* v = [[UIViewController alloc] init];
+        [self presentViewController:v animated:YES completion:nil];
+
+    }else if(indexPath.row == 5){
+        NSLog(@"LANG CHANGE");
+         [[NSUserDefaults standardUserDefaults] setBool:(![[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]) forKey:@"lang"];
+        // [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]] setSelected:YES];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -295,11 +299,14 @@
                       [tableView setUserInteractionEnabled:YES];
                   
                   // change cell language
-                  if(indexPath.row==3)
-                      [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setText:(ISFRENCH?@"English":@"Français")];
+                  if(indexPath.row==5){
+                      [tableView reloadData];
+                  }
+                      // [(UILabel*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:12] setText:[(ISFRENCH?@"English":@"Français") uppercaseString]];
               }];
          }];
     
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
    /* if (tableView==self.menuTableView)
     {
         CGRect startFrame = self.paperFoldView.contentView.frame;
