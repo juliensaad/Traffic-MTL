@@ -11,7 +11,7 @@
 
 #define BLUECOLOR [UIColor colorWithRed:106/255.0 green:205/255.0 blue:216/255.0 alpha:1.0]
 
-#define ISFRENCH YES//![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
+#define ISFRENCH [[NSUserDefaults standardUserDefaults] boolForKey:@"lang"] //![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"]
 
 // LOCALIZATION
 

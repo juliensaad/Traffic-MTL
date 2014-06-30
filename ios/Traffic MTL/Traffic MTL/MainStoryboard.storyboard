@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="bL0-SH-Al7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="MainView" id="Pmk-ZD-u4d">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GIu-MD-jVa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BridgeCell" rowHeight="125" id="WUb-ke-mqc" customClass="BridgeCell">
@@ -75,7 +75,7 @@
                                     <outlet property="delegate" destination="2Ah-8q-FIC" id="ZE5-rI-qti"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOv-Gd-2l0">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOv-Gd-2l0">
                                 <rect key="frame" x="0.0" y="520" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y64-fi-daU">
@@ -132,9 +132,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GIu-MD-jVa" firstAttribute="top" secondItem="Pmk-ZD-u4d" secondAttribute="top" id="0AX-Br-buB"/>
-                            <constraint firstAttribute="bottom" secondItem="wOv-Gd-2l0" secondAttribute="bottom" id="Cje-tt-sgB"/>
-                            <constraint firstItem="wOv-Gd-2l0" firstAttribute="top" secondItem="GIu-MD-jVa" secondAttribute="bottom" id="DpT-tt-xvn"/>
-                            <constraint firstAttribute="bottom" secondItem="GIu-MD-jVa" secondAttribute="bottom" constant="48" id="uoP-2d-7XF"/>
+                            <constraint firstAttribute="bottom" secondItem="GIu-MD-jVa" secondAttribute="bottom" id="uoP-2d-7XF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TRAFIC MONTRÉAL" id="dEa-sx-pjN"/>
@@ -143,6 +141,7 @@
                         <outlet property="b1" destination="Y64-fi-daU" id="CF8-aX-Ey7"/>
                         <outlet property="b2" destination="1Xe-tM-xra" id="8gt-7H-xNx"/>
                         <outlet property="banlieuBar" destination="aoR-Nd-BY3" id="JJP-Hb-ie9"/>
+                        <outlet property="bottomBar" destination="wOv-Gd-2l0" id="ju2-NY-LS9"/>
                         <outlet property="montrealBar" destination="s9t-Lh-7Qg" id="SWx-Tn-g4e"/>
                         <outlet property="noInternet" destination="AgF-6Z-bmU" id="v34-oN-6Nq"/>
                         <outlet property="statusBarView" destination="Vm1-JS-eY1" id="3ny-LG-sOe"/>

@@ -19,6 +19,7 @@
 
 @interface TMViewController ()
 
+
 @property NSMutableData* responseData;
 @property NSMutableArray* results;
 @property NSMutableArray* connections;
@@ -32,6 +33,7 @@
 @property UILabel *l;
 
 @property UIView* refreshContent;
+
 @end
 
 @implementation TMViewController
@@ -43,6 +45,14 @@ int statusShowing;
 BOOL shore;
 BOOL sideMenuShown;
 BOOL isLoading;
+
+
+// Hide and show bottombar
+int lastContentOffset;
+float lastContentOffsetValue;
+int bottomBarOffset;
+BOOL _scrollDirection;
+BOOL bottomBarHasBeenHidden;
 
 #define MTL YES
 #define BANLIEUE NO
@@ -104,9 +114,15 @@ BOOL isLoading;
         [cell addSubview: hamburger];
         
         hamburger.tag = 10;
-        
+        hamburger.hidden = YES;
         [hamburger addTarget:self action:@selector(changeShore:) forControlEvents:UIControlEventTouchUpInside];
         [cell setUserInteractionEnabled:YES];
+    }
+    
+    if(indexPath.row!=0){
+        [[cell viewWithTag:10] setHidden:YES];
+    }else{
+        [[cell viewWithTag:10] setHidden:NO];
     }
     
     return cell;
@@ -125,8 +141,12 @@ BOOL isLoading;
     return 125;
 }
 
+#define DOWN YES
+#define UP NO
+
 #pragma mark ScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     float offset = _tableView.contentOffset.y;
     
     if(offset<=0){
@@ -163,6 +183,67 @@ BOOL isLoading;
     }
     
     
+    //NSLog(@"offset: %f %f",offset, _tableView.contentSize.height);
+    
+    // 57 432
+    // 145 520
+    float maxOffset = 0;
+    if(ISIPHONE5){
+        maxOffset = (shore==RIVE_SUD)?57.0:432.0;
+    }else{
+        maxOffset = (shore==RIVE_SUD)?145.0:520.0;
+    }
+   
+    if(offset>=0 && offset<maxOffset){
+        
+        // Screen height
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenHeight = screenRect.size.height;
+        
+        int bottomBarSize = _bottomBar.frame.size.height;
+        int bottomBarPosY = _bottomBar.frame.origin.y;
+        _scrollDirection = DOWN;
+        
+        int scrollViewOffset = (int)scrollView.contentOffset.y;
+        // Detect the scroll direction
+        if (lastContentOffset < scrollViewOffset) {
+            _scrollDirection = DOWN;
+            
+            if(bottomBarPosY<screenHeight){
+                CGRect fr = _bottomBar.frame;
+                NSLog(@"%f", (offset-lastContentOffsetValue));
+                fr.origin.y += (offset-lastContentOffsetValue);
+                
+                if(fr.origin.y >screenHeight)
+                    fr.origin.y = screenHeight;
+                _bottomBar.frame = fr;
+            }
+           
+        }else{
+            _scrollDirection = UP;
+            
+            if(bottomBarPosY>(screenHeight-bottomBarSize)){
+                CGRect fr = _bottomBar.frame;
+                NSLog(@"%f", (offset-lastContentOffsetValue));
+                fr.origin.y += (offset-lastContentOffsetValue);
+                
+                if(fr.origin.y <(screenHeight-bottomBarSize))
+                    fr.origin.y = screenHeight-bottomBarSize;
+                _bottomBar.frame = fr;
+            }
+            
+        }
+        lastContentOffsetValue = scrollView.contentOffset.y;
+        lastContentOffset = (int)scrollView.contentOffset.y;
+    }
+    if(offset>=maxOffset && !bottomBarHasBeenHidden){
+        [self setBottomBarHidden:YES];
+    }
+    if(offset<0 && bottomBarHasBeenHidden){
+        [self setBottomBarHidden:NO];
+    }
+    
+    
     for(int i = 0; i<_statusBarImages.count;i++){
         
         CGRect im1Fr = ((UIImageView*)_statusBarImages[i]).frame;
@@ -172,6 +253,49 @@ BOOL isLoading;
         
     }
     
+}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+ 
+}
+
+
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    //  [self setBottomBarHidden:!_scrollDirection];
+}
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    [self setBottomBarHidden:_scrollDirection];
+}
+
+
+-(void)setBottomBarHidden:(BOOL)hidden{
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    
+    CGRect fr = _bottomBar.frame;
+    // Screen height
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    
+    if(hidden){
+        fr.origin.y = screenHeight;
+        
+        NSLog(@"HIDING STATUS BAR");
+        bottomBarHasBeenHidden = YES;
+
+    }else{
+        fr.origin.y = screenHeight-fr.size.height;
+    
+        NSLog(@"SHOWING STATUS BAR %f", fr.origin.y);
+        bottomBarHasBeenHidden = NO;
+    }
+    
+    // [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
+    _bottomBar.frame = fr;
+    
+    [UIView commitAnimations];
 }
 
 
@@ -218,6 +342,17 @@ BOOL isLoading;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(!ISIPHONE5){
+        // Screen height
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenHeight = screenRect.size.height;
+
+        CGRect fr = _bottomBar.frame;
+        fr.origin.y = screenHeight-_bottomBar.frame.size.height;
+        _bottomBar.frame = fr;
+    }
+    
+    [self setBottomBarHidden:NO];
     
     // Preload data
     _results = [[NSMutableArray alloc] init];
@@ -230,9 +365,7 @@ BOOL isLoading;
     
     sideMenuShown = NO;
     
-    [_b1 setTitle:lMTL forState:UIControlStateNormal];
-    [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
-    
+ 
     shore = [[NSUserDefaults standardUserDefaults] boolForKey:@"shore"];
     
     // Screen name
@@ -240,9 +373,7 @@ BOOL isLoading;
     
     // Pour la face de louis
     rightCounter = 0;
-    
-    // Direction status
-    statusShowing = TIME;
+   
     
     _statusBarView.hidden = YES;
     
@@ -310,7 +441,7 @@ BOOL isLoading;
     
 
     _l = [[UILabel alloc] initWithFrame:CGRectMake(0, 19, 320, 45)];
-    _l.text = lPULL;
+    
     _l.font = [UIFont fontWithName:@"Ubuntu-Light" size:14.0f];
     _l.textColor = [UIColor whiteColor];
     _l.textAlignment = NSTextAlignmentCenter;
@@ -351,12 +482,35 @@ BOOL isLoading;
                                                options:NSKeyValueObservingOptionNew
                                                context:NULL];
     
+    // Check for language change
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"lang"
+                                               options:NSKeyValueObservingOptionNew
+                                               context:NULL];
+    
+    [self localizeView];
+    
+    
+}
+
+-(void)localizeView{
+    [_b1 setTitle:lMTL forState:UIControlStateNormal];
+    [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
+    _l.text = lPULL;
+    // Direction status
+    statusShowing = TIME;
+    
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"shore"]){
         [self shoreChange];
+    }
+    
+    if([keyPath isEqualToString:@"lang"]){
+        [self localizeView];
+        [self loadTimes];
     }
 }
 
@@ -444,6 +598,7 @@ BOOL isLoading;
                                                                timeoutInterval:10];
         [request setHTTPMethod:@"POST"];
         NSString *postString = ISFRENCH?@"lang=1":@"lang=0";
+        
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
             
@@ -473,15 +628,14 @@ BOOL isLoading;
     
     [_refreshControl endRefreshing];
     
-    // Overlay status bar
-    [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
+    
     
     // Show the user that he does not have internet connection
     [UIView animateWithDuration:0.2
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
+                         //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
                          CGRect fr = _noInternet.frame;
                          fr.origin.y=0;
                          _noInternet.frame = fr;
@@ -496,12 +650,24 @@ BOOL isLoading;
                                               _noInternet.frame = fr;
                                           }
                                           completion:^(BOOL finished){
-                                              [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar-1];
+                                              //      [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
                                           }];
                      }];
+    
+    // Overlay status bar
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(hideBar:) userInfo:nil repeats:NO];
 
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(showBar:) userInfo:nil repeats:NO];
     
-    
+}
+-(void)hideBar:(id)sender{
+    [sender invalidate];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+}
+
+-(void)showBar:(id)sender{
+    [sender invalidate];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 }
 
 
@@ -604,6 +770,7 @@ BOOL isLoading;
     }
     
 }
+
 
 - (IBAction)versBanlieueClick:(id)sender {
 

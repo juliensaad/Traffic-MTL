@@ -41,6 +41,8 @@
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"didCompleteTutorial"]){
         
+        NSLog(@"%d", ISFRENCH);
+        
         // Launch side menu and Main View
         _menuController = [[DemoMenuController alloc] initWithMenuWidth:MENU_WIDTH];
         NSMutableArray *viewControllers = [NSMutableArray array];
@@ -59,6 +61,11 @@
         [_menuController setViewControllers:viewControllers];
         
         [self.window setRootViewController:_menuController];
+        
+    }else{
+        // Set default language from device
+        [[NSUserDefaults standardUserDefaults] setBool:(![[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"en"] )forKey:@"lang"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
     }
     return YES;

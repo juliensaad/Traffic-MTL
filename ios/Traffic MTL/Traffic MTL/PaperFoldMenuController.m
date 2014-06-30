@@ -231,7 +231,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -264,7 +264,14 @@
         [[NSUserDefaults standardUserDefaults] setBool:RIVE_SUD forKey:@"shore"];
     }else if(indexPath.row ==2){
         [[NSUserDefaults standardUserDefaults] setBool:RIVE_NORD forKey:@"shore"];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setBool:(![[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]) forKey:@"lang"];
+        NSLog(@"New lang %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"lang"] );
+        
+       
+        
     }
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [tableView setUserInteractionEnabled:NO];
         CGRect startFrame = self.paperFoldView.contentView.frame;
@@ -286,6 +293,10 @@
                   self.paperFoldView.contentView.frame = endFrame;
                   [self showMenu:NO animated:YES];
                       [tableView setUserInteractionEnabled:YES];
+                  
+                  // change cell language
+                  if(indexPath.row==3)
+                      [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setText:(ISFRENCH?@"English":@"Français")];
               }];
          }];
     

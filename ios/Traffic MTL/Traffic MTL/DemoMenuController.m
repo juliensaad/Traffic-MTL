@@ -75,6 +75,8 @@
                 break;
             case 2:
                 [cell.textLabel setText:@"Rive Nord"];
+            case 3:
+                [cell.textLabel setText:(ISFRENCH?@"English":@"Français")];
             default:
                 break;
         }

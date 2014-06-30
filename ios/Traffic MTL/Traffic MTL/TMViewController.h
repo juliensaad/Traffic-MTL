@@ -35,6 +35,7 @@
 
 @property UIImageView *gif;
 
+@property (weak, nonatomic) IBOutlet UIView *bottomBar;
 // Sidebar
 
 @property DemoMenuController* sideMenu;
