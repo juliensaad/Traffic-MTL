@@ -25,13 +25,15 @@
     [self.menuTableView setBackgroundView:tableBgView];
     [self.menuTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
+    [self.menuTableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+    [self.menuTableView scrollRectToVisible:CGRectMake(0, 0, 320, 20) animated:NO];
     
     [self reloadMenu];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 95;
+    return 90;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

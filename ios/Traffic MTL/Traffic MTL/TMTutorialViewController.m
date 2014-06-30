@@ -69,7 +69,7 @@
         
         label.textColor = UIColorFromRGB(0x6acdd8);
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Ubuntu-Medium" size:17.0];
+        label.font = [UIFont fontWithName:@"Ubuntu-Medium" size:18.0];
         label.tag = 1;
         label.adjustsFontSizeToFitWidth = YES;
         [view addSubview:label];
@@ -80,9 +80,9 @@
         
         descriptionLabel.textColor = UIColorFromRGB(0x546470);
         descriptionLabel.textAlignment = NSTextAlignmentCenter;
-        descriptionLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:13.0f];
+        descriptionLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:15.0f];
         descriptionLabel.tag = 3;
-        descriptionLabel.numberOfLines = 4;
+        descriptionLabel.numberOfLines = 11;
         descriptionLabel.adjustsFontSizeToFitWidth = YES;
         [view addSubview:descriptionLabel];
         
@@ -229,7 +229,7 @@
             descriptionLabel.numberOfLines = 11;
             
             label.text = (ISFRENCH?@"BIENVENUE!":@"WELCOME!");
-            descriptionLabel.text = lMISSION;
+            descriptionLabel.text = lWELCOME;
             phone.image = [UIImage imageNamed:@"welcomeCard.png"];
             label.hidden = NO;
             phone.hidden = NO;

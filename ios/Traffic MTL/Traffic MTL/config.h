@@ -42,9 +42,12 @@
 
 #define lRIVE_SUD (ISFRENCH?@"Rive Sud":@"South Shore")
 #define lRIVE_NORD (ISFRENCH?@"Rive Nord":@"North Shore")
-#define lHELP (ISFRENCH?@"Aide":@"Help")
+#define lHELP (ISFRENCH?@"À propos":@"About")
 // TUTORIAL
-#define lEVALUATE (ISFRENCH?@"Trafic Montréal évalue en temps réel le temps d'accès aux ponts de l'île.":@"")
+
+#define lWELCOME (ISFRENCH?@"Montréal est une ville redoutée pour le trafic de ses ponts. Trafic Montréal est la solution simple et efficace afin d'éviter les endroits de congestion.":@"")
+
+#define lEVALUATE (ISFRENCH?@"Trafic Montréal évalue en temps réel le temps d'accès aux ponts de l'île.":@"Traffic Montreal evaluates in real-time the access time of the island's bridges.")
 
 #define lOURDYNAMIC (ISFRENCH?@"Notre Dynamique":@"Our Dynamic")
 #define lWITHOUTTRAFFIC (ISFRENCH?@"100% = Vitesse sans trafic":@"100% = Speed without traffic")
@@ -52,10 +55,12 @@
 #define lPLUS (ISFRENCH?@"+... = Le temps additionnel requis pour traverser le pont":@"+... = The amount of additional time it takes to cross the bridge")
 
 #define lOURMISSION  (ISFRENCH?@"Notre Mission":@"Our Goal")
-#define lMISSION (ISFRENCH?@"Faciliter les aller-retours à Montréal en donnant des informations pertinentes quant à la congestion sur les ponts de la ville.":@"")
+#define lMISSION (ISFRENCH?@"Faciliter les aller-retours à Montréal en donnant des informations pertinentes quant à la congestion sur les ponts de la ville.":@"Make your daily commute to and from the city less painful by having access to pertinent information about the traffic statuses of the various bridges.")
 
 #define lOURSTRATEGY (ISFRENCH?@"Notre Stratégie":@"Our Strategy")
 
-#define lSTRATEGY (ISFRENCH?@"Évaluer la moyenne des temps d'accès et de traversée des ponts afin déterminer leur vitesse de circulation.":@"")
+#define lSTRATEGY (ISFRENCH?@"Évaluer la moyenne des temps d'accès et de traversée des ponts afin déterminer leur vitesse de circulation.":@"Get the real time the changes of the traffic flow on and around the bridges. This offers the users an accurate overview their possible way back home instantly")
+
+
 
 #endif

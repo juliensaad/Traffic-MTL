@@ -258,6 +258,9 @@
     else return nil;
 }
 
+-(void)close{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0){
@@ -266,10 +269,27 @@
         [[NSUserDefaults standardUserDefaults] setBool:RIVE_SUD forKey:@"shore"];
     }else if(indexPath.row==2){
         // launch about page
-        
         UIViewController* v = [[UIViewController alloc] init];
         [self presentViewController:v animated:YES completion:nil];
-
+        
+    
+        NSString* name =@"about-5.png";
+        if(!ISIPHONE5){
+            name = @"about.png";
+        }
+        UIImageView* im = [[UIImageView alloc]initWithImage:[UIImage imageNamed:name]];
+        [v.view addSubview:im];
+        
+        UIButton* close = [UIButton buttonWithType:UIButtonTypeCustom];
+        close.frame = CGRectMake(270, 30, 30, 30);
+        [close setImage:[UIImage imageNamed:@"btnClose.png"] forState:UIControlStateNormal];
+        
+        [close addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+        
+        [v.view addSubview:close];
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return ;
     }else if(indexPath.row == 5){
         NSLog(@"LANG CHANGE");
          [[NSUserDefaults standardUserDefaults] setBool:(![[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]) forKey:@"lang"];
