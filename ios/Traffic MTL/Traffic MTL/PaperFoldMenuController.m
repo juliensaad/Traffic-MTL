@@ -34,6 +34,7 @@
 #import "PaperFoldMenuController.h"
 #import "config.h"
 
+
 @interface PaperFoldMenuController ()
 
 @property (nonatomic, assign) float menuWidth;
@@ -188,7 +189,7 @@
     menuTableView.scrollsToTop = !(self.paperFoldView.state == PaperFoldStateDefault);
     self.menuTableView = menuTableView;
     
-    ShadowView *menuTableViewSideShadowView = [[ShadowView alloc] initWithFrame:CGRectMake(_menuTableView.frame.size.width-2,0,2,[self.view bounds].size.height)];
+    ShadowView *menuTableViewSideShadowView = [[ShadowView alloc] initWithFrame:CGRectMake(_menuTableView.frame.size.width+2,0,2,[self.view bounds].size.height)];
     [menuTableViewSideShadowView setColorArrays:@[[UIColor clearColor],[UIColor colorWithWhite:0 alpha:0.2]]];
     /**
      * added to the leftFoldView instead of leftFoldView.contentView bec
@@ -291,8 +292,18 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return ;
     }else if(indexPath.row == 5){
-        NSLog(@"LANG CHANGE");
+       
          [[NSUserDefaults standardUserDefaults] setBool:(![[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]) forKey:@"lang"];
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"lang_change"  // Event action (required)
+                                                               label:@"lang_change-ios"          // Event label
+                                                               value:[NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"lang"]]] build]];    // Event value
+    
+        
+        
         // [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]] setSelected:YES];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];

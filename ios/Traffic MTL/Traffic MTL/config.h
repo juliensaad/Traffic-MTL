@@ -45,9 +45,9 @@
 #define lHELP (ISFRENCH?@"À propos":@"About")
 // TUTORIAL
 
-#define lWELCOME (ISFRENCH?@"Montréal est une ville redoutée pour le trafic de ses ponts. Trafic Montréal est la solution simple et efficace afin d'éviter les endroits de congestion.":@"")
+#define lWELCOME (ISFRENCH?@"Montréal est une ville redoutée pour le trafic de ses ponts. Trafic Montréal est la solution simple et efficace afin d'éviter les endroits de congestion.":@"Montreal is known for its heavy rush hours, mostly around its bridges. Traffic Montreal is a quick and easy solution to travel faster and avoid congestion.")
 
-#define lEVALUATE (ISFRENCH?@"Trafic Montréal évalue en temps réel le temps d'accès aux ponts de l'île.":@"Traffic Montreal evaluates in real-time the access time of the island's bridges.")
+#define lEVALUATE (ISFRENCH?@"Trafic Montréal évalue en temps réel le temps d'accès aux ponts de l'île.":@"Traffic Montreal evaluates in real-time the traffic flow of the island's bridges.")
 
 #define lOURDYNAMIC (ISFRENCH?@"Notre Dynamique":@"Our Dynamic")
 #define lWITHOUTTRAFFIC (ISFRENCH?@"100% = Vitesse sans trafic":@"100% = Speed without traffic")
@@ -59,7 +59,7 @@
 
 #define lOURSTRATEGY (ISFRENCH?@"Notre Stratégie":@"Our Strategy")
 
-#define lSTRATEGY (ISFRENCH?@"Évaluer la moyenne des temps d'accès et de traversée des ponts afin déterminer leur vitesse de circulation.":@"Get the real time the changes of the traffic flow on and around the bridges. This offers the users an accurate overview their possible way back home instantly")
+#define lSTRATEGY (ISFRENCH?@"Évaluer la moyenne des temps d'accès et de traversée des ponts afin déterminer leur vitesse de circulation.":@"Evaluate the average speed of the traffic flow on and around the bridges. This offers the users an accurate overview of their possible way back home instantly.")
 
 
 

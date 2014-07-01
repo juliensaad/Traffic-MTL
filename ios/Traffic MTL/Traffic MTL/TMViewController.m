@@ -81,7 +81,7 @@ BOOL bottomBarHasBeenHidden;
     
     cell.bridgeName.text = bridge.bridgeName;
     cell.bridgeName.adjustsFontSizeToFitWidth = YES;
-
+    cell.bridgeName.font = [UIFont fontWithName:@"Ubuntu-Light" size:28.0f];
     cell.avecTraffic.backgroundColor = UIColorFromRGB(bridge.rgb);
     
     // detect touch on label to swap info
@@ -95,6 +95,8 @@ BOOL bottomBarHasBeenHidden;
         cell.avecTraffic.text = [self getTimeString:bridge];
     }
     
+    cell.avecTraffic.font = [UIFont fontWithName:@"Ubuntu-Light" size:16.0f];
+    cell.normal.font = [UIFont fontWithName:@"Ubuntu-Medium" size:10.0f];
     cell.normal.text = [NSString stringWithFormat:@"CONDITION: %@",bridge.condition];
     
     cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[indexPath.row];
@@ -357,7 +359,9 @@ BOOL bottomBarHasBeenHidden;
     [super viewDidLoad];
     
     [self setBottomBarHidden:NO];
-    
+    _b1.titleLabel.font =  [UIFont fontWithName:@"Ubuntu-Medium" size:12.0f];
+    _b2.titleLabel.font =  [UIFont fontWithName:@"Ubuntu-Medium" size:12.0f];
+
     // Preload data
     _results = [[NSMutableArray alloc] init];
     
@@ -515,7 +519,6 @@ BOOL bottomBarHasBeenHidden;
     if([keyPath isEqualToString:@"lang"]){
         [self localizeView];
         [self loadTimes];
-        NSLog(@" BING CHANGE");
     }
 }
 
@@ -535,7 +538,7 @@ BOOL bottomBarHasBeenHidden;
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
             
-            self.tableView.contentOffset = CGPointMake(0, -90);
+            self.tableView.contentOffset = CGPointMake(0, -100);
             
         } completion:^(BOOL finished){
             [self loadTimes];

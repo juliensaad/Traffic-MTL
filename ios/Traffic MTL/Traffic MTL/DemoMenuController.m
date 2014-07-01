@@ -67,7 +67,7 @@
             
             
             
-            textLabel.font = [UIFont fontWithName:@"Ubuntu-Light" size:12.0f];
+            textLabel.font = [UIFont fontWithName:@"Ubuntu-Medium" size:10.0f];
             textLabel.numberOfLines = 2;
             textLabel.adjustsFontSizeToFitWidth = YES;
             textLabel.textAlignment = NSTextAlignmentCenter;

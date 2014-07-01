@@ -155,14 +155,14 @@
             [thirdView addSubview:circleView];
         }
         
-        UILabel* percent = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x+3, 200, 205, 30)];
+        UILabel* percent = [[UILabel alloc] initWithFrame:CGRectMake(63, 197, 205, 30)];
         percent.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
         percent.textColor = UIColorFromRGB(0x546470);
         percent.text = lWITHOUTTRAFFIC;
         
         [self addBold:percent withNum:4];
 
-        UILabel* percent2 = [[UILabel alloc] initWithFrame:CGRectMake(temps.frame.origin.x+3, 216, 205, 30)];
+        UILabel* percent2 = [[UILabel alloc] initWithFrame:CGRectMake(63, 213, 205, 30)];
         percent2.font = [UIFont fontWithName:@"Ubuntu" size:12.0f];
         percent2.textColor = UIColorFromRGB(0x546470);
         percent2.text = lWITHTRAFFIC;
