@@ -28,4 +28,6 @@
 @property int shore;
 
 @property NSString* condition;
+
+@property int bridgeId;
 @end

@@ -41,8 +41,6 @@
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"didCompleteTutorial"]){
         
-        NSLog(@"%d", ISFRENCH);
-        
         // Launch side menu and Main View
         _menuController = [[DemoMenuController alloc] initWithMenuWidth:MENU_WIDTH];
         NSMutableArray *viewControllers = [NSMutableArray array];

@@ -11,6 +11,8 @@
 #import "PaperFoldMenuController.h"
 #import "DemoMenuController.h"
 
+#import "BVReorderTableView.h"
+
 @interface TMViewController : GAITrackedViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *noInternet;
 
@@ -18,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *victoriaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jcLabel;
 @property (weak, nonatomic) IBOutlet UIView *b1Frame;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet BVReorderTableView *tableView;
 - (IBAction)versMtlClick:(id)sender;
 - (IBAction)versBanlieueClick:(id)sender;
 

@@ -125,7 +125,6 @@
         if (indexPath.row == self.selectedIndex)
         {
             //[tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            NSLog(@"SELECTED");
         }
        
         

@@ -34,6 +34,9 @@
 
 @property UIView* refreshContent;
 
+@property NSMutableArray* rowOrder;
+@property NSMutableArray* rowOrderNORD;
+
 @end
 
 @implementation TMViewController
@@ -77,56 +80,73 @@ BOOL bottomBarHasBeenHidden;
     BridgeCell *cell;
     cell= [tableView dequeueReusableCellWithIdentifier:@"BridgeCell"];
 
-    TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][indexPath.row];
-    
-    cell.bridgeName.text = bridge.bridgeName;
-    cell.bridgeName.adjustsFontSizeToFitWidth = YES;
-    cell.bridgeName.font = [UIFont fontWithName:@"Ubuntu-Light" size:28.0f];
-    cell.avecTraffic.backgroundColor = UIColorFromRGB(bridge.rgb);
-    
-    // detect touch on label to swap info
-    cell.avecTraffic.userInteractionEnabled = YES;
-    
-    cell.colorFilter.backgroundColor = [UIColor clearColor];
+    if ([[_bridges[direction+(shore?2:0)] objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&
+        [[_bridges[direction+(shore?2:0)] objectAtIndex:indexPath.row] isEqualToString:@"DUMMY"]) {
+        cell.textLabel.text = @"";
+        cell.hidden = YES;
+        cell.contentView.hidden = YES;
 
-    if(statusShowing==PERCENTAGE){
-        cell.avecTraffic.text = [self getPercentageString:bridge];
     }else{
-        cell.avecTraffic.text = [self getTimeString:bridge];
-    }
-    
-    cell.avecTraffic.font = [UIFont fontWithName:@"Ubuntu-Light" size:16.0f];
-    cell.normal.font = [UIFont fontWithName:@"Ubuntu-Medium" size:10.0f];
-    cell.normal.text = [NSString stringWithFormat:@"CONDITION: %@",bridge.condition];
-    
-    cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[indexPath.row];
-    cell.backgroundImage.tag = indexPath.row;
-    
-    cell.clipsToBounds = YES;
-    cell.backgroundImage.clipsToBounds = YES;
-    
-    if(!cell.hasShadow){
-        [self addGradientToView:cell.backgroundImage];
-        cell.hasShadow = YES;
-    }
-    
-    if(indexPath.row==0){
-        UIButton* hamburger = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 50, 40)];
-        [hamburger setImage:[UIImage imageNamed:@"hamburger.png"] forState:UIControlStateNormal];
-        [cell addSubview: hamburger];
+        TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][indexPath.row];
         
-        hamburger.tag = 10;
-        hamburger.hidden = YES;
-        [hamburger addTarget:self action:@selector(changeShore:) forControlEvents:UIControlEventTouchUpInside];
-        [cell setUserInteractionEnabled:YES];
+        cell.bridgeName.text = bridge.bridgeName;
+        cell.bridgeName.adjustsFontSizeToFitWidth = YES;
+        cell.bridgeName.font = [UIFont fontWithName:@"Ubuntu-Light" size:28.0f];
+        cell.avecTraffic.backgroundColor = UIColorFromRGB(bridge.rgb);
+        
+        cell.contentView.hidden = NO;
+        // detect touch on label to swap info
+        cell.avecTraffic.userInteractionEnabled = YES;
+        
+        cell.colorFilter.backgroundColor = [UIColor clearColor];
+
+        if(statusShowing==PERCENTAGE){
+            cell.avecTraffic.text = [self getPercentageString:bridge];
+        }else{
+            cell.avecTraffic.text = [self getTimeString:bridge];
+        }
+        
+        cell.avecTraffic.font = [UIFont fontWithName:@"Ubuntu-Light" size:16.0f];
+        cell.normal.font = [UIFont fontWithName:@"Ubuntu-Medium" size:10.0f];
+        cell.normal.text = [NSString stringWithFormat:@"CONDITION: %@",bridge.condition];
+        
+        @try {
+            cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[indexPath.row];
+        }
+        @catch (NSException *exception) {
+            cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[0];
+        }
+        @finally {
+            
+        }
+        
+        cell.backgroundImage.tag = indexPath.row;
+        
+        cell.clipsToBounds = YES;
+        cell.backgroundImage.clipsToBounds = YES;
+        
+        if(!cell.hasShadow){
+            [self addGradientToView:cell.backgroundImage];
+            cell.hasShadow = YES;
+        }
+        
+        if(indexPath.row==0){
+            UIButton* hamburger = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 50, 40)];
+            [hamburger setImage:[UIImage imageNamed:@"hamburger.png"] forState:UIControlStateNormal];
+            [cell addSubview: hamburger];
+            
+            hamburger.tag = 10;
+            hamburger.hidden = YES;
+            [hamburger addTarget:self action:@selector(changeShore:) forControlEvents:UIControlEventTouchUpInside];
+            [cell setUserInteractionEnabled:YES];
+        }
+        
+        if(indexPath.row!=0){
+            [[cell viewWithTag:10] setHidden:YES];
+        }else{
+            [[cell viewWithTag:10] setHidden:NO];
+        }
     }
-    
-    if(indexPath.row!=0){
-        [[cell viewWithTag:10] setHidden:YES];
-    }else{
-        [[cell viewWithTag:10] setHidden:NO];
-    }
-    
     return cell;
    
 }
@@ -184,9 +204,6 @@ BOOL bottomBarHasBeenHidden;
         
     }
     
-    
-    //NSLog(@"offset: %f %f",offset, _tableView.contentSize.height);
-    
     // 57 432
     // 145 520
     float maxOffset = 0;
@@ -213,7 +230,7 @@ BOOL bottomBarHasBeenHidden;
             
             if(bottomBarPosY<screenHeight){
                 CGRect fr = _bottomBar.frame;
-                NSLog(@"%f", (offset-lastContentOffsetValue));
+
                 fr.origin.y += (offset-lastContentOffsetValue);
                 
                 if(fr.origin.y >screenHeight)
@@ -226,7 +243,7 @@ BOOL bottomBarHasBeenHidden;
             
             if(bottomBarPosY>(screenHeight-bottomBarSize)){
                 CGRect fr = _bottomBar.frame;
-                NSLog(@"%f", (offset-lastContentOffsetValue));
+
                 fr.origin.y += (offset-lastContentOffsetValue);
                 
                 if(fr.origin.y <(screenHeight-bottomBarSize))
@@ -250,7 +267,6 @@ BOOL bottomBarHasBeenHidden;
         
         CGRect im1Fr = ((UIImageView*)_statusBarImages[i]).frame;
         im1Fr.origin.y = -offset + i*125;
-        
         ((UIImageView*)_statusBarImages[i]).frame = im1Fr;
         
     }
@@ -284,13 +300,11 @@ BOOL bottomBarHasBeenHidden;
     if(hidden){
         fr.origin.y = screenHeight;
         
-        NSLog(@"HIDING STATUS BAR");
         bottomBarHasBeenHidden = YES;
 
     }else{
         fr.origin.y = screenHeight-fr.size.height;
     
-        NSLog(@"SHOWING STATUS BAR %f", fr.origin.y);
         bottomBarHasBeenHidden = NO;
     }
     
@@ -358,6 +372,11 @@ BOOL bottomBarHasBeenHidden;
 {
     [super viewDidLoad];
     
+    // Screen name
+    self.screenName = @"Main-iOS";
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.hidden = NO;
+    
     [self setBottomBarHidden:NO];
     _b1.titleLabel.font =  [UIFont fontWithName:@"Ubuntu-Medium" size:12.0f];
     _b2.titleLabel.font =  [UIFont fontWithName:@"Ubuntu-Medium" size:12.0f];
@@ -376,10 +395,12 @@ BOOL bottomBarHasBeenHidden;
  
     shore = [[NSUserDefaults standardUserDefaults] boolForKey:@"shore"];
     
-    // Screen name
-    self.screenName = @"Main-iOS";
+    _rowOrder = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"rowOrder"] mutableCopy];
+    _rowOrderNORD = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"rowOrderNORD"] mutableCopy];
     
-    // Pour la face de louis
+    // Order the images depending on rowOrder
+    [self prepareBridgeImages];
+      // Pour la face de louis
     rightCounter = 0;
    
     
@@ -398,29 +419,12 @@ BOOL bottomBarHasBeenHidden;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Ubuntu-Light" size:20.0], NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     
-    // Fill the images array for the bridges
-    _bridgeImagesSouth = [[NSMutableArray alloc] init];
-    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"champlain.jpg"]];
-    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"victoria.jpg"]];
-    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"jacques.jpg"]];
-    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"mercier.jpg"]];
-    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"louis.jpg"]];
-    
-    _bridgeImagesNorth = [[NSMutableArray alloc] init];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis-bisson.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"lachapelle.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"mederic-martin.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"viau.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"papineau.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"pie-ix.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"olivier.jpg"]];
-    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"tourtes.jpg"]];
+
     
     
     addedShadowCount = 0;
     UIImageView* bg = [[UIImageView alloc] init];
     bg.image = [UIImage imageNamed:@"bg.png"];
-    
     bg.frame = self.view.frame;
     [self.view addSubview:bg];
     [self.view sendSubviewToBack:bg];
@@ -501,6 +505,30 @@ BOOL bottomBarHasBeenHidden;
     
 }
 
+-(void)prepareBridgeImages{
+    // Fill the images array for the bridges
+    _bridgeImagesSouth = [[NSMutableArray alloc] init];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"champlain.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"victoria.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"jacques.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"mercier.jpg"]];
+    [_bridgeImagesSouth addObject:[UIImage imageNamed:@"louis.jpg"]];
+    
+    
+    
+    _bridgeImagesNorth = [[NSMutableArray alloc] init];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"louis-bisson.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"lachapelle.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"mederic-martin.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"viau.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"papineau.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"pie-ix.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"olivier.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"tourtes.jpg"]];
+    [_bridgeImagesNorth addObject:[UIImage imageNamed:@"charles.jpg"]];
+
+}
+
 -(void)localizeView{
     [_b1 setTitle:lMTL forState:UIControlStateNormal];
     [_b2 setTitle:lBANLIEU forState:UIControlStateNormal];
@@ -523,6 +551,8 @@ BOOL bottomBarHasBeenHidden;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     [self loadTimes];
 }
 
@@ -542,7 +572,7 @@ BOOL bottomBarHasBeenHidden;
             
         } completion:^(BOOL finished){
             [self loadTimes];
-            NSLog(@"loading new");
+
         }];
         
     // }
@@ -596,12 +626,12 @@ BOOL bottomBarHasBeenHidden;
 -(void)loadTimes{
 
     if(!isLoading){
-        NSLog(@"loading");
+
         isLoading = YES;
         // Load all lon and lats
         _results = [[NSMutableArray alloc] init];
         
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic/traffic.php"]]
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://thirdbridge.net/traffic_dev/traffic.php"]]
                                                                    cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                                timeoutInterval:10];
         [request setHTTPMethod:@"POST"];
@@ -708,6 +738,7 @@ BOOL bottomBarHasBeenHidden;
         
         info.percentage = [[dic objectForKey:@"percentage"] intValue];
         info.delay = [[dic objectForKey:@"delay"] intValue];
+        info.bridgeId = [[dic objectForKey:@"id"] intValue];
         info.condition = [dic objectForKey:@"cond"];
         
         // Scan hex value for color
@@ -731,7 +762,7 @@ BOOL bottomBarHasBeenHidden;
     [_bridges addObject:bridgesMTLNORD];
     [_bridges addObject:bridgesBanlieueNORD];
     
-    [_tableView reloadData];
+    [self reloadTableView];
     
     [_refreshControl endRefreshing];
     
@@ -774,8 +805,26 @@ BOOL bottomBarHasBeenHidden;
         transition.subtype = kCATransitionFromLeft;
         
         [[self.tableView layer] addAnimation:transition forKey:@"UITableViewReloadDataAnimationKey"];
-        [self.tableView reloadData];
+        [self reloadTableView];
     }
+    
+    if(direction!=BANLIEUE){
+        rightCounter=0;
+    }
+    
+    rightCounter=0;
+    if(rightCounter<10 && _gif.tag ==123){
+        NSString *path=[[NSBundle mainBundle]pathForResource:@"whiteanim" ofType:@"gif"];
+        NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
+        _gif.image= [UIImage animatedImageWithAnimatedGIFURL:url];
+        _gif.alpha = 0.7;
+        
+        _gif.tag = 0;
+        _gif.frame = CGRectMake(145, 6, 28, 28);
+        _l.hidden = NO;
+    }
+    
+
     
 }
 
@@ -795,7 +844,25 @@ BOOL bottomBarHasBeenHidden;
         transition.subtype = kCATransitionFromRight;
         
         [[self.tableView layer] addAnimation:transition forKey:@"UITableViewReloadDataAnimationKey"];
-        [self.tableView reloadData];
+        [self reloadTableView];
+        
+    }
+    
+    if(direction==BANLIEUE){
+        rightCounter++;
+    }
+    
+    if(rightCounter>=10 && _gif.tag != 123){
+        
+        NSString *path=[[NSBundle mainBundle]pathForResource:@"gif2" ofType:@"gif"];
+        NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
+        _gif.image= [UIImage animatedImageWithAnimatedGIFURL:url];
+        _gif.alpha = 0.9;
+        
+        _gif.tag = 123;
+        _gif.frame = CGRectMake(0, -10, 50, 50);
+        _gif.alpha = 1.0;
+        _l.hidden = YES;
         
     }
 }
@@ -805,7 +872,8 @@ BOOL bottomBarHasBeenHidden;
     shore = [[NSUserDefaults standardUserDefaults] boolForKey:@"shore"];
     
     [self createFakeStatusBar];
-    [_tableView reloadData];
+    [self reloadTableView];
+
  
 }
 - (IBAction)changeShore:(id)sender {
@@ -916,5 +984,113 @@ BOOL bottomBarHasBeenHidden;
     }
 }
 
+
+#pragma Tableview reordering
+// This method is called when the long press gesture is triggered starting the re-ording process.
+// You insert a blank row object into your data source and return the object you want to save for
+// later. This method is only called once.
+- (id)saveObjectAndInsertBlankRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = [_bridges[direction+(shore?2:0)] objectAtIndex:indexPath.row];
+    // Your dummy object can be something entirely different. It doesn't
+    // have to be a string.
+    [_bridges[direction+(shore?2:0)] replaceObjectAtIndex:indexPath.row withObject:@"DUMMY"];
+    return object;
+}
+
+// This method is called when the selected row is dragged to a new position. You simply update your
+// data source to reflect that the rows have switched places. This can be called multiple times
+// during the reordering process.
+- (void)moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    id object = [_bridges[direction+(shore?2:0)] objectAtIndex:fromIndexPath.row];
+    [_bridges[direction+(shore?2:0)] removeObjectAtIndex:fromIndexPath.row];
+    [_bridges[direction+(shore?2:0)] insertObject:object atIndex:toIndexPath.row];
+    
+    object = [(shore?_bridgeImagesNorth:_bridgeImagesSouth) objectAtIndex:fromIndexPath.row];
+    [ (shore?_bridgeImagesNorth:_bridgeImagesSouth) removeObjectAtIndex:fromIndexPath.row];
+    [ (shore?_bridgeImagesNorth:_bridgeImagesSouth) insertObject:object atIndex:toIndexPath.row];
+
+}
+
+// This method is called when the selected row is released to its new position. The object is the same
+// object you returned in saveObjectAndInsertBlankRowAtIndexPath:. Simply update the data source so the
+// object is in its new position. You should do any saving/cleanup here.
+- (void)finishReorderingWithObject:(id)object atIndexPath:(NSIndexPath *)indexPath; {
+    [_bridges[direction+(shore?2:0)] replaceObjectAtIndex:indexPath.row withObject:object];
+    
+    [self saveRowReordering];
+    // do any additional cleanup here
+    [self createFakeStatusBar];
+}
+
+-(void)saveRowReordering{
+
+    // Save new row order for both rows
+    if(_rowOrder == nil){
+        _rowOrder = [[NSMutableArray alloc] init];
+        NSLog(@"Nil");
+    }
+    if(_rowOrderNORD == nil)
+        _rowOrderNORD = [[NSMutableArray alloc] init];
+    for(int i = 0;i<[_tableView numberOfRowsInSection:0];i++){
+        NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
+        
+        TMBridgeInfo* bridge = _bridges[direction+(shore?2:0)][index.row];
+        
+        [shore==RIVE_SUD?_rowOrder:_rowOrderNORD addObject:bridge.bridgeName];
+        
+    }
+    // Save to user defaults
+    [[NSUserDefaults standardUserDefaults] setObject:shore==RIVE_SUD?_rowOrder:_rowOrderNORD forKey:shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD"];
+    
+    NSLog(@"saving %@", shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD");
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    
+    
+}
+
+-(void)reorderRows{
+
+    int nbBridges = ((NSMutableArray*)_bridges[direction+(shore?2:0)]).count;
+    
+    if(nbBridges!=(shore==RIVE_SUD?_rowOrder:_rowOrderNORD).count) return;
+    
+    NSMutableArray* newBridgeOrder1 = [[NSMutableArray alloc] init];
+    NSMutableArray* newBridgeOrder2 = [[NSMutableArray alloc] init];
+    
+    NSMutableArray* newImageOrder = [[NSMutableArray alloc] init];
+    
+    int j = 0;
+    while (j<nbBridges) {
+        for(int i = 0;i<nbBridges;i++){
+            if([shore==RIVE_SUD?_rowOrder[j]:_rowOrderNORD[j] isEqualToString:((TMBridgeInfo*)_bridges[direction+(shore?2:0)][i]).bridgeName]){
+                [newBridgeOrder1 addObject:_bridges[direction+(shore?2:0)][i]];
+            }
+        }
+        j++;
+    }
+
+    j = 0;
+    while (j<nbBridges) {
+        for(int i = 0;i<nbBridges;i++){
+            if([shore==RIVE_SUD?_rowOrder[j]:_rowOrderNORD[j] isEqualToString:((TMBridgeInfo*)_bridges[!direction+(shore?2:0)][i]).bridgeName]){
+                [newBridgeOrder2 addObject:_bridges[!direction+(shore?2:0)][i]];
+             
+            }
+        }
+        j++;
+
+    }
+    
+    _bridges[direction+(shore?2:0)] = newBridgeOrder1;
+    _bridges[!direction+(shore?2:0)] = newBridgeOrder2;
+
+}
+
+-(void)reloadTableView{
+    [self reorderRows];
+    [_tableView reloadData];
+    
+}
 
 @end
