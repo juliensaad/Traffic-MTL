@@ -112,6 +112,66 @@ BOOL bottomBarHasBeenHidden;
         
         @try {
             cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[indexPath.row];
+            
+            switch(bridge.bridgeId) {
+                case 1:
+                case 2:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"champlain.jpg"];
+                    break;
+                case 3:
+                case 4:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"victoria.jpg"];
+                    break;
+                case 5:
+                case 6:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"jacques.jpg"];
+                    break;
+                case 7:
+                case 8:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"mercier.jpg"];
+                    break;
+                case 9:
+                case 10:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"louis.jpg"];
+                    break;
+                case 14:
+                case 45:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"louis-bisson.jpg"];
+                    break;
+                case 46:
+                case 47:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"lachapelle.jpg"];
+                    break;
+                case 48:
+                case 49:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"mederic-martin.jpg"];
+                    break;
+                case 50:
+                case 51:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"viau.jpg"];
+                    break;
+                case 52:
+                case 53:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"papineau.jpg"];
+                    break;
+                case 54:
+                case 55:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"pie-ix.jpg"];
+                    break;
+                case 56:
+                case 57:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"olivier.jpg"];
+                    break;
+                case 58:
+                case 59:
+                default:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"tourtes.jpg"];
+                    break;
+                case 60:
+                case 61:
+                    cell.backgroundImage.image = [UIImage imageNamed:@"charles.jpg"];
+                    break;
+			}
         }
         @catch (NSException *exception) {
             cell.backgroundImage.image = (shore?_bridgeImagesNorth:_bridgeImagesSouth)[0];
@@ -1029,7 +1089,14 @@ BOOL bottomBarHasBeenHidden;
         _rowOrder = [[NSMutableArray alloc] init];
         NSLog(@"Nil");
     }
-    if(_rowOrderNORD == nil)
+    if(_rowOrderNORD == nil){
+        _rowOrderNORD = [[NSMutableArray alloc] init];
+        //    NSLog(@"Nil 2");
+    }
+    
+    if(shore==RIVE_SUD)
+        _rowOrder= [[NSMutableArray alloc] init];
+    else
         _rowOrderNORD = [[NSMutableArray alloc] init];
     for(int i = 0;i<[_tableView numberOfRowsInSection:0];i++){
         NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
@@ -1043,6 +1110,7 @@ BOOL bottomBarHasBeenHidden;
     [[NSUserDefaults standardUserDefaults] setObject:shore==RIVE_SUD?_rowOrder:_rowOrderNORD forKey:shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD"];
     
     NSLog(@"saving %@", shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD");
+    NSLog(@"%@", [_rowOrder description]);
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     
@@ -1058,7 +1126,6 @@ BOOL bottomBarHasBeenHidden;
     NSMutableArray* newBridgeOrder1 = [[NSMutableArray alloc] init];
     NSMutableArray* newBridgeOrder2 = [[NSMutableArray alloc] init];
     
-    NSMutableArray* newImageOrder = [[NSMutableArray alloc] init];
     
     int j = 0;
     while (j<nbBridges) {
