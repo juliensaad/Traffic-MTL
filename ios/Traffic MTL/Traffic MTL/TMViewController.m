@@ -15,7 +15,7 @@
 #import <POP/POP.h>
 #import "UIImage+Blur.h"
 #import "UIImage+animatedGIF.h"
-
+#import <AddressBook/AddressBook.h>
 
 @interface TMViewController ()
 
@@ -562,8 +562,43 @@ BOOL bottomBarHasBeenHidden;
     
     [self localizeView];
     
-    
+    [self detectUserLocation];
+  }
+
+#pragma mark USER LOCATION FOR DIRECTION
+
+-(void)detectUserLocation{
+    self.manager=[[CLLocationManager alloc]init];
+    [self.manager setDistanceFilter:CLLocationDistanceMax];
+    [self.manager setDelegate:self];
+    [self.manager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    [self.manager startUpdatingLocation];
+
 }
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    CLGeocoder *reverseGeocoder = [[CLGeocoder alloc] init];
+    
+    [reverseGeocoder reverseGeocodeLocation:locations[0] completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         if (error){
+             NSLog(@"Geocode failed with error: %@", error);
+             return;
+         }
+         //NSLog(@"Received placemarks: %@", [placemarks description]);
+         
+         CLPlacemark *myPlacemark = [placemarks objectAtIndex:0];
+         NSString *city = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCityKey];
+         
+         if([city isEqualToString:@"Montreal"] || [city isEqualToString:@"Montréal"]){
+             [self versBanlieueClick:self];
+         }else{
+             [self versMtlClick:self];
+         }
+         
+     }];
+}
+
 
 -(void)prepareBridgeImages{
     // Fill the images array for the bridges
@@ -664,12 +699,16 @@ BOOL bottomBarHasBeenHidden;
     _statusBarImages = [[NSMutableArray alloc] init];
     
     [_tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-    for(UIImage* im in shore?_bridgeImagesNorth:_bridgeImagesSouth){
+    for(int i = 0;i<[_tableView numberOfRowsInSection:0];i++){
+        NSIndexPath* index = [NSIndexPath indexPathForItem:i inSection:0];
+        BridgeCell* cell = (BridgeCell*)[_tableView cellForRowAtIndexPath:index];
         
-        UIImageView* i = [[UIImageView alloc] initWithImage:im];
+
+        
+        UIImageView* i = [[UIImageView alloc] initWithImage:cell.backgroundImage.image];
         i.clipsToBounds = YES;
         [i setContentMode:UIViewContentModeScaleAspectFill];
-        [i setFrame:CGRectMake(1, 1, 320, 125)];
+        [i setFrame:CGRectMake(0, 0, 320, 125)];
         [self addGradient:i];
         
         [_statusBarView addSubview:i];
@@ -725,8 +764,6 @@ BOOL bottomBarHasBeenHidden;
     isLoading = NO;
     
     [_refreshControl endRefreshing];
-    
-    
     
     // Show the user that he does not have internet connection
     [UIView animateWithDuration:0.2
@@ -1078,8 +1115,8 @@ BOOL bottomBarHasBeenHidden;
     [_bridges[direction+(shore?2:0)] replaceObjectAtIndex:indexPath.row withObject:object];
     
     [self saveRowReordering];
-    // do any additional cleanup here
-    [self createFakeStatusBar];
+
+
 }
 
 -(void)saveRowReordering{
@@ -1087,7 +1124,7 @@ BOOL bottomBarHasBeenHidden;
     // Save new row order for both rows
     if(_rowOrder == nil){
         _rowOrder = [[NSMutableArray alloc] init];
-        NSLog(@"Nil");
+
     }
     if(_rowOrderNORD == nil){
         _rowOrderNORD = [[NSMutableArray alloc] init];
@@ -1109,17 +1146,15 @@ BOOL bottomBarHasBeenHidden;
     // Save to user defaults
     [[NSUserDefaults standardUserDefaults] setObject:shore==RIVE_SUD?_rowOrder:_rowOrderNORD forKey:shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD"];
     
-    NSLog(@"saving %@", shore==RIVE_SUD?@"rowOrder":@"rowOrderNORD");
-    NSLog(@"%@", [_rowOrder description]);
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    
+    [self createFakeStatusBar];
     
 }
 
 -(void)reorderRows{
 
-    int nbBridges = ((NSMutableArray*)_bridges[direction+(shore?2:0)]).count;
+    int nbBridges = (int)((NSMutableArray*)_bridges[direction+(shore?2:0)]).count;
     
     if(nbBridges!=(shore==RIVE_SUD?_rowOrder:_rowOrderNORD).count) return;
     
@@ -1157,6 +1192,7 @@ BOOL bottomBarHasBeenHidden;
 -(void)reloadTableView{
     [self reorderRows];
     [_tableView reloadData];
+    [self createFakeStatusBar];
     
 }
 

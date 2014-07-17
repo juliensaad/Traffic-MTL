@@ -12,8 +12,10 @@
 #import "DemoMenuController.h"
 
 #import "BVReorderTableView.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface TMViewController : GAITrackedViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+
+@interface TMViewController : GAITrackedViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *noInternet;
 
 @property (weak, nonatomic) IBOutlet UILabel *champlainLabel;
@@ -41,4 +43,10 @@
 // Sidebar
 
 @property DemoMenuController* sideMenu;
+
+// Core location
+@property (nonatomic,retain) CLLocationManager *manager;
+@property float latitude;
+@property float longitude;
+
 @end
